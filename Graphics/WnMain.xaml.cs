@@ -1,10 +1,13 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
 
 namespace SmRecipeModifier.Graphics
 {
 
     public partial class WnMain
     {
+
+        private string _path;
 
         public WnMain()
         {
@@ -13,19 +16,28 @@ namespace SmRecipeModifier.Graphics
 
         private void Open(object sender, RoutedEventArgs args)
         {
-            // todo
+            var dialog = new WnOpen { Owner = this };
+            if (dialog.ShowDialog() == false)
+                return;
+            _path = dialog.FileName;
+            TbFileName.Text = Path.GetFileName(_path)!;
+            BnSave.IsEnabled = true;
+            BnSaveAs.IsEnabled = true;
+            MiSave.IsEnabled = true;
+            MiSaveAs.IsEnabled = true;
+            BnAddRecipe.IsEnabled = true;
         }
 
         private void Save(object sender, RoutedEventArgs args)
         {
-            if (TbFileName.Text.Length ! > 0)
+            if (BnSave.IsEnabled == false)
                 return;
             // todo
         }
 
         private void SaveAs(object sender, RoutedEventArgs args)
         {
-            if (TbFileName.Text.Length! > 0)
+            if (BnSave.IsEnabled == false)
                 return;
             // todo
         }
