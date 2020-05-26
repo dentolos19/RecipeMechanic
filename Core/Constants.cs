@@ -9,6 +9,7 @@
         public const string WorkbenchJsonPath = @"Survival\CraftingRecipes\workbench.json";
         public const string ItemNamesJsonPath = @"Survival\CraftingRecipes\item_names.json";
         public const string ItemDescriptionsJsonPath = @"Survival\Gui\Language\English\inventoryDescriptions.json";
+        public const string ItemAssetIconFolderPath = @"Survival\Gui\AssetIcons";
 
     }
 

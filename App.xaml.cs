@@ -13,10 +13,13 @@ namespace SmRecipeModifier
 
         internal static Configuration Settings { get; private set; }
 
+        internal static WnMain WindowMain { get; private set; }
+
         private void Initialize(object sender, StartupEventArgs args)
         {
             Settings = Configuration.Load();
-            new WnMain().Show();
+            WindowMain = new WnMain();
+            WindowMain.Show();
         }
 
         private void HandleExceptions(object sender, DispatcherUnhandledExceptionEventArgs args)

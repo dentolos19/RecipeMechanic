@@ -37,7 +37,7 @@
                 <Separator Margin="10,10,10,0"/>
                 <Label Content="Created By Dennise" Height="30" Margin="10,10,10,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
             </StackPanel>
-            <ListView x:Name="LvRecipes">
+            <ListView x:Name="LvRecipes" SelectionChanged="RecipeSelectionUpdate" MouseDoubleClick="ModifyRecipe">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding Name}"/>

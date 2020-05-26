@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using SmRecipeModifier.Core;
@@ -14,8 +15,8 @@ namespace SmRecipeModifier.Graphics
     {
 
         private string _path;
-        private SmItemDictionary _itemDictionary;
-        private SmItemInfoDictionary _infoDictionary;
+        public SmItemDictionary ItemDictionary;
+        public SmItemInfoDictionary InfoDictionary;
 
         public WnMain()
         {
@@ -35,19 +36,22 @@ namespace SmRecipeModifier.Graphics
             MiSaveAs.IsEnabled = true;
             BnAddRecipe.IsEnabled = true;
             LvRecipes.Items.Clear();
-            _infoDictionary = new SmItemInfoDictionary(Path.Combine(App.Settings.GameDataPath, Constants.ItemDescriptionsJsonPath));
-            _itemDictionary = new SmItemDictionary(Path.Combine(App.Settings.GameDataPath, Constants.ItemNamesJsonPath));
+            InfoDictionary = new SmItemInfoDictionary(Path.Combine(App.Settings.GameDataPath, Constants.ItemDescriptionsJsonPath));
+            ItemDictionary = new SmItemDictionary(Path.Combine(App.Settings.GameDataPath, Constants.ItemNamesJsonPath));
             var recipes = new SmRecipeDictionary(_path).Items;
             foreach (var recipe in recipes)
+                AddRecipeToList(recipe);
+        }
+
+        private void AddRecipeToList(SmRecipe recipe)
+        {
+            var info = InfoDictionary.Fetch(recipe.Id);
+            if (info != null) { LvRecipes.Items.Add(new LvRecipeBinding(info.Info.Title, info.Id, recipe)); }
+            else
             {
-                var info = _infoDictionary.Fetch(recipe.Id);
-                if (info != null) { LvRecipes.Items.Add(new LvRecipeBinding(info.Info.Title, info.Id, recipe)); }
-                else
-                {
-                    info = _itemDictionary.Fetch(recipe.Id);
-                    if (info != null)
-                        LvRecipes.Items.Add(new LvRecipeBinding(info.Name, info.Id, recipe));
-                }
+                info = ItemDictionary.Fetch(recipe.Id);
+                if (info != null)
+                    LvRecipes.Items.Add(new LvRecipeBinding(info.Name, info.Id, recipe));
             }
         }
 
@@ -80,7 +84,7 @@ namespace SmRecipeModifier.Graphics
 
         private void AddRecipe(object sender, RoutedEventArgs args)
         {
-            MessageBox.Show("This function is not yet implemented.", "Sorry about that!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            MessageBox.Show("This function is not available yet.", "Sorry about that!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
         private void RemoveRecipe(object sender, RoutedEventArgs args)
@@ -108,12 +112,25 @@ namespace SmRecipeModifier.Graphics
             if (LvRecipes.SelectedItem == null)
                 return;
             var item = LvRecipes.SelectedItem as LvRecipeBinding;
-            var dialog = new WnModify { Input = item?.Recipe, Owner = this };
+            var dialog = new WnModify(item?.Recipe) { Owner = this };
             if (dialog.ShowDialog() == false)
                 return;
             RemoveSpecificRecipe(item?.Recipe);
-            // todo add new recipe
+            AddRecipeToList(dialog.Result);
+        }
 
+        private void RecipeSelectionUpdate(object sender, SelectionChangedEventArgs args)
+        {
+            if (LvRecipes.SelectedItem == null)
+            {
+                BnRemoveRecipe.IsEnabled = false;
+                BnModifyRecipe.IsEnabled = false;
+            }
+            else
+            {
+                BnRemoveRecipe.IsEnabled = true;
+                BnModifyRecipe.IsEnabled = true;
+            }
         }
 
     }
