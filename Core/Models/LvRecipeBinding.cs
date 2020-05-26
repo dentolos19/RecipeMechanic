@@ -8,10 +8,13 @@
 
         public string Id { get; }
 
-        public LvRecipeBinding(string name, string id)
+        public SmRecipe Recipe { get; }
+
+        public LvRecipeBinding(string name, string id, SmRecipe recipe)
         {
             Name = name;
             Id = id;
+            Recipe = recipe;
         }
 
     }

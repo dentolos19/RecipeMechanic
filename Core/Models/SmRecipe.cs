@@ -1,5 +1,4 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace SmRecipeModifier.Core.Models
 {
@@ -8,7 +7,7 @@ namespace SmRecipeModifier.Core.Models
     {
 
         [JsonProperty("itemId")]
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("quantity")]
         public int Quantity { get; set; }

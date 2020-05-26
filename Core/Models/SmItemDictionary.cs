@@ -28,6 +28,14 @@ namespace SmRecipeModifier.Core.Models
             Items = list.ToArray();
         }
 
+        public SmItem Fetch(string id)
+        {
+            foreach (var item in Items)
+                if (item.Id == id)
+                    return item;
+            return null;
+        }
+
     }
 
 }

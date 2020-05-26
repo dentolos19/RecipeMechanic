@@ -12,7 +12,7 @@
             <Button Content="Continue" Margin="0,10,10,10" Width="100" DockPanel.Dock="Right" IsDefault="True" Click="Continue"/>
             <Label Content="Set the game data path first, then the supported files will show." Margin="10,10,10,10" VerticalContentAlignment="Center"/>
         </DockPanel>
-        <ListView x:Name="LvJsonFiles">
+        <ListView x:Name="LvJsonFiles" MouseDoubleClick="Continue">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" Width="100" DisplayMemberBinding="{Binding Name}"/>
