@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 
@@ -26,6 +27,14 @@ namespace SmRecipeModifier.Core.Models
             foreach (var (id, info) in dictionary)
                 list.Add(new SmItem(id, info));
             Items = list.ToArray();
+        }
+
+        public SmItem Fetch(Guid id)
+        {
+            foreach (var item in Items)
+                if (item.Id.ToString() == id.ToString())
+                    return item;
+            return null;
         }
 
     }

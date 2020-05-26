@@ -8,6 +8,9 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Properties\AssemblyKey.snk</AssemblyOriginatorKeyFile>
     <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
+    <Version>0.1.0</Version>
+    <Authors>Dennise Catolos</Authors>
+    <Copyright>Copyright © 2020</Copyright>
   </PropertyGroup>
 
   <ItemGroup>

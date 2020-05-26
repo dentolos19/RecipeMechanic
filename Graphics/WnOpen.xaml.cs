@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.IO;
+﻿using System.IO;
 using System.Windows;
 using Ookii.Dialogs.Wpf;
 using SmRecipeModifier.Core;
@@ -21,6 +20,7 @@ namespace SmRecipeModifier.Graphics
             if (!(App.Settings.GameDataPath?.Length > 0))
                 return;
             TbGameDataPath.Text = App.Settings.GameDataPath;
+            _path = App.Settings.GameDataPath;
             LoadSupportedFiles();
         }
 

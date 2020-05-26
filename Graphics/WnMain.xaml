@@ -37,7 +37,14 @@
                 <Separator Margin="10,10,10,0"/>
                 <Label Content="Created By Dennise" Height="30" Margin="10,10,10,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
             </StackPanel>
-            <ListView x:Name="LvRecipes"/>
+            <ListView x:Name="LvRecipes">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Id" Width="300" DisplayMemberBinding="{Binding Id}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </DockPanel>
     </DockPanel>
 </Window>
