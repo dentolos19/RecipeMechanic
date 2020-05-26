@@ -12,7 +12,7 @@ namespace SmRecipeModifier.Graphics
 
         private string _path;
 
-        public string FileName { get; private set; }
+        public string Result { get; private set; }
 
         public WnOpen()
         {
@@ -56,7 +56,7 @@ namespace SmRecipeModifier.Graphics
                 return;
             }
             var item = LvJsonFiles.SelectedItem as LvJsonBinding;
-            FileName = item?.Path;
+            Result = item?.Path;
             DialogResult = true;
             App.Settings.GameDataPath = TbGameDataPath.Text;
             App.Settings.Save();

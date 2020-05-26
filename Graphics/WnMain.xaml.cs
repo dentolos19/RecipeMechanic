@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -28,7 +27,7 @@ namespace SmRecipeModifier.Graphics
             var dialog = new WnOpen { Owner = this };
             if (dialog.ShowDialog() == false)
                 return;
-            _path = dialog.FileName;
+            _path = dialog.Result;
             TbFileName.Text = Path.GetFileName(_path)!;
             BnSave.IsEnabled = true;
             BnSaveAs.IsEnabled = true;
@@ -86,12 +85,35 @@ namespace SmRecipeModifier.Graphics
 
         private void RemoveRecipe(object sender, RoutedEventArgs args)
         {
-            // todo
+            if (LvRecipes.SelectedItem == null)
+                return;
+            var item = LvRecipes.SelectedItem as LvRecipeBinding;
+            RemoveSpecificRecipe(item?.Recipe);
+        }
+
+        private void RemoveSpecificRecipe(SmRecipe recipe)
+        {
+            foreach (var item in LvRecipes.Items.OfType<LvRecipeBinding>())
+                if (item.Recipe.Id == recipe.Id)
+                {
+                    if (MessageBox.Show("Are you sure? Make sure you know what you are doing.", "This might break the game!", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes)
+                        return;
+                    LvRecipes.Items.Remove(item);
+                    break;
+                }
         }
 
         private void ModifyRecipe(object sender, RoutedEventArgs args)
         {
-            // todo
+            if (LvRecipes.SelectedItem == null)
+                return;
+            var item = LvRecipes.SelectedItem as LvRecipeBinding;
+            var dialog = new WnModify { Input = item?.Recipe, Owner = this };
+            if (dialog.ShowDialog() == false)
+                return;
+            RemoveSpecificRecipe(item?.Recipe);
+            // todo add new recipe
+
         }
 
     }
