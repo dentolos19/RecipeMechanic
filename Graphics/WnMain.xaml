@@ -1,7 +1,4 @@
-﻿<Window x:Class="SmRecipeModifier.Graphics.WnMain"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Scrap Mechanic Recipe Modifier" WindowStartupLocation="CenterScreen">
+﻿<Window x:Class="SmRecipeModifier.Graphics.WnMain" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Scrap Mechanic Recipe Modifier" WindowStartupLocation="CenterScreen">
     <Window.CommandBindings>
         <CommandBinding Command="Open" Executed="Open"/>
         <CommandBinding Command="Save" Executed="Save"/>
@@ -20,6 +17,14 @@
                 <MenuItem x:Name="MiSaveAs" Header="Save As" InputGestureText="Ctrl+Shift+S" Click="SaveAs" IsEnabled="False"/>
                 <Separator/>
                 <MenuItem Header="Exit" InputGestureText="Alt+F4"/>
+            </MenuItem>
+            <MenuItem Header="Backup">
+                <MenuItem Header="Create Backup"/>
+                <MenuItem Header="Apply Backup"/>
+            </MenuItem>
+            <MenuItem Header="Mass Editing">
+                <MenuItem Header="Edit All Data"/>
+                <MenuItem Header="Edit All Requirements"/>
             </MenuItem>
         </Menu>
         <DockPanel>

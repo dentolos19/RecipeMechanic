@@ -12,8 +12,6 @@ namespace SmRecipeModifier.Graphics
 
         private string _path;
 
-        public string Result { get; private set; }
-
         public WnOpen()
         {
             InitializeComponent();
@@ -23,6 +21,8 @@ namespace SmRecipeModifier.Graphics
             _path = App.Settings.GameDataPath;
             LoadSupportedFiles();
         }
+
+        public string Result { get; private set; }
 
         private void Browse(object sender, RoutedEventArgs args)
         {

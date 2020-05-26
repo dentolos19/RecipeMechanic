@@ -4,12 +4,6 @@
     public class SmItem
     {
 
-        public string Id { get; }
-
-        public string Name { get; }
-
-        public SmItemInfo Info { get; }
-
         public SmItem(string id, string name)
         {
             Id = id;
@@ -21,6 +15,12 @@
             Id = id;
             Info = info;
         }
+
+        public string Id { get; }
+
+        public string Name { get; }
+
+        public SmItemInfo Info { get; }
 
     }
 

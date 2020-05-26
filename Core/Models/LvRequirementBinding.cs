@@ -1,21 +1,21 @@
 ﻿namespace SmRecipeModifier.Core.Models
 {
 
-    public class LvRecipeBinding
+    public class LvRequirementBinding
     {
 
-        public LvRecipeBinding(string name, string id, SmRecipe recipe)
+        public LvRequirementBinding(int quantity, string name, string id)
         {
+            Quantity = quantity;
             Name = name;
             Id = id;
-            Recipe = recipe;
         }
+
+        public int Quantity { get; }
 
         public string Name { get; }
 
         public string Id { get; }
-
-        public SmRecipe Recipe { get; }
 
     }
 

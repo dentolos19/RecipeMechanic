@@ -10,13 +10,13 @@ namespace SmRecipeModifier.Core.Models
 
         private readonly string _path;
 
-        public SmRecipe[] Items { get; private set; }
-
         public SmRecipeDictionary(string path)
         {
             _path = path;
             Refresh();
         }
+
+        public SmRecipe[] Items { get; private set; }
 
         public void Refresh()
         {

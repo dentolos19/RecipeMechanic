@@ -6,6 +6,12 @@ namespace SmRecipeModifier.Core.Models
     public class SmRequirement
     {
 
+        public SmRequirement(int quantity, string id)
+        {
+            Quantity = quantity;
+            Id = id;
+        }
+
         [JsonProperty("quantity")]
         public int Quantity { get; set; }
 

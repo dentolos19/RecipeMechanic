@@ -15,8 +15,8 @@ namespace SmRecipeModifier.Graphics
     {
 
         private string _path;
-        public SmItemDictionary ItemDictionary;
         public SmItemInfoDictionary InfoDictionary;
+        public SmItemDictionary ItemDictionary;
 
         public WnMain()
         {
