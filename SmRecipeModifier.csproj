@@ -11,6 +11,7 @@
     <Version>0.1.0</Version>
     <Authors>Dennise Catolos</Authors>
     <Copyright>Copyright © 2020</Copyright>
+    <Company>Aprodots</Company>
   </PropertyGroup>
 
   <ItemGroup>

@@ -3,6 +3,7 @@
         <DockPanel DockPanel.Dock="Top" Height="50" Background="WhiteSmoke">
             <Image Source="/Resources/Logo.png" Margin="10,10,0,10" Width="30"/>
             <Button Content="Save" DockPanel.Dock="Right" Margin="0,10,10,10" Width="50" IsDefault="True" Click="Save"/>
+            <Button Content="Cancel" DockPanel.Dock="Right" Margin="0,10,10,10" Width="50" Click="Cancel"/>
             <Label x:Name="LbRecipeName" Content="This is content" Margin="10,10,10,10" VerticalContentAlignment="Center"/>
         </DockPanel>
         <TabControl>
@@ -22,15 +23,15 @@
                 <DockPanel>
                     <StackPanel Width="100" Background="WhiteSmoke">
                         <Button Content="Add" Height="30" Margin="10,10,10,0" Click="Add"/>
-                        <Button Content="Remove" Height="30" Margin="10,10,10,0" Click="Remove"/>
-                        <Button Content="Modify" Height="30" Margin="10,10,10,0" Click="Modify"/>
+                        <Button x:Name="BnRemove" Content="Remove" Height="30" Margin="10,10,10,0" IsEnabled="False" Click="Remove"/>
+                        <Button x:Name="BnModify" Content="Modify" Height="30" Margin="10,10,10,0" IsEnabled="False" Click="Modify"/>
                     </StackPanel>
-                    <ListView x:Name="LvRequirements">
+                    <ListView x:Name="LvRequirements" SelectionChanged="ItemSelectionUpdate" MouseDoubleClick="Modify">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Quantity" Width="50" DisplayMemberBinding="{Binding Quantity}"/>
+                                <GridViewColumn Header="No." Width="50" DisplayMemberBinding="{Binding Quantity}"/>
                                 <GridViewColumn Header="Name" Width="100" DisplayMemberBinding="{Binding Name}"/>
-                                <GridViewColumn Header="Id" Width="250" DisplayMemberBinding="{Binding Id}"/>
+                                <GridViewColumn Header="ID" Width="250" DisplayMemberBinding="{Binding Id}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
