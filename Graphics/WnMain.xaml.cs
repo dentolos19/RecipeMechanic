@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -131,6 +132,49 @@ namespace SmRecipeModifier.Graphics
                 BnRemoveRecipe.IsEnabled = true;
                 BnModifyRecipe.IsEnabled = true;
             }
+        }
+
+        private void CreateBackup(object sender, RoutedEventArgs args)
+        {
+            MessageBox.Show("This function is not available yet.", "Sorry about that!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        }
+
+        private void ApplyBackup(object sender, RoutedEventArgs args)
+        {
+            MessageBox.Show("This function is not available yet.", "Sorry about that!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        }
+
+        private void EditAllData(object sender, RoutedEventArgs args)
+        {
+            MessageBox.Show("This function is not available yet.", "Sorry about that!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        }
+
+        private void EditAllRequirements(object sender, RoutedEventArgs args)
+        {
+            MessageBox.Show("This function is not available yet.", "Sorry about that!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        }
+
+        private void ActivateEasyMode(object sender, RoutedEventArgs args)
+        {
+            if (MessageBox.Show("Are you sure? This will allow you to craft anything without grinding.", "This is quite noobish!", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+                return;
+            var list = LvRecipes.Items.OfType<LvRecipeBinding>().ToArray();
+            LvRecipes.Items.Clear();
+            foreach (var item in list)
+            {
+                var newRecipe = item.Recipe;
+                var newRequirements = new List<SmRequirement>();
+                var isBlock = ItemDictionary.Fetch(newRecipe.Id);
+                if (isBlock != null)
+                    if (isBlock.Name.ToLower().StartsWith("blk_"))
+                        newRecipe.Quantity = 128;
+                newRecipe.Duration = 0;
+                foreach (var requirement in newRecipe.Requirements)
+                    newRequirements.Add(new SmRequirement(0, requirement.Id));
+                newRecipe.Requirements = newRequirements.ToArray();
+                AddRecipeToList(newRecipe);
+            }
+            MessageBox.Show("Successfully replaced every recipe in this json file.", "Activated noobie mode!", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
     }

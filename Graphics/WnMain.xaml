@@ -19,12 +19,14 @@
                 <MenuItem Header="Exit" InputGestureText="Alt+F4"/>
             </MenuItem>
             <MenuItem Header="Backup">
-                <MenuItem Header="Create Backup"/>
-                <MenuItem Header="Apply Backup"/>
+                <MenuItem Header="Create Backup" Click="CreateBackup"/>
+                <MenuItem Header="Apply Backup" Click="ApplyBackup"/>
             </MenuItem>
             <MenuItem Header="Mass Editing">
-                <MenuItem Header="Edit All Data"/>
-                <MenuItem Header="Edit All Requirements"/>
+                <MenuItem Header="Edit All Data" Click="EditAllData"/>
+                <MenuItem Header="Edit All Requirements" Click="EditAllRequirements"/>
+                <Separator/>
+                <MenuItem Header="Activate Easy Mode" Click="ActivateEasyMode"/>
             </MenuItem>
         </Menu>
         <DockPanel>

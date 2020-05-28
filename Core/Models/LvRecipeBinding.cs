@@ -15,7 +15,7 @@
 
         public string Id { get; }
 
-        public SmRecipe Recipe { get; }
+        public SmRecipe Recipe { get; set; }
 
     }
 
