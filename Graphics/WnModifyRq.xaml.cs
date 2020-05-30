@@ -4,8 +4,10 @@ using SmRecipeModifier.Core.Models;
 
 namespace SmRecipeModifier.Graphics
 {
+
     public partial class WnModifyRq
     {
+
         public WnModifyRq(LvRequirementBinding binding)
         {
             InitializeComponent();
@@ -31,5 +33,7 @@ namespace SmRecipeModifier.Graphics
             DialogResult = true;
             Close();
         }
+
     }
+
 }

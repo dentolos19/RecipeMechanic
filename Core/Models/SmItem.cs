@@ -1,7 +1,9 @@
 ﻿namespace SmRecipeModifier.Core.Models
 {
+
     public class SmItem
     {
+
         public SmItem(string id, string name)
         {
             Id = id;
@@ -19,5 +21,7 @@
         public string Name { get; }
 
         public SmItemInfo Info { get; }
+
     }
+
 }

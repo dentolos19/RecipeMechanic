@@ -6,8 +6,10 @@ using SmRecipeModifier.Core.Models;
 
 namespace SmRecipeModifier.Graphics
 {
+
     public partial class WnOpen
     {
+
         private string _path;
 
         public WnOpen()
@@ -64,5 +66,7 @@ namespace SmRecipeModifier.Graphics
             App.Settings.Save();
             Close();
         }
+
     }
+
 }

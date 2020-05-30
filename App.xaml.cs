@@ -7,8 +7,10 @@ using SmRecipeModifier.Graphics;
 
 namespace SmRecipeModifier
 {
+
     public partial class App
     {
+
         internal static Configuration Settings { get; private set; }
 
         internal static WnMain WindowMain { get; private set; }
@@ -32,5 +34,7 @@ namespace SmRecipeModifier
             Process.Start(Assembly.GetExecutingAssembly().Location);
             Current.Shutdown();
         }
+
     }
+
 }

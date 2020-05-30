@@ -4,8 +4,10 @@ using System.Xml.Serialization;
 
 namespace SmRecipeModifier.Core
 {
+
     public class Configuration
     {
+
         private static readonly string Source =
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory!, "SmRecipeModifier.cfg");
 
@@ -26,5 +28,7 @@ namespace SmRecipeModifier.Core
             using var stream = new FileStream(Source, FileMode.Open);
             return Serializer.Deserialize(stream) as Configuration;
         }
+
     }
+
 }

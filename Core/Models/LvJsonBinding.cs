@@ -1,7 +1,9 @@
 ﻿namespace SmRecipeModifier.Core.Models
 {
+
     public class LvJsonBinding
     {
+
         public LvJsonBinding(string name, string description, string path)
         {
             Name = name;
@@ -14,5 +16,7 @@
         public string Description { get; }
 
         public string Path { get; }
+
     }
+
 }

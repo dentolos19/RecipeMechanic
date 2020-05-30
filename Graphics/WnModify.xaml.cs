@@ -6,8 +6,10 @@ using SmRecipeModifier.Core.Models;
 
 namespace SmRecipeModifier.Graphics
 {
+
     public partial class WnModify
     {
+
         private readonly SmRecipe _original;
 
         public WnModify(SmRecipe original)
@@ -133,5 +135,7 @@ namespace SmRecipeModifier.Graphics
                 BnModify.IsEnabled = true;
             }
         }
+
     }
+
 }

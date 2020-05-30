@@ -11,8 +11,10 @@ using SmRecipeModifier.Core.Models;
 
 namespace SmRecipeModifier.Graphics
 {
+
     public partial class WnMain
     {
+
         private string _path;
         public SmItemInfoDictionary InfoDictionary;
         public SmItemDictionary ItemDictionary;
@@ -227,5 +229,7 @@ namespace SmRecipeModifier.Graphics
             MessageBox.Show("Successfully replaced every recipe in this json file.", "Activated noobie mode!",
                 MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
     }
+
 }
