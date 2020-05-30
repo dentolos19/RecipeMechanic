@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +22,10 @@ namespace SmRecipeModifier.Graphics
         public WnMain()
         {
             InitializeComponent();
+            if (string.IsNullOrEmpty(App.Settings.GameDataPath))
+                return;
+            MiCreateBackup.IsEnabled = true;
+            MiApplyBackup.IsEnabled = true;
         }
 
         private void Open(object sender, RoutedEventArgs args)
@@ -36,6 +40,11 @@ namespace SmRecipeModifier.Graphics
             MiSave.IsEnabled = true;
             MiSaveAs.IsEnabled = true;
             BnAddRecipe.IsEnabled = true;
+            MiCreateBackup.IsEnabled = true;
+            MiApplyBackup.IsEnabled = true;
+            MiEditAllData.IsEnabled = true;
+            MiEditAllRequirements.IsEnabled = true;
+            MiActivateEasyMode.IsEnabled = true;
             LvRecipes.Items.Clear();
             InfoDictionary = new SmItemInfoDictionary(Path.Combine(App.Settings.GameDataPath, Constants.ItemDescriptionsJsonPath));
             ItemDictionary = new SmItemDictionary(Path.Combine(App.Settings.GameDataPath, Constants.ItemNamesJsonPath));
@@ -60,7 +69,12 @@ namespace SmRecipeModifier.Graphics
         {
             if (BnSave.IsEnabled == false)
                 return;
-            if (MessageBox.Show("Are you sure? If you want to revert back to the original game then you should verify the files via steam.", "Think twice about it!", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (!File.Exists(Path.Combine(App.Settings.GameDataPath, "SmRecipeModifier.bak")))
+                if (MessageBox.Show("You haven't set a backup yet! Do you want to continue?",
+                        "I want to ensure your safety!", MessageBoxButton.YesNo, MessageBoxImage.Warning) !=
+                    MessageBoxResult.Yes)
+                    return;
+            if (MessageBox.Show("Are you sure that you want to apply all recipe changes?", "Think twice about it!", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 SaveToFile(_path);
         }
 
@@ -136,21 +150,39 @@ namespace SmRecipeModifier.Graphics
 
         private void CreateBackup(object sender, RoutedEventArgs args)
         {
-            MessageBox.Show("This function is not available yet.", "Sorry about that!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            var backupPath = Path.Combine(App.Settings.GameDataPath, "SmRecipeModifier.bak");
+            if (File.Exists(backupPath))
+            {
+                MessageBox.Show("Backup file is already created so you don't need to do it again.", "It already there!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            ZipFile.CreateFromDirectory(Path.Combine(App.Settings.GameDataPath, "Survival"), backupPath);
+            MessageBox.Show("Backup file created successfully.", "I ensure your safety!", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void ApplyBackup(object sender, RoutedEventArgs args)
         {
-            MessageBox.Show("This function is not available yet.", "Sorry about that!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            var backupPath = Path.Combine(App.Settings.GameDataPath, "SmRecipeModifier.bak");
+            if (!File.Exists(backupPath))
+            {
+                MessageBox.Show("Backup does not exist! Try using file verification via steam.", "Oops! No backup file found.", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (MessageBox.Show("Are you sure that you want to apply backup?", "Just want to make sure!", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+                return;
+            ZipFile.ExtractToDirectory(backupPath, Path.Combine(App.Settings.GameDataPath, "Survival"), true);
+            MessageBox.Show("Applied backup successfully!", "Safety ensured!", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void EditAllData(object sender, RoutedEventArgs args)
         {
+            // todo
             MessageBox.Show("This function is not available yet.", "Sorry about that!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
         private void EditAllRequirements(object sender, RoutedEventArgs args)
         {
+            // todo
             MessageBox.Show("This function is not available yet.", "Sorry about that!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 

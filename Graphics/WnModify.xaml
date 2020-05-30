@@ -1,6 +1,6 @@
 ﻿<Window x:Class="SmRecipeModifier.Graphics.WnModify" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Recipe Modifier" WindowStartupLocation="CenterOwner" Width="500" Height="300">
     <DockPanel>
-        <DockPanel DockPanel.Dock="Top" Height="50" Background="WhiteSmoke">
+        <DockPanel DockPanel.Dock="Top" Height="50">
             <Image Source="/Resources/Logo.png" Margin="10,10,0,10" Width="30"/>
             <Button Content="Save" DockPanel.Dock="Right" Margin="0,10,10,10" Width="50" IsDefault="True" Click="Save"/>
             <Button Content="Cancel" DockPanel.Dock="Right" Margin="0,10,10,10" Width="50" Click="Cancel"/>
@@ -21,7 +21,7 @@
             </TabItem>
             <TabItem Header="Requirements">
                 <DockPanel>
-                    <StackPanel Width="100" Background="WhiteSmoke">
+                    <StackPanel Width="100">
                         <Button Content="Add" Height="30" Margin="10,10,10,0" Click="Add"/>
                         <Button x:Name="BnRemove" Content="Remove" Height="30" Margin="10,10,10,0" IsEnabled="False" Click="Remove"/>
                         <Button x:Name="BnModify" Content="Modify" Height="30" Margin="10,10,10,0" IsEnabled="False" Click="Modify"/>

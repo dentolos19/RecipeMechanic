@@ -19,18 +19,17 @@
                 <MenuItem Header="Exit" InputGestureText="Alt+F4"/>
             </MenuItem>
             <MenuItem Header="Backup">
-                <MenuItem Header="Create Backup" Click="CreateBackup"/>
-                <MenuItem Header="Apply Backup" Click="ApplyBackup"/>
-            </MenuItem>
+                <MenuItem x:Name="MiCreateBackup" Header="Create Backup" IsEnabled="False" Click="CreateBackup"/>
+                <MenuItem x:Name="MiApplyBackup" Header="Apply Backup" IsEnabled="False" Click="ApplyBackup"/>
             <MenuItem Header="Mass Editing">
-                <MenuItem Header="Edit All Data" Click="EditAllData"/>
-                <MenuItem Header="Edit All Requirements" Click="EditAllRequirements"/>
+                <MenuItem x:Name="MiEditAllData" Header="Edit All Data" IsEnabled="False" Click="EditAllData"/>
+                <MenuItem x:Name="MiEditAllRequirements" Header="Edit All Requirements" IsEnabled="False" Click="EditAllRequirements"/>
                 <Separator/>
-                <MenuItem Header="Activate Easy Mode" Click="ActivateEasyMode"/>
+                <MenuItem x:Name="MiActivateEasyMode" Header="Activate Easy Mode" IsEnabled="False" Click="ActivateEasyMode"/>
             </MenuItem>
         </Menu>
         <DockPanel>
-            <StackPanel Width="150" Background="WhiteSmoke">
+            <StackPanel Width="150">
                 <Image Source="/Resources/Logo.png" Height="130" Margin="10,10,10,0"/>
                 <Separator Margin="10,10,10,0"/>
                 <TextBox x:Name="TbFileName" Height="30" Margin="10,10,10,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsReadOnly="True"/>
