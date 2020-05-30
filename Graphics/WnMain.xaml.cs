@@ -11,10 +11,8 @@ using SmRecipeModifier.Core.Models;
 
 namespace SmRecipeModifier.Graphics
 {
-
     public partial class WnMain
     {
-
         private string _path;
         public SmItemInfoDictionary InfoDictionary;
         public SmItemDictionary ItemDictionary;
@@ -30,7 +28,7 @@ namespace SmRecipeModifier.Graphics
 
         private void Open(object sender, RoutedEventArgs args)
         {
-            var dialog = new WnOpen { Owner = this };
+            var dialog = new WnOpen {Owner = this};
             if (dialog.ShowDialog() == false)
                 return;
             _path = dialog.Result;
@@ -46,7 +44,8 @@ namespace SmRecipeModifier.Graphics
             MiEditAllRequirements.IsEnabled = true;
             MiActivateEasyMode.IsEnabled = true;
             LvRecipes.Items.Clear();
-            InfoDictionary = new SmItemInfoDictionary(Path.Combine(App.Settings.GameDataPath, Constants.ItemDescriptionsJsonPath));
+            InfoDictionary =
+                new SmItemInfoDictionary(Path.Combine(App.Settings.GameDataPath, Constants.ItemDescriptionsJsonPath));
             ItemDictionary = new SmItemDictionary(Path.Combine(App.Settings.GameDataPath, Constants.ItemNamesJsonPath));
             var recipes = new SmRecipeDictionary(_path).Items;
             foreach (var recipe in recipes)
@@ -56,7 +55,10 @@ namespace SmRecipeModifier.Graphics
         private void AddRecipeToList(SmRecipe recipe)
         {
             var info = InfoDictionary.Fetch(recipe.Id);
-            if (info != null) { LvRecipes.Items.Add(new LvRecipeBinding(info.Info.Title, info.Id, recipe)); }
+            if (info != null)
+            {
+                LvRecipes.Items.Add(new LvRecipeBinding(info.Info.Title, info.Id, recipe));
+            }
             else
             {
                 info = ItemDictionary.Fetch(recipe.Id);
@@ -74,7 +76,8 @@ namespace SmRecipeModifier.Graphics
                         "I want to ensure your safety!", MessageBoxButton.YesNo, MessageBoxImage.Warning) !=
                     MessageBoxResult.Yes)
                     return;
-            if (MessageBox.Show("Are you sure that you want to apply all recipe changes?", "Think twice about it!", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Are you sure that you want to apply all recipe changes?", "Think twice about it!",
+                MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 SaveToFile(_path);
         }
 
@@ -82,7 +85,7 @@ namespace SmRecipeModifier.Graphics
         {
             if (BnSave.IsEnabled == false)
                 return;
-            var dialog = new SaveFileDialog { Filter = "Json File|*.json" };
+            var dialog = new SaveFileDialog {Filter = "Json File|*.json"};
             if (dialog.ShowDialog() == false)
                 return;
             SaveToFile(dialog.FileName);
@@ -94,12 +97,14 @@ namespace SmRecipeModifier.Graphics
             foreach (var item in LvRecipes.Items.OfType<LvRecipeBinding>())
                 list.Add(item.Recipe);
             var data = JsonConvert.SerializeObject(list, Formatting.Indented);
-            File.WriteAllText(path, $"// This file is modified by SmRecipeModifier (https://dennise.me/projects/smrecipemodifier)\n{data}");
+            File.WriteAllText(path,
+                $"// This file is modified by SmRecipeModifier (https://dennise.me/projects/smrecipemodifier)\n{data}");
         }
 
         private void AddRecipe(object sender, RoutedEventArgs args)
         {
-            MessageBox.Show("This function is not available yet.", "Sorry about that!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            MessageBox.Show("This function is not available yet.", "Sorry about that!", MessageBoxButton.OK,
+                MessageBoxImage.Exclamation);
         }
 
         private void RemoveRecipe(object sender, RoutedEventArgs args)
@@ -115,7 +120,9 @@ namespace SmRecipeModifier.Graphics
             foreach (var item in LvRecipes.Items.OfType<LvRecipeBinding>())
                 if (item.Recipe.Id == recipe.Id)
                 {
-                    if (MessageBox.Show("Are you sure? Make sure you know what you are doing.", "This might break the game!", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes)
+                    if (MessageBox.Show("Are you sure? Make sure you know what you are doing.",
+                            "This might break the game!", MessageBoxButton.YesNo, MessageBoxImage.Warning) !=
+                        MessageBoxResult.Yes)
                         return;
                     LvRecipes.Items.Remove(item);
                     break;
@@ -127,7 +134,7 @@ namespace SmRecipeModifier.Graphics
             if (LvRecipes.SelectedItem == null)
                 return;
             var item = LvRecipes.SelectedItem as LvRecipeBinding;
-            var dialog = new WnModify(item?.Recipe) { Owner = this };
+            var dialog = new WnModify(item?.Recipe) {Owner = this};
             if (dialog.ShowDialog() == false)
                 return;
             RemoveSpecificRecipe(item?.Recipe);
@@ -153,11 +160,14 @@ namespace SmRecipeModifier.Graphics
             var backupPath = Path.Combine(App.Settings.GameDataPath, "SmRecipeModifier.bak");
             if (File.Exists(backupPath))
             {
-                MessageBox.Show("Backup file is already created so you don't need to do it again.", "It already there!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("Backup file is already created so you don't need to do it again.", "It already there!",
+                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
+
             ZipFile.CreateFromDirectory(Path.Combine(App.Settings.GameDataPath, "Survival"), backupPath);
-            MessageBox.Show("Backup file created successfully.", "I ensure your safety!", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Backup file created successfully.", "I ensure your safety!", MessageBoxButton.OK,
+                MessageBoxImage.Information);
         }
 
         private void ApplyBackup(object sender, RoutedEventArgs args)
@@ -165,30 +175,37 @@ namespace SmRecipeModifier.Graphics
             var backupPath = Path.Combine(App.Settings.GameDataPath, "SmRecipeModifier.bak");
             if (!File.Exists(backupPath))
             {
-                MessageBox.Show("Backup does not exist! Try using file verification via steam.", "Oops! No backup file found.", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Backup does not exist! Try using file verification via steam.",
+                    "Oops! No backup file found.", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            if (MessageBox.Show("Are you sure that you want to apply backup?", "Just want to make sure!", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+
+            if (MessageBox.Show("Are you sure that you want to apply backup?", "Just want to make sure!",
+                MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
                 return;
             ZipFile.ExtractToDirectory(backupPath, Path.Combine(App.Settings.GameDataPath, "Survival"), true);
-            MessageBox.Show("Applied backup successfully!", "Safety ensured!", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Applied backup successfully!", "Safety ensured!", MessageBoxButton.OK,
+                MessageBoxImage.Information);
         }
 
         private void EditAllData(object sender, RoutedEventArgs args)
         {
             // todo
-            MessageBox.Show("This function is not available yet.", "Sorry about that!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            MessageBox.Show("This function is not available yet.", "Sorry about that!", MessageBoxButton.OK,
+                MessageBoxImage.Exclamation);
         }
 
         private void EditAllRequirements(object sender, RoutedEventArgs args)
         {
             // todo
-            MessageBox.Show("This function is not available yet.", "Sorry about that!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            MessageBox.Show("This function is not available yet.", "Sorry about that!", MessageBoxButton.OK,
+                MessageBoxImage.Exclamation);
         }
 
         private void ActivateEasyMode(object sender, RoutedEventArgs args)
         {
-            if (MessageBox.Show("Are you sure? This will allow you to craft anything without grinding.", "This is quite noobish!", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+            if (MessageBox.Show("Are you sure? This will allow you to craft anything without grinding.",
+                "This is quite noobish!", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
                 return;
             var list = LvRecipes.Items.OfType<LvRecipeBinding>().ToArray();
             LvRecipes.Items.Clear();
@@ -206,9 +223,9 @@ namespace SmRecipeModifier.Graphics
                 newRecipe.Requirements = newRequirements.ToArray();
                 AddRecipeToList(newRecipe);
             }
-            MessageBox.Show("Successfully replaced every recipe in this json file.", "Activated noobie mode!", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            MessageBox.Show("Successfully replaced every recipe in this json file.", "Activated noobie mode!",
+                MessageBoxButton.OK, MessageBoxImage.Information);
         }
-
     }
-
 }

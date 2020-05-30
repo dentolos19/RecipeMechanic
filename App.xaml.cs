@@ -7,10 +7,8 @@ using SmRecipeModifier.Graphics;
 
 namespace SmRecipeModifier
 {
-
     public partial class App
     {
-
         internal static Configuration Settings { get; private set; }
 
         internal static WnMain WindowMain { get; private set; }
@@ -24,14 +22,15 @@ namespace SmRecipeModifier
 
         private void HandleExceptions(object sender, DispatcherUnhandledExceptionEventArgs args)
         {
-            var answer = MessageBox.Show($"An error had occurred! {args.Exception.Message} Do you want to restart? Or else this program will just exit.", "Houston, we got a problem!", MessageBoxButton.YesNo, MessageBoxImage.Error);
+            var answer =
+                MessageBox.Show(
+                    $"An error had occurred! {args.Exception.Message} Do you want to restart? Or else this program will just exit.",
+                    "Houston, we got a problem!", MessageBoxButton.YesNo, MessageBoxImage.Error);
             if (answer != MessageBoxResult.Yes)
                 return;
             args.Handled = true;
             Process.Start(Assembly.GetExecutingAssembly().Location);
             Current.Shutdown();
         }
-
     }
-
 }

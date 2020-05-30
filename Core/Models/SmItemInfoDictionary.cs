@@ -4,10 +4,8 @@ using Newtonsoft.Json;
 
 namespace SmRecipeModifier.Core.Models
 {
-
     public class SmItemInfoDictionary
     {
-
         private readonly string _path;
 
         public SmItemInfoDictionary(string path)
@@ -35,7 +33,5 @@ namespace SmRecipeModifier.Core.Models
                     return item;
             return null;
         }
-
     }
-
 }

@@ -4,19 +4,19 @@
         Title="Requirement Modifier" WindowStartupLocation="CenterOwner" Width="400" SizeToContent="Height">
     <DockPanel>
         <DockPanel DockPanel.Dock="Top" Height="50">
-            <Image Source="/Resources/Logo.png" Width="30" Margin="10,10,0,10"/>
-            <Button Content="Save" Width="50" DockPanel.Dock="Right" IsDefault="True" Margin="10,10,10,10" Click="Save"/>
-            <Button Content="Cancel" Width="50" DockPanel.Dock="Right" Margin="10,10,0,10" Click="Cancel"/>
-            <Label x:Name="LbTitle" Content="This is content" VerticalContentAlignment="Center" Margin="10,10,0,10"/>
+            <Image Source="/Resources/Logo.png" Width="30" Margin="10,10,0,10" />
+            <Button Content="Save" Width="50" DockPanel.Dock="Right" IsDefault="True" Margin="10,10,10,10" Click="Save" />
+            <Button Content="Cancel" Width="50" DockPanel.Dock="Right" Margin="10,10,0,10" Click="Cancel" />
+            <Label x:Name="LbTitle" Content="This is content" VerticalContentAlignment="Center" Margin="10,10,0,10" />
         </DockPanel>
         <StackPanel>
             <DockPanel Margin="10,10,10,0">
-                <Label Content="Quantity" VerticalContentAlignment="Center" Width="100"/>
-                <TextBox x:Name="TbQuantity" VerticalContentAlignment="Center"/>
+                <Label Content="Quantity" VerticalContentAlignment="Center" Width="100" />
+                <TextBox x:Name="TbQuantity" VerticalContentAlignment="Center" />
             </DockPanel>
             <DockPanel Margin="10,10,10,10">
-                <Label Content="Item" VerticalContentAlignment="Center" Width="100"/>
-                <ComboBox x:Name="CbItem" VerticalContentAlignment="Center"/>
+                <Label Content="Item" VerticalContentAlignment="Center" Width="100" />
+                <ComboBox x:Name="CbItem" VerticalContentAlignment="Center" />
             </DockPanel>
         </StackPanel>
     </DockPanel>

@@ -1,9 +1,7 @@
 ﻿namespace SmRecipeModifier.Core.Models
 {
-
     public class LvRequirementBinding
     {
-
         public LvRequirementBinding(int quantity, string name, string id)
         {
             Quantity = quantity;
@@ -16,7 +14,5 @@
         public string Name { get; }
 
         public string Id { get; }
-
     }
-
 }

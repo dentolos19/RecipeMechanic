@@ -4,10 +4,8 @@ using Newtonsoft.Json;
 
 namespace SmRecipeModifier.Core.Models
 {
-
     public class SmRecipeDictionary
     {
-
         private readonly string _path;
 
         public SmRecipeDictionary(string path)
@@ -24,7 +22,5 @@ namespace SmRecipeModifier.Core.Models
             var dictionary = JsonConvert.DeserializeObject<List<SmRecipe>>(data);
             Items = dictionary.ToArray();
         }
-
     }
-
 }

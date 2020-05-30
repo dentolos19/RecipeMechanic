@@ -1,3 +1,3 @@
-# Scrap Mechanic Recipe Modifier
+# Scrap Mechanic Recipe Modifier [![Codacy Badge](https://app.codacy.com/project/badge/Grade/bf0ae44bdf78494f8e287f29cf65d680)](https://www.codacy.com/manual/dentolos19/PasteMystNet?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dentolos19/PasteMystNet&amp;utm_campaign=Badge_Grade)
 
 A free tool for modifying in-game recipes easily! To learn more about this project, click the link above.

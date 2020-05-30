@@ -6,10 +6,8 @@ using SmRecipeModifier.Core.Models;
 
 namespace SmRecipeModifier.Graphics
 {
-
     public partial class WnOpen
     {
-
         private string _path;
 
         public WnOpen()
@@ -43,18 +41,22 @@ namespace SmRecipeModifier.Graphics
             if (File.Exists(craftBotJsonPath))
                 LvJsonFiles.Items.Add(new LvJsonBinding("craftbot.json", "The well-known craftbot!", craftBotJsonPath));
             if (File.Exists(dispenserJsonPath))
-                LvJsonFiles.Items.Add(new LvJsonBinding("dispenser.json", "The one that poops out the craftbot!", dispenserJsonPath));
+                LvJsonFiles.Items.Add(new LvJsonBinding("dispenser.json", "The one that poops out the craftbot!",
+                    dispenserJsonPath));
             if (File.Exists(workbenchJsonPath))
-                LvJsonFiles.Items.Add(new LvJsonBinding("workbench.json", "The one that is at the starting ship!", workbenchJsonPath));
+                LvJsonFiles.Items.Add(new LvJsonBinding("workbench.json", "The one that is at the starting ship!",
+                    workbenchJsonPath));
         }
 
         private void Continue(object sender, RoutedEventArgs args)
         {
             if (LvJsonFiles.SelectedItem == null)
             {
-                MessageBox.Show("Select a json file in the list to continue!", "You forgot something!", MessageBoxButton.OK, MessageBoxImage.Stop);
+                MessageBox.Show("Select a json file in the list to continue!", "You forgot something!",
+                    MessageBoxButton.OK, MessageBoxImage.Stop);
                 return;
             }
+
             var item = LvJsonFiles.SelectedItem as LvJsonBinding;
             Result = item?.Path;
             DialogResult = true;
@@ -62,7 +64,5 @@ namespace SmRecipeModifier.Graphics
             App.Settings.Save();
             Close();
         }
-
     }
-
 }
