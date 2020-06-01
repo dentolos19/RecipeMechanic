@@ -16,44 +16,34 @@
             <MenuItem Header="File">
                 <MenuItem Header="Open" InputGestureText="Ctrl+O" Click="Open"/>
                 <MenuItem x:Name="MiSave" Header="Save" InputGestureText="Ctrl+S" Click="Save" IsEnabled="False"/>
-                <MenuItem x:Name="MiSaveAs" Header="Save As" InputGestureText="Ctrl+Shift+S" Click="SaveAs"
-                          IsEnabled="False"/>
+                <MenuItem x:Name="MiSaveAs" Header="Save As" InputGestureText="Ctrl+Shift+S" Click="SaveAs" IsEnabled="False"/>
                 <Separator/>
                 <MenuItem Header="Exit" InputGestureText="Alt+F4"/>
             </MenuItem>
             <MenuItem Header="Backup">
                 <MenuItem x:Name="MiCreateBackup" Header="Create Backup" IsEnabled="False" Click="CreateBackup"/>
                 <MenuItem x:Name="MiApplyBackup" Header="Apply Backup" IsEnabled="False" Click="ApplyBackup"/>
-                <MenuItem Header="Mass Editing">
-                    <MenuItem x:Name="MiEditAllData" Header="Edit All Data" IsEnabled="False" Click="EditAllData"/>
-                    <MenuItem x:Name="MiEditAllRequirements" Header="Edit All Requirements" IsEnabled="False"
-                              Click="EditAllRequirements"/>
-                    <Separator/>
-                    <MenuItem x:Name="MiActivateEasyMode" Header="Activate Easy Mode" IsEnabled="False"
-                              Click="ActivateEasyMode"/>
-                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Mass Editing">
+                <MenuItem x:Name="MiEditAllData" Header="Edit All Data" IsEnabled="False" Click="EditAllData"/>
+                <Separator/>
+                <MenuItem x:Name="MiActivateEasyMode" Header="Activate Easy Mode" IsEnabled="False" Click="ActivateEasyMode"/>
             </MenuItem>
         </Menu>
         <DockPanel>
             <StackPanel Width="150">
                 <Image Source="/Resources/Logo.png" Height="130" Margin="10,10,10,0"/>
                 <Separator Margin="10,10,10,0"/>
-                <TextBox x:Name="TbFileName" Height="30" Margin="10,10,10,0" VerticalContentAlignment="Center"
-                         HorizontalContentAlignment="Center" IsReadOnly="True"/>
+                <TextBox x:Name="TbFileName" Height="30" Margin="10,10,10,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsReadOnly="True"/>
                 <Button Content="Open" Height="30" Margin="10,10,10,0" Click="Open"/>
                 <Button x:Name="BnSave" Content="Save" Height="30" Margin="10,10,10,0" IsEnabled="False" Click="Save"/>
-                <Button x:Name="BnSaveAs" Content="Save As" Height="30" Margin="10,10,10,0" IsEnabled="False"
-                        Click="SaveAs"/>
+                <Button x:Name="BnSaveAs" Content="Save As" Height="30" Margin="10,10,10,0" IsEnabled="False" Click="SaveAs"/>
                 <Separator Margin="10,10,10,0"/>
-                <Button x:Name="BnAddRecipe" Content="Add Recipe" Height="30" Margin="10,10,10,0" IsEnabled="False"
-                        Click="AddRecipe"/>
-                <Button x:Name="BnRemoveRecipe" Content="Remove Recipe" Height="30" Margin="10,10,10,0"
-                        IsEnabled="False" Click="RemoveRecipe"/>
-                <Button x:Name="BnModifyRecipe" Content="Modify Recipe" Height="30" Margin="10,10,10,0"
-                        IsEnabled="False" Click="ModifyRecipe"/>
+                <Button x:Name="BnAddRecipe" Content="Add Recipe" Height="30" Margin="10,10,10,0" IsEnabled="False" Click="AddRecipe"/>
+                <Button x:Name="BnRemoveRecipe" Content="Remove Recipe" Height="30" Margin="10,10,10,0" IsEnabled="False" Click="RemoveRecipe"/>
+                <Button x:Name="BnModifyRecipe" Content="Modify Recipe" Height="30" Margin="10,10,10,0" IsEnabled="False" Click="ModifyRecipe"/>
                 <Separator Margin="10,10,10,0"/>
-                <Label Content="Created By Dennise" Height="30" Margin="10,10,10,0" VerticalContentAlignment="Center"
-                       HorizontalContentAlignment="Center"/>
+                <Label Content="Created By Dennise" Height="30" Margin="10,10,10,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
             </StackPanel>
             <ListView x:Name="LvRecipes" SelectionChanged="RecipeSelectionUpdate" MouseDoubleClick="ModifyRecipe">
                 <ListView.View>

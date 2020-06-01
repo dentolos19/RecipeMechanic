@@ -14,15 +14,15 @@
                 <StackPanel>
                     <DockPanel Height="30" Margin="10,10,10,0">
                         <Label Content="Crafting Time" VerticalContentAlignment="Center" Width="100"/>
-                        <TextBox x:Name="TbDuration" VerticalContentAlignment="Center"/>
+                        <TextBox x:Name="TbDuration" VerticalContentAlignment="Center" Text="0"/>
                     </DockPanel>
                     <DockPanel Height="30" Margin="10,10,10,0">
                         <Label Content="Output Quantity" VerticalContentAlignment="Center" Width="100"/>
-                        <TextBox x:Name="TbQuantity" VerticalContentAlignment="Center"/>
+                        <TextBox x:Name="TbQuantity" VerticalContentAlignment="Center" Text="1"/>
                     </DockPanel>
                 </StackPanel>
             </TabItem>
-            <TabItem Header="Requirements">
+            <TabItem x:Name="TiRequirements" Header="Requirements">
                 <DockPanel>
                     <StackPanel Width="100">
                         <Button Content="Add" Height="30" Margin="10,10,10,0" Click="Add"/>

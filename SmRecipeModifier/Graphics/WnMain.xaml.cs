@@ -43,7 +43,6 @@ namespace SmRecipeModifier.Graphics
             MiCreateBackup.IsEnabled = true;
             MiApplyBackup.IsEnabled = true;
             MiEditAllData.IsEnabled = true;
-            MiEditAllRequirements.IsEnabled = true;
             MiActivateEasyMode.IsEnabled = true;
             LvRecipes.Items.Clear();
             InfoDictionary =
@@ -186,22 +185,29 @@ namespace SmRecipeModifier.Graphics
                 MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
                 return;
             ZipFile.ExtractToDirectory(backupPath, Path.Combine(App.Settings.GameDataPath, "Survival"), true);
-            MessageBox.Show("Applied backup successfully!", "Safety ensured!", MessageBoxButton.OK,
-                MessageBoxImage.Information);
+            MessageBox.Show("Applied backup successfully!", "Safety ensured!", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void EditAllData(object sender, RoutedEventArgs args)
         {
-            // todo
-            MessageBox.Show("This function is not available yet.", "Sorry about that!", MessageBoxButton.OK,
-                MessageBoxImage.Exclamation);
-        }
-
-        private void EditAllRequirements(object sender, RoutedEventArgs args)
-        {
-            // todo
-            MessageBox.Show("This function is not available yet.", "Sorry about that!", MessageBoxButton.OK,
-                MessageBoxImage.Exclamation);
+            if (MessageBox.Show("Are you sure? This will affect all recipes.",
+                "Mass murdering numbers!", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+                return;
+            var dialog = new WnModify(null, true) {Owner = this};
+            if (dialog.ShowDialog() == false)
+                return;
+            var list = LvRecipes.Items.OfType<LvRecipeBinding>().ToArray();
+            LvRecipes.Items.Clear();
+            foreach (var item in list)
+            {
+                var newRecipe = item.Recipe;
+                newRecipe.Quantity = dialog.Result.Quantity;
+                newRecipe.Duration = dialog.Result.Duration;
+                newRecipe.Requirements = item.Recipe.Requirements;
+                AddRecipeToList(newRecipe);
+            }
+            MessageBox.Show("Successfully replaced every recipe in this json file.", "Activated noobie mode!",
+                MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void ActivateEasyMode(object sender, RoutedEventArgs args)
@@ -225,7 +231,6 @@ namespace SmRecipeModifier.Graphics
                 newRecipe.Requirements = newRequirements.ToArray();
                 AddRecipeToList(newRecipe);
             }
-
             MessageBox.Show("Successfully replaced every recipe in this json file.", "Activated noobie mode!",
                 MessageBoxButton.OK, MessageBoxImage.Information);
         }
