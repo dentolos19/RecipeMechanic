@@ -1,6 +1,8 @@
-﻿<Window x:Class="SmRecipeModifier.Graphics.WnMain" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Scrap Mechanic Recipe Modifier"
-        WindowStartupLocation="CenterScreen">
+﻿<mahApps:MetroWindow x:Class="SmRecipeModifier.Graphics.WnMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
+        Title="Scrap Mechanic Recipe Modifier" WindowStartupLocation="CenterScreen">
     <Window.CommandBindings>
         <CommandBinding Command="Open" Executed="Open"/>
         <CommandBinding Command="Save" Executed="Save"/>
@@ -43,7 +45,7 @@
                 <Button x:Name="BnRemoveRecipe" Content="Remove Recipe" Height="30" Margin="10,10,10,0" IsEnabled="False" Click="RemoveRecipe"/>
                 <Button x:Name="BnModifyRecipe" Content="Modify Recipe" Height="30" Margin="10,10,10,0" IsEnabled="False" Click="ModifyRecipe"/>
                 <Separator Margin="10,10,10,0"/>
-                <Label Content="Created By Dennise" Height="30" Margin="10,10,10,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <Label Content="GitHub @dentolos19" Margin="10,10,10,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
             </StackPanel>
             <ListView x:Name="LvRecipes" SelectionChanged="RecipeSelectionUpdate" MouseDoubleClick="ModifyRecipe">
                 <ListView.View>
@@ -55,4 +57,4 @@
             </ListView>
         </DockPanel>
     </DockPanel>
-</Window>
+</mahApps:MetroWindow>

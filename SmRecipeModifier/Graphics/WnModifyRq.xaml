@@ -1,6 +1,7 @@
-﻿<Window x:Class="SmRecipeModifier.Graphics.WnModifyRq"
+﻿<mahApps:MetroWindow x:Class="SmRecipeModifier.Graphics.WnModifyRq"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
         Title="Requirement Modifier" WindowStartupLocation="CenterOwner" Width="400" SizeToContent="Height">
     <DockPanel>
         <DockPanel DockPanel.Dock="Top" Height="50">
@@ -20,4 +21,4 @@
             </DockPanel>
         </StackPanel>
     </DockPanel>
-</Window>
+</mahApps:MetroWindow>
