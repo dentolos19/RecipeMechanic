@@ -8,8 +8,7 @@ namespace SmRecipeModifier.Core
     public class Configuration
     {
 
-        private static readonly string Source =
-            Path.Combine(AppDomain.CurrentDomain.BaseDirectory!, "SmRecipeModifier.cfg");
+        private static readonly string Source = Path.Combine(AppDomain.CurrentDomain.BaseDirectory!, "SmRecipeModifier.cfg");
 
         private static readonly XmlSerializer Serializer = new XmlSerializer(typeof(Configuration));
 

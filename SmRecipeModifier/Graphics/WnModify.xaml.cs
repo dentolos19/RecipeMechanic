@@ -36,8 +36,7 @@ namespace SmRecipeModifier.Graphics
             TbDuration.Text = _original.Duration.ToString();
             TbQuantity.Text = _original.Quantity.ToString();
             foreach (var requirement in _original.Requirements)
-                LvRequirements.Items.Add(new LvRequirementBinding(requirement.Quantity,
-                    App.WindowMain.ItemDictionary.Fetch(requirement.Id).Name, requirement.Id));
+                LvRequirements.Items.Add(new LvRequirementBinding(requirement.Quantity, App.WindowMain.ItemDictionary.Fetch(requirement.Id).Name, requirement.Id));
         }
 
         public SmRecipe Result { get; private set; }
@@ -54,7 +53,7 @@ namespace SmRecipeModifier.Graphics
             }
             else
             {
-                var result = new SmRecipe {Quantity = int.Parse(TbQuantity.Text), Duration = int.Parse(TbDuration.Text)};
+                var result = new SmRecipe { Quantity = int.Parse(TbQuantity.Text), Duration = int.Parse(TbDuration.Text) };
                 Result = result;
             }
             DialogResult = true;
@@ -65,13 +64,11 @@ namespace SmRecipeModifier.Graphics
         {
             if (LvRequirements.Items.Count >= 3)
             {
-                MessageBox.Show("You are only allowed max 3 requirements in a recipe.",
-                    "Scrap Mechanic doesn't allow that!", MessageBoxButton.OK, MessageBoxImage.Stop);
+                MessageBox.Show("You are only allowed max 3 requirements in a recipe.", "Scrap Mechanic doesn't allow that!", MessageBoxButton.OK, MessageBoxImage.Stop);
                 return;
             }
 
-            MessageBox.Show("This function is not available yet.", "Sorry about that!", MessageBoxButton.OK,
-                MessageBoxImage.Exclamation);
+            MessageBox.Show("This function is not available yet.", "Sorry about that!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
         private void Remove(object sender, RoutedEventArgs args)
@@ -80,13 +77,11 @@ namespace SmRecipeModifier.Graphics
                 return;
             if (LvRequirements.Items.Count == 1)
             {
-                MessageBox.Show("You must have a minimum 1 requirement in a recipe.",
-                    "Scrap Mechanic doesn't allow that!", MessageBoxButton.OK, MessageBoxImage.Stop);
+                MessageBox.Show("You must have a minimum 1 requirement in a recipe.", "Scrap Mechanic doesn't allow that!", MessageBoxButton.OK, MessageBoxImage.Stop);
                 return;
             }
 
-            MessageBox.Show("This function is not available yet.", "Sorry about that!", MessageBoxButton.OK,
-                MessageBoxImage.Exclamation);
+            MessageBox.Show("This function is not available yet.", "Sorry about that!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
         private void RemoveRq(LvRequirementBinding binding)
@@ -113,14 +108,13 @@ namespace SmRecipeModifier.Graphics
             if (LvRequirements.SelectedItem == null)
                 return;
             var binding = LvRequirements.SelectedItem as LvRequirementBinding;
-            var dialog = new WnModifyRq(binding) {Owner = this};
+            var dialog = new WnModifyRq(binding) { Owner = this };
             if (dialog.ShowDialog() == false || dialog.Result == null)
                 return;
             RemoveRq(binding);
             if (CheckRqIdExists(binding?.Id))
             {
-                MessageBox.Show("Duplicated requirement found! Please use another item.", "There can't be both!",
-                    MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                MessageBox.Show("Duplicated requirement found! Please use another item.", "There can't be both!", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 LvRequirements.Items.Add(binding);
                 return;
             }
