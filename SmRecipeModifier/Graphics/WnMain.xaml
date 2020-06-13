@@ -41,7 +41,8 @@
                           IsEnabled="False"/>
                 <Separator/>
                 <MenuItem Header="Exit"
-                          InputGestureText="Alt+F4"/>
+                          InputGestureText="Alt+F4"
+                          Click="Exit"/>
             </MenuItem>
             <MenuItem Header="Backup">
                 <MenuItem x:Name="MiCreateBackup"

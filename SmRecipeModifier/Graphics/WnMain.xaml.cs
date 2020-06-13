@@ -219,6 +219,11 @@ namespace SmRecipeModifier.Graphics
             MessageBox.Show("Successfully replaced every recipe in this json file.", "Activated noobie mode!", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+        private void Exit(object sender, RoutedEventArgs args)
+        {
+            Application.Current.Shutdown();
+        }
+
     }
 
 }
