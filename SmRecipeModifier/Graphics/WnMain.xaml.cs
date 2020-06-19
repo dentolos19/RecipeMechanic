@@ -94,12 +94,12 @@ namespace SmRecipeModifier.Graphics
             foreach (var item in LvRecipes.Items.OfType<LvRecipeBinding>())
                 list.Add(item.Recipe);
             var data = JsonConvert.SerializeObject(list, Formatting.Indented);
-            File.WriteAllText(path, $"// This file is modified by SmRecipeModifier (https://dennise.me/projects/smrecipemodifier)\n{data}");
+            File.WriteAllText(path, $"// This file is modified by SmRecipeModifier (https://github.com/dentolos19/SmRecipeModifier)\n{data}");
         }
 
         private void AddRecipe(object sender, RoutedEventArgs args)
         {
-            MessageBox.Show("This function is not available yet.", "Sorry about that!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            MessageBox.Show("This function is disabled.", "Sorry about that!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
         private void RemoveRecipe(object sender, RoutedEventArgs args)

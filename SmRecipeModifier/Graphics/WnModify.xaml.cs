@@ -67,8 +67,7 @@ namespace SmRecipeModifier.Graphics
                 MessageBox.Show("You are only allowed max 3 requirements in a recipe.", "Scrap Mechanic doesn't allow that!", MessageBoxButton.OK, MessageBoxImage.Stop);
                 return;
             }
-
-            MessageBox.Show("This function is not available yet.", "Sorry about that!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            MessageBox.Show("This function is disabled.", "Sorry about that!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
         private void Remove(object sender, RoutedEventArgs args)
