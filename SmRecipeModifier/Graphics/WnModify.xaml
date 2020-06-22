@@ -5,8 +5,7 @@
                      Title="Recipe Modifier"
                      WindowStartupLocation="CenterOwner"
                      Width="500"
-                     Height="300"
-                     ResizeMode="NoResize">
+                     Height="300">
     <DockPanel>
         <DockPanel DockPanel.Dock="Top"
                    Height="50">

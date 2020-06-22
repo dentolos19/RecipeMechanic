@@ -5,7 +5,7 @@
                      Title="Json Opener"
                      WindowStartupLocation="CenterOwner"
                      Width="600"
-                     Height="400" ResizeMode="NoResize">
+                     Height="400">
     <DockPanel>
         <DockPanel DockPanel.Dock="Top"
                    Height="50">

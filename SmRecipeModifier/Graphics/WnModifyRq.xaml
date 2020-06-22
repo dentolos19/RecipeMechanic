@@ -5,7 +5,7 @@
                      Title="Requirement Modifier"
                      WindowStartupLocation="CenterOwner"
                      Width="400"
-                     SizeToContent="Height" ResizeMode="NoResize">
+                     SizeToContent="Height">
     <DockPanel>
         <DockPanel DockPanel.Dock="Top"
                    Height="50">
