@@ -231,6 +231,14 @@ namespace SmRecipeModifier.Graphics
             Application.Current.Shutdown();
         }
 
+        private void CopyId(object sender, RoutedEventArgs args)
+        {
+            var item = LvRecipes.SelectedItem as LvRecipeBinding;
+            if (item == null)
+                return;
+            Clipboard.SetText(item.Id);
+        }
+
     }
 
 }

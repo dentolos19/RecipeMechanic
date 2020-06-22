@@ -138,6 +138,14 @@ namespace SmRecipeModifier.Graphics
             }
         }
 
+        private void CopyId(object sender, RoutedEventArgs args)
+        {
+            var item = LvRequirements.SelectedItem as LvRequirementBinding;
+            if (item == null)
+                return;
+            Clipboard.SetText(item.Id);
+        }
+
     }
 
 }

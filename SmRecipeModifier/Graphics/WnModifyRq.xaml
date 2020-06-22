@@ -5,7 +5,7 @@
                      Title="Requirement Modifier"
                      WindowStartupLocation="CenterOwner"
                      Width="400"
-                     SizeToContent="Height">
+                     SizeToContent="Height" ResizeMode="NoResize">
     <DockPanel>
         <DockPanel DockPanel.Dock="Top"
                    Height="50">
@@ -13,13 +13,13 @@
                    Width="30"
                    Margin="10,10,0,10"/>
             <Button Content="Save"
-                    Width="50"
+                    Width="75"
                     DockPanel.Dock="Right"
                     IsDefault="True"
                     Margin="10,10,10,10"
                     Click="Save"/>
             <Button Content="Cancel"
-                    Width="50"
+                    Width="75"
                     DockPanel.Dock="Right"
                     Margin="10,10,0,10"
                     Click="Cancel"/>

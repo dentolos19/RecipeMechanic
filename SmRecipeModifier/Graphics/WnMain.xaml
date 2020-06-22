@@ -136,6 +136,12 @@
                                         DisplayMemberBinding="{Binding Id}"/>
                     </GridView>
                 </ListView.View>
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Copy ID"
+                                  Click="CopyId"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
             </ListView>
         </DockPanel>
     </DockPanel>
