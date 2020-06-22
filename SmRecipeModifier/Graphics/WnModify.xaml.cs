@@ -79,7 +79,6 @@ namespace SmRecipeModifier.Graphics
                 MessageBox.Show("You must have a minimum 1 requirement in a recipe.", "Scrap Mechanic doesn't allow that!", MessageBoxButton.OK, MessageBoxImage.Stop);
                 return;
             }
-
             MessageBox.Show("This function is not available yet.", "Sorry about that!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
