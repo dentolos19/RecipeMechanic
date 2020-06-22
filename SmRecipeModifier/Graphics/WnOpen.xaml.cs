@@ -64,7 +64,6 @@ namespace SmRecipeModifier.Graphics
                 MessageBox.Show("Select a json file in the list to continue!", "You forgot something!", MessageBoxButton.OK, MessageBoxImage.Stop);
                 return;
             }
-
             var item = LvJsonFiles.SelectedItem as LvJsonBinding;
             Result = item?.Path;
             DialogResult = true;

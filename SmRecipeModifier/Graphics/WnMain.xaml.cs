@@ -43,6 +43,7 @@ namespace SmRecipeModifier.Graphics
             MiCreateBackup.IsEnabled = true;
             MiApplyBackup.IsEnabled = true;
             MiEditAllData.IsEnabled = true;
+            MiEditAllRequirements.IsEnabled = true;
             MiActivateEasyMode.IsEnabled = true;
             LvRecipes.Items.Clear();
             InfoDictionary = new SmItemInfoDictionary(Path.Combine(App.Settings.GameDataPath, Constants.ItemDescriptionsJsonPath));
@@ -99,6 +100,7 @@ namespace SmRecipeModifier.Graphics
 
         private void AddRecipe(object sender, RoutedEventArgs args)
         {
+            // TODO
             MessageBox.Show("This function is disabled.", "Sorry about that!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
@@ -156,8 +158,7 @@ namespace SmRecipeModifier.Graphics
                 MessageBox.Show("Backup file is already created so you don't need to do it again.", "It already there!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-
-            ZipFile.CreateFromDirectory(Path.Combine(App.Settings.GameDataPath, "Survival"), backupPath);
+            ZipFile.CreateFromDirectory(Path.Combine(App.Settings.GameDataPath, "Survival", "CraftingRecipes"), backupPath);
             MessageBox.Show("Backup file created successfully.", "I ensure your safety!", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
@@ -169,10 +170,9 @@ namespace SmRecipeModifier.Graphics
                 MessageBox.Show("Backup does not exist! Try using file verification via steam.", "Oops! No backup file found.", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-
             if (MessageBox.Show("Are you sure that you want to apply backup?", "Just want to make sure!", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
                 return;
-            ZipFile.ExtractToDirectory(backupPath, Path.Combine(App.Settings.GameDataPath, "Survival"), true);
+            ZipFile.ExtractToDirectory(backupPath, Path.Combine(App.Settings.GameDataPath, "Survival", "CraftingRecipes"), true);
             MessageBox.Show("Applied backup successfully!", "Safety ensured!", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
@@ -194,6 +194,12 @@ namespace SmRecipeModifier.Graphics
                 AddRecipeToList(newRecipe);
             }
             MessageBox.Show("Successfully replaced every recipe in this json file.", "Activated noobie mode!", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void EditAllRequirements(object sender, RoutedEventArgs args)
+        {
+            // TODO
+            MessageBox.Show("This function is disabled.", "Sorry about that!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
         private void ActivateEasyMode(object sender, RoutedEventArgs args)

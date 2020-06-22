@@ -117,7 +117,6 @@ namespace SmRecipeModifier.Graphics
                 LvRequirements.Items.Add(binding);
                 return;
             }
-
             LvRequirements.Items.Add(dialog.Result);
         }
 

@@ -59,6 +59,10 @@
                           Header="Edit All Data"
                           IsEnabled="False"
                           Click="EditAllData"/>
+                <MenuItem x:Name="MiEditAllRequirements"
+                          Header="Edit All Requirements"
+                          IsEnabled="False"
+                          Click="EditAllRequirements"/>
                 <Separator/>
                 <MenuItem x:Name="MiActivateEasyMode"
                           Header="Activate Easy Mode"
