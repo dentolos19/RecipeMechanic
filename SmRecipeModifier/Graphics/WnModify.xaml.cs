@@ -62,12 +62,21 @@ namespace SmRecipeModifier.Graphics
 
         private void Add(object sender, RoutedEventArgs args)
         {
-            if (LvRequirements.Items.Count >= 3)
+            if (LvRequirements.Items.Count >= 4)
             {
-                MessageBox.Show("You are only allowed max 3 requirements in a recipe.", "Scrap Mechanic doesn't allow that!", MessageBoxButton.OK, MessageBoxImage.Stop);
+                MessageBox.Show("You are only allowed max 4 requirements in a recipe.", "Scrap Mechanic doesn't allow that!", MessageBoxButton.OK, MessageBoxImage.Stop);
                 return;
             }
-            MessageBox.Show("This function is disabled.", "Sorry about that!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            var binding = new LvRequirementBinding(1, App.WindowMain.ItemDictionary.Fetch("1fc74a28-addb-451a-878d-c3c605d63811").Name, "1fc74a28-addb-451a-878d-c3c605d63811");
+            var dialog = new WnModifyRq(binding, true) { Owner = this };
+            if (dialog.ShowDialog() == false || dialog.Result == null)
+                return;
+            if (CheckRqIdExists(binding.Id))
+            {
+                MessageBox.Show("Duplicated requirement found! Please use another item.", "There can't be both!", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                return;
+            }
+            LvRequirements.Items.Add(dialog.Result);
         }
 
         private void Remove(object sender, RoutedEventArgs args)
@@ -79,7 +88,9 @@ namespace SmRecipeModifier.Graphics
                 MessageBox.Show("You must have a minimum 1 requirement in a recipe.", "Scrap Mechanic doesn't allow that!", MessageBoxButton.OK, MessageBoxImage.Stop);
                 return;
             }
-            MessageBox.Show("This function is not available yet.", "Sorry about that!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            if (MessageBox.Show("Are you sure that you want to delete this requirement?", "Make sure you know what you're doing!", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+                return;
+            RemoveRq((LvRequirementBinding)LvRequirements.SelectedItem);
         }
 
         private void RemoveRq(LvRequirementBinding binding)

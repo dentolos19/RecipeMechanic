@@ -8,10 +8,10 @@ namespace SmRecipeModifier.Graphics
     public partial class WnModifyRq
     {
 
-        public WnModifyRq(LvRequirementBinding binding)
+        public WnModifyRq(LvRequirementBinding binding, bool addNew = false)
         {
             InitializeComponent();
-            LbTitle.Content = binding.Name;
+            LbTitle.Content = addNew ? "New Recipe Requirement" : binding.Name;
             TbQuantity.Text = binding.Quantity.ToString();
             foreach (var item in App.WindowMain.ItemDictionary.Items)
                 CbItem.Items.Add(new ComboBoxItem { Content = item.Name, Tag = item.Id });
