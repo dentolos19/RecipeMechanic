@@ -1,18 +1,13 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Forms;
+using Microsoft.Win32;
 using Newtonsoft.Json;
 using SmRecipeModifier.Core;
 using SmRecipeModifier.Core.Models;
-using Application = System.Windows.Application;
-using Clipboard = System.Windows.Clipboard;
-using MessageBox = System.Windows.MessageBox;
-using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 
 namespace SmRecipeModifier.Graphics
 {
@@ -57,6 +52,20 @@ namespace SmRecipeModifier.Graphics
             var recipes = new SmRecipeDictionary(_path).Items;
             foreach (var recipe in recipes)
                 AddRecipeToList(recipe);
+            if (LvAvailableItems.Items.Count == 0)
+            {
+                foreach (var item in ItemDictionary.Items)
+                {
+                    var info = InfoDictionary.Fetch(item.Id);
+                    var name = string.Empty;
+                    if (info != null && !string.IsNullOrEmpty(info.Info.Title))
+                        name = info.Info.Title;
+                    if (item.Name == name)
+                        name = string.Empty;
+                    LvAvailableItems.Items.Add(new LvItemBinding(item.Name, name, item.Id));
+                }
+                LbAiMessage.Content = $"There are a total of {ItemDictionary.Items.Length + 1} items in-game.";
+            }
         }
 
         private void AddRecipeToList(SmRecipe recipe)
@@ -255,6 +264,14 @@ namespace SmRecipeModifier.Graphics
         private void CopyId(object sender, RoutedEventArgs args)
         {
             var item = LvRecipes.SelectedItem as LvRecipeBinding;
+            if (item == null)
+                return;
+            Clipboard.SetText(item.Id);
+        }
+
+        private void CopyAiId(object sender, RoutedEventArgs args)
+        {
+            var item = LvAvailableItems.SelectedItem as LvRecipeBinding;
             if (item == null)
                 return;
             Clipboard.SetText(item.Id);
