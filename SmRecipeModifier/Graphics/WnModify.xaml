@@ -29,7 +29,7 @@
                    VerticalContentAlignment="Center"/>
         </DockPanel>
         <TabControl>
-            <TabItem x:Name="TiData" 
+            <TabItem x:Name="TiData"
                      Header="Data">
                 <StackPanel>
                     <DockPanel Height="30"

@@ -1,13 +1,18 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using Microsoft.Win32;
+using System.Windows.Forms;
 using Newtonsoft.Json;
 using SmRecipeModifier.Core;
 using SmRecipeModifier.Core.Models;
+using Application = System.Windows.Application;
+using Clipboard = System.Windows.Clipboard;
+using MessageBox = System.Windows.MessageBox;
+using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 
 namespace SmRecipeModifier.Graphics
 {
@@ -101,8 +106,10 @@ namespace SmRecipeModifier.Graphics
 
         private void AddRecipe(object sender, RoutedEventArgs args)
         {
-            // TODO
-            MessageBox.Show("This function is disabled.", "Sorry about that!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            var dialog = new WnNewRecipe { Owner = this };
+            if (dialog.ShowDialog() == false)
+                return;
+            AddRecipeToList(dialog.Result);
         }
 
         private void RemoveRecipe(object sender, RoutedEventArgs args)
