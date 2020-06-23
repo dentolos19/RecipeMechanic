@@ -9,18 +9,30 @@ namespace SmRecipeModifier.Graphics
     public partial class WnModify
     {
 
-        private readonly bool _massEditing;
+        private readonly bool _massDataEditing;
+        private readonly bool _massRequirementEditing;
         private readonly SmRecipe _original;
 
-        public WnModify(SmRecipe original, bool massEditing = false)
+        public WnModify(SmRecipe original, bool massDataEditing = false, bool massRequirementEditing = false)
         {
             _original = original;
             InitializeComponent();
-            if (massEditing)
+            if (massDataEditing)
             {
-                _massEditing = true;
-                LbRecipeName.Content = "Mass Editing Mode";
+                _massDataEditing = true;
+                LbRecipeName.Content = "Mass Data Editing Mode";
+                TiData.IsEnabled = true;
                 TiRequirements.IsEnabled = false;
+                return;
+            }
+            if (massRequirementEditing)
+            {
+                _massRequirementEditing = true;
+                LbRecipeName.Content = "Mass Requirement Editing Mode";
+                TiData.IsEnabled = false;
+                TiRequirements.IsEnabled = true;
+                TiRequirements.IsSelected = true;
+                LvRequirements.Items.Add(new LvRequirementBinding(1, App.WindowMain.ItemDictionary.Fetch("1fc74a28-addb-451a-878d-c3c605d63811").Name, "1fc74a28-addb-451a-878d-c3c605d63811"));
                 return;
             }
             var item = App.WindowMain.InfoDictionary.Fetch(_original.Id);
@@ -43,17 +55,22 @@ namespace SmRecipeModifier.Graphics
 
         private void Save(object sender, RoutedEventArgs e)
         {
-            if (!_massEditing)
+            if (_massDataEditing)
+            {
+                var result = new SmRecipe { Quantity = int.Parse(TbQuantity.Text), Duration = int.Parse(TbDuration.Text) };
+                Result = result;
+            }
+            else if (_massRequirementEditing)
+            {
+                var result = new SmRecipe { Requirements = LvRequirements.Items.OfType<LvRequirementBinding>().Select(requirement => new SmRequirement(requirement.Quantity, requirement.Id)).ToArray() };
+                Result = result;
+            }
+            else
             {
                 var result = _original;
                 result.Quantity = int.Parse(TbQuantity.Text);
                 result.Duration = int.Parse(TbDuration.Text);
                 result.Requirements = LvRequirements.Items.OfType<LvRequirementBinding>().Select(requirement => new SmRequirement(requirement.Quantity, requirement.Id)).ToArray();
-                Result = result;
-            }
-            else
-            {
-                var result = new SmRecipe { Quantity = int.Parse(TbQuantity.Text), Duration = int.Parse(TbDuration.Text) };
                 Result = result;
             }
             DialogResult = true;

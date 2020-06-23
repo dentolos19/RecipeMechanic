@@ -179,7 +179,7 @@ namespace SmRecipeModifier.Graphics
 
         private void EditAllData(object sender, RoutedEventArgs args)
         {
-            if (MessageBox.Show("Are you sure? This will affect all recipes.", "Mass murdering numbers!", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+            if (MessageBox.Show("Are you sure? This will affect all recipes' data.", "Mass murdering numbers!", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
                 return;
             var dialog = new WnModify(null, true) { Owner = this };
             if (dialog.ShowDialog() == false)
@@ -199,8 +199,22 @@ namespace SmRecipeModifier.Graphics
 
         private void EditAllRequirements(object sender, RoutedEventArgs args)
         {
-            // TODO
-            MessageBox.Show("This function is disabled.", "Sorry about that!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            if (MessageBox.Show("Are you sure? This will affect all recipes' requirements.", "Mass murdering numbers!", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+                return;
+            var dialog = new WnModify(null, false, true) { Owner = this };
+            if (dialog.ShowDialog() == false)
+                return;
+            var list = LvRecipes.Items.OfType<LvRecipeBinding>().ToArray();
+            LvRecipes.Items.Clear();
+            foreach (var item in list)
+            {
+                var newRecipe = item.Recipe;
+                newRecipe.Quantity = item.Recipe.Quantity;
+                newRecipe.Duration = item.Recipe.Quantity;
+                newRecipe.Requirements = dialog.Result.Requirements;
+                AddRecipeToList(newRecipe);
+            }
+            MessageBox.Show("Successfully replaced every recipe in this json file.", "Activated noobie mode!", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void ActivateEasyMode(object sender, RoutedEventArgs args)
