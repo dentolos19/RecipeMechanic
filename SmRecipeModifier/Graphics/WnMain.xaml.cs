@@ -271,7 +271,7 @@ namespace SmRecipeModifier.Graphics
 
         private void CopyAiId(object sender, RoutedEventArgs args)
         {
-            var item = LvAvailableItems.SelectedItem as LvRecipeBinding;
+            var item = LvAvailableItems.SelectedItem as LvItemBinding;
             if (item == null)
                 return;
             Clipboard.SetText(item.Id);
