@@ -2,6 +2,9 @@
 using System.Reflection;
 using System.Windows;
 using System.Windows.Threading;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using SmRecipeModifier.Core;
 using SmRecipeModifier.Graphics;
 
@@ -20,6 +23,7 @@ namespace SmRecipeModifier
             Settings = Configuration.Load();
             var accent = Utilities.GetRandomAccent();
             Utilities.SetAppTheme(accent);
+            AppCenter.Start("fb87b876-50e7-41ac-a84b-a01f08c2a5f3", typeof(Analytics), typeof(Crashes));
             WindowMain = new WnMain();
             WindowMain.Show();
         }
