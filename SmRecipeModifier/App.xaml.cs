@@ -1,19 +1,31 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Reflection;
+using System.Windows;
+using System.Windows.Threading;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using SmRecipeModifier.Core;
 using SmRecipeModifier.Graphics;
 
 namespace SmRecipeModifier
 {
-    
+
     public partial class App
     {
 
-        public static Configuration Settings { get; } = Configuration.Load();
+        internal static Configuration Settings { get; private set; }
+
+        internal static WnMain WindowMain { get; private set; }
 
         private void Initialize(object sender, StartupEventArgs args)
         {
-            Utilities.SetAppTheme(Settings.AccentName, Settings.EnableDarkMode);
-            new WnMain().Show();
+            Settings = Configuration.Load();
+            var accent = Utilities.GetRandomAccent();
+            Utilities.SetAppTheme(accent);
+            AppCenter.Start("deff7951-472f-4983-9d9e-cb073440e574", typeof(Analytics), typeof(Crashes));
+            WindowMain = new WnMain();
+            WindowMain.Show();
         }
 
     }

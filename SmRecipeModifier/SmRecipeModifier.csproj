@@ -1,56 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
-    <PropertyGroup>
-        <OutputType>WinExe</OutputType>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
-        <UseWPF>true</UseWPF>
-        <SignAssembly>true</SignAssembly>
-        <AssemblyOriginatorKeyFile>Properties\AssemblyKey.snk</AssemblyOriginatorKeyFile>
-        <PublicSign>true</PublicSign>
-        <PackageVersion>1.0.6</PackageVersion>
-        <Title>Scrap Mechanic Recipe Modifier</Title>
-        <Authors>Dennise Catolos</Authors>
-        <Copyright>Copyright © 2020</Copyright>
-        <Company>Aprodots</Company>
-        <Product>Scrap Mechanic Recipe Modifier</Product>
-    </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType> <TargetFramework>net5.0</TargetFramework> <UseWPF>true</UseWPF> <StartupObject>SmRecipeModifier.App</StartupObject> <SignAssembly>true</SignAssembly> <AssemblyOriginatorKeyFile>Properties\AssemblyKey.snk</AssemblyOriginatorKeyFile> <ApplicationIcon>Resources\Icon.ico</ApplicationIcon> <Version>1.0.5</Version> <Authors>Dennise Catolos</Authors> <Copyright>Copyright © 2020</Copyright> <Company>Aprodots</Company> <Product>Scrap Mechanic Recipe Modifier</Product>
+	</PropertyGroup>
 
-    <ItemGroup>
-      <PackageReference Include="MahApps.Metro" Version="2.1.1" />
-      <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.1.4" />
-      <PackageReference Include="Microsoft.AppCenter.Analytics" Version="3.3.0" />
-      <PackageReference Include="Microsoft.AppCenter.Crashes" Version="3.3.0" />
-      <PackageReference Include="Ookii.Dialogs.Wpf.NETCore" Version="2.1.0" />
-    </ItemGroup>
+	<ItemGroup>
+		<None Remove=".gitattributes" /> <None Remove=".gitignore" /> <None Remove="LICENSE" /> <None Remove="README.md" /> <None Remove="Resources\Logo.png" />
+	</ItemGroup>
 
-    <ItemGroup>
-      <Page Update="Graphics\WnMain.xaml">
-        <Generator></Generator>
-      </Page>
-      <Page Update="Graphics\WnPreferences.xaml">
-        <Generator></Generator>
-      </Page>
-      <Page Update="Graphics\WnIntro.xaml">
-        <Generator></Generator>
-      </Page>
-      <Page Update="Graphics\WnOpen.xaml">
-        <Generator></Generator>
-      </Page>
-    </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="MahApps.Metro" Version="2.1.1" />
+		<PackageReference Include="MaterialDesignThemes.MahApps" Version="0.1.4" />
+		<PackageReference Include="Microsoft.AppCenter.Analytics" Version="3.2.2" />
+		<PackageReference Include="Microsoft.AppCenter.Crashes" Version="3.2.2" /> <PackageReference Include="Newtonsoft.Json" Version="12.0.3" /> <PackageReference Include="Ookii.Dialogs.Wpf.NETCore" Version="2.1.0" />
+	</ItemGroup>
 
-    <ItemGroup>
-      <Compile Update="Graphics\WnMain.xaml.cs">
-        <DependentUpon>WnMain.xaml</DependentUpon>
-      </Compile>
-      <Compile Update="Graphics\WnPreferences.xaml.cs">
-        <DependentUpon>WnPreferences.xaml</DependentUpon>
-      </Compile>
-      <Compile Update="Graphics\WnIntro.xaml.cs">
-        <DependentUpon>WnIntro.xaml</DependentUpon>
-      </Compile>
-      <Compile Update="Graphics\WnOpen.xaml.cs">
-        <DependentUpon>WnOpen.xaml</DependentUpon>
-      </Compile>
-    </ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\Logo.png" />
+	</ItemGroup>
 
 </Project>
