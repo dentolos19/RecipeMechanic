@@ -3,10 +3,10 @@
 namespace SmRecipeModifier.Graphics
 {
 
-    public partial class WnOpen
+    public partial class WnIntro
     {
 
-        public WnOpen()
+        public WnIntro()
         {
             InitializeComponent();
         }
