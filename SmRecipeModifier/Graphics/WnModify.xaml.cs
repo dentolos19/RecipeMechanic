@@ -10,8 +10,8 @@ namespace SmRecipeModifier.Graphics
     {
 
         private readonly bool _dataEditingMode;
-        private readonly bool _requirementEditingMode;
         private readonly SmRecipe _original;
+        private readonly bool _requirementEditingMode;
 
         public WnModify(SmRecipe original, bool dataEditingMode = false, bool requirementEditingMode = false)
         {
@@ -107,7 +107,7 @@ namespace SmRecipeModifier.Graphics
             }
             if (MessageBox.Show("Are you sure that you want to delete this requirement?", "Make sure you know what you're doing!", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
                 return;
-            RemoveRq((LvRequirementBinding)LvRequirements.SelectedItem);
+            RemoveRq((LvRequirementBinding) LvRequirements.SelectedItem);
         }
 
         private void RemoveRq(LvRequirementBinding binding)

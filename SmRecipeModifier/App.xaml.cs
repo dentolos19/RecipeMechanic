@@ -1,7 +1,4 @@
-﻿using System.Diagnostics;
-using System.Reflection;
-using System.Windows;
-using System.Windows.Threading;
+﻿using System.Windows;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;

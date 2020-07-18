@@ -30,7 +30,7 @@ namespace SmRecipeModifier.Graphics
             }
             Result = new SmRecipe
             {
-                Id = ((ComboBoxItem)CbItem.SelectedItem).Tag.ToString(),
+                Id = ((ComboBoxItem) CbItem.SelectedItem).Tag.ToString(),
                 Duration = _recipeData.Duration,
                 Quantity = _recipeData.Quantity,
                 Requirements = _recipeRequirements.Requirements

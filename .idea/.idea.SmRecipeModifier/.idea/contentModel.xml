@@ -11,19 +11,23 @@
         <e p="App.xaml.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="Core" t="Include">
-          <e p="Configuration.cs" t="Include" />
-          <e p="Constants.cs" t="Include" />
-          <e p="Models" t="Include">
+          <e p="Bindings" t="Include">
             <e p="LvItemBinding.cs" t="Include" />
             <e p="LvJsonBinding.cs" t="Include" />
             <e p="LvRecipeBinding.cs" t="Include" />
             <e p="LvRequirementBinding.cs" t="Include" />
-            <e p="SmItem.cs" t="Include" />
+          </e>
+          <e p="Configuration.cs" t="Include" />
+          <e p="Constants.cs" t="Include" />
+          <e p="Dictionaries" t="Include">
             <e p="SmItemDictionary.cs" t="Include" />
-            <e p="SmItemInfo.cs" t="Include" />
             <e p="SmItemInfoDictionary.cs" t="Include" />
-            <e p="SmRecipe.cs" t="Include" />
             <e p="SmRecipeDictionary.cs" t="Include" />
+          </e>
+          <e p="Models" t="Include">
+            <e p="SmItem.cs" t="Include" />
+            <e p="SmItemInfo.cs" t="Include" />
+            <e p="SmRecipe.cs" t="Include" />
             <e p="SmRequirement.cs" t="Include" />
           </e>
           <e p="Utilities.cs" t="Include" />
