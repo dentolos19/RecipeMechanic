@@ -7,6 +7,8 @@ using System.Windows.Controls;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using SmRecipeModifier.Core;
+using SmRecipeModifier.Core.Bindings;
+using SmRecipeModifier.Core.Dictionaries;
 using SmRecipeModifier.Core.Models;
 
 namespace SmRecipeModifier.Graphics

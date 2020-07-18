@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
+using SmRecipeModifier.Core.Models;
 
-namespace SmRecipeModifier.Core.Models
+namespace SmRecipeModifier.Core.Dictionaries
 {
 
     public class SmItemInfoDictionary

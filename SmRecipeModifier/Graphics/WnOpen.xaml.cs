@@ -2,6 +2,7 @@
 using System.Windows;
 using Ookii.Dialogs.Wpf;
 using SmRecipeModifier.Core;
+using SmRecipeModifier.Core.Bindings;
 using SmRecipeModifier.Core.Models;
 
 namespace SmRecipeModifier.Graphics

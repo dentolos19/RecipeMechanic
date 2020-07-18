@@ -1,4 +1,6 @@
-﻿namespace SmRecipeModifier.Core.Models
+﻿using SmRecipeModifier.Core.Models;
+
+namespace SmRecipeModifier.Core.Bindings
 {
 
     public class LvRecipeBinding
