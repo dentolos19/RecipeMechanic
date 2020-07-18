@@ -11,29 +11,45 @@
         <e p="App.xaml.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="Core" t="Include">
-          <e p="Bindings" t="Include" />
           <e p="Configuration.cs" t="Include" />
+          <e p="Constants.cs" t="Include" />
+          <e p="Models" t="Include">
+            <e p="LvItemBinding.cs" t="Include" />
+            <e p="LvJsonBinding.cs" t="Include" />
+            <e p="LvRecipeBinding.cs" t="Include" />
+            <e p="LvRequirementBinding.cs" t="Include" />
+            <e p="SmItem.cs" t="Include" />
+            <e p="SmItemDictionary.cs" t="Include" />
+            <e p="SmItemInfo.cs" t="Include" />
+            <e p="SmItemInfoDictionary.cs" t="Include" />
+            <e p="SmRecipe.cs" t="Include" />
+            <e p="SmRecipeDictionary.cs" t="Include" />
+            <e p="SmRequirement.cs" t="Include" />
+          </e>
           <e p="Utilities.cs" t="Include" />
         </e>
         <e p="Graphics" t="Include">
-          <e p="WnIntro.xaml" t="Include" />
-          <e p="WnIntro.xaml.cs" t="Include" />
           <e p="WnMain.xaml" t="Include" />
           <e p="WnMain.xaml.cs" t="Include" />
+          <e p="WnModify.xaml" t="Include" />
+          <e p="WnModify.xaml.cs" t="Include" />
+          <e p="WnModifyRq.xaml" t="Include" />
+          <e p="WnModifyRq.xaml.cs" t="Include" />
+          <e p="WnNewRecipe.xaml" t="Include" />
+          <e p="WnNewRecipe.xaml.cs" t="Include" />
           <e p="WnOpen.xaml" t="Include" />
           <e p="WnOpen.xaml.cs" t="Include" />
-          <e p="WnPreferences.xaml" t="Include" />
-          <e p="WnPreferences.xaml.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
-            <e p="netcoreapp3.1" t="Include">
+            <e p="net5.0" t="Include">
               <e p="App.g.cs" t="Include" />
               <e p="Graphics" t="Include">
-                <e p="WnIntro.g.cs" t="Include" />
                 <e p="WnMain.g.cs" t="Include" />
+                <e p="WnModify.g.cs" t="Include" />
+                <e p="WnModifyRq.g.cs" t="Include" />
+                <e p="WnNewRecipe.g.cs" t="Include" />
                 <e p="WnOpen.g.cs" t="Include" />
-                <e p="WnPreferences.g.cs" t="Include" />
               </e>
               <e p="SmRecipeModifier.AssemblyInfo.cs" t="Include" />
             </e>
@@ -44,10 +60,7 @@
           <e p="AssemblyKey.snk" t="Include" />
         </e>
         <e p="Resources" t="Include">
-          <e p="Assets" t="Include">
-            <e p="Icon.ico" t="Include" />
-            <e p="Logo.png" t="Include" />
-          </e>
+          <e p="Logo.png" t="Include" />
         </e>
         <e p="SmRecipeModifier.csproj" t="IncludeRecursive" />
       </e>

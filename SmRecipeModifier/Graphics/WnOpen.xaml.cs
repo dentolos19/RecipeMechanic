@@ -1,13 +1,8 @@
-<<<<<<< Updated upstream
 ﻿using System.IO;
 using System.Windows;
 using Ookii.Dialogs.Wpf;
 using SmRecipeModifier.Core;
 using SmRecipeModifier.Core.Models;
-=======
-﻿using System.Windows;
-using Ookii.Dialogs.Wpf;
->>>>>>> Stashed changes
 
 namespace SmRecipeModifier.Graphics
 {
@@ -38,15 +33,9 @@ namespace SmRecipeModifier.Graphics
             _path = dialog.SelectedPath;
             LoadSupportedFiles();
         }
-        
-        private void LoadFiles(object sender, RoutedEventArgs args)
-        {
-            // TODO
-        }
 
         private void LoadSupportedFiles()
         {
-<<<<<<< Updated upstream
             LvJsonFiles.Items.Clear();
             var cookBotJsonPath = Path.Combine(_path, Constants.CookbotJsonPath);
             var craftBotJsonPath = Path.Combine(_path, Constants.CraftbotJsonPath);
@@ -66,13 +55,6 @@ namespace SmRecipeModifier.Graphics
                 LvJsonFiles.Items.Add(new LvJsonBinding("undecided.json", "Try to discover what this is!", undecidedJsonPath));
             if (File.Exists(workbenchJsonPath))
                 LvJsonFiles.Items.Add(new LvJsonBinding("workbench.json", "The one that is at the starting ship!", workbenchJsonPath));
-=======
-            var dialog = new VistaFolderBrowserDialog();
-            if (dialog.ShowDialog(this) == true)
-            {
-                GameDataPathBox.Text = dialog.SelectedPath;
-            }
->>>>>>> Stashed changes
         }
 
         private void Continue(object sender, RoutedEventArgs args)

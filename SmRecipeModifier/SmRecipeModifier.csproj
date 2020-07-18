@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
 	<PropertyGroup>
-		<OutputType>WinExe</OutputType> <TargetFramework>net5.0</TargetFramework> <UseWPF>true</UseWPF> <StartupObject>SmRecipeModifier.App</StartupObject> <SignAssembly>true</SignAssembly> <AssemblyOriginatorKeyFile>Properties\AssemblyKey.snk</AssemblyOriginatorKeyFile> <ApplicationIcon>Resources\Icon.ico</ApplicationIcon> <Version>1.0.5</Version> <Authors>Dennise Catolos</Authors> <Copyright>Copyright © 2020</Copyright> <Company>Aprodots</Company> <Product>Scrap Mechanic Recipe Modifier</Product>
+		<OutputType>WinExe</OutputType> <TargetFramework>net5.0</TargetFramework> <UseWPF>true</UseWPF> <StartupObject>SmRecipeModifier.App</StartupObject> <SignAssembly>true</SignAssembly> <AssemblyOriginatorKeyFile>Properties\AssemblyKey.snk</AssemblyOriginatorKeyFile> <ApplicationIcon>Resources\Icon.ico</ApplicationIcon> <Version>1.0.5</Version> <Authors>Dennise Catolos</Authors> <Copyright>Copyright © 2020</Copyright> <Company>Aprodots</Company> <Product>Scrap Mechanic Recipe Modifier</Product> <Title>Scrap Mechanic Recipe Modifier</Title> <PublicSign>true</PublicSign>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -19,17 +19,4 @@
 		<Resource Include="Resources\Logo.png" />
 	</ItemGroup>
 
-<<<<<<< Updated upstream
 </Project>
-=======
-    <ItemGroup>
-      <Folder Include="Core\Bindings" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Remove="Resources\Assets\Logo.png" />
-      <Resource Include="Resources\Assets\Logo.png" />
-    </ItemGroup>
-
-</Project>
->>>>>>> Stashed changes

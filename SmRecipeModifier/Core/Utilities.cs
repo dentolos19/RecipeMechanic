@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Reflection;
 using System.Windows;
 
 namespace SmRecipeModifier.Core
@@ -16,7 +13,6 @@ namespace SmRecipeModifier.Core
             var random = new Random();
             return accents[random.Next(accents.Length)];
         }
-<<<<<<< Updated upstream
 
         public static void SetAppTheme(string accent)
         {
@@ -24,18 +20,6 @@ namespace SmRecipeModifier.Core
             Application.Current.Resources.MergedDictionaries.Add(dictionary);
         }
 
-=======
-        
-        public static void RestartApp(string args = null)
-        {
-            var location = Assembly.GetExecutingAssembly().Location;
-            if (location.ToLower().EndsWith(".dll"))
-                location = Path.Combine(Path.GetDirectoryName(location)!, Path.GetFileNameWithoutExtension(location) + ".exe");
-            Process.Start(location, args);
-            Application.Current.Shutdown();
-        }
-        
->>>>>>> Stashed changes
     }
 
 }
