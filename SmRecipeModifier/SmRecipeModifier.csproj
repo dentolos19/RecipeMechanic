@@ -19,4 +19,17 @@
 		<Resource Include="Resources\Logo.png" />
 	</ItemGroup>
 
+<<<<<<< Updated upstream
 </Project>
+=======
+    <ItemGroup>
+      <Folder Include="Core\Bindings" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Resources\Assets\Logo.png" />
+      <Resource Include="Resources\Assets\Logo.png" />
+    </ItemGroup>
+
+</Project>
+>>>>>>> Stashed changes
