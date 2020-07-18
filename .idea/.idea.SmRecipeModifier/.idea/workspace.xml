@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="BuildServerSettings">
+    <option name="LOGIN" value="" />
+    <option name="SERVER_URL" value="" />
+    <option name="COMMIT_PATTERN" value="{message}" />
+    <option name="REMEMBER_ME" value="true" />
+    <option name="USE_IDEA_PROXY_SETTINGS" value="true" />
+    <option name="INSPECTIONS_BUILD_TYPE_IDS" />
+    <option name="DUPLICATES_BUILD_TYPE_IDS" />
+    <option name="ENABLE_SUITABLE_CONFIGURATION_CACHING" value="true" />
+    <option name="COVERAGE_SETTINGS" />
+    <option name="TEST_STATUS_ENABLED" value="true" />
+    <option name="TEST_STATUS_SHOW_SUCCESSFUL" value="false" />
+    <option name="POSTPONE_SUITABLE_CONFIGURATIONS_SEARCH" value="false" />
+    <option name="ARTIFACTS_BUILD_TYPE_IDS" />
+    <option name="PERFORM_COMMIT_IF_SUCCESSFUL" value="true" />
+    <option name="PERFORM_COMMIT_IF_NO_NEW_FAILED_TESTS" value="false" />
+    <option name="REQUEST_CONFIRMATON" value="false" />
+    <option name="PRE_TESTED_COMMIT" value="true" />
+    <option name="FILTER_BY_STATUS" value="false" />
+    <option name="FILTER_MARKED_AS_FIXED" value="false" />
+    <option name="TOOL_WINDOW_SELECTED_CONTENT_INDEX" value="0" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="030b2bb6-58b7-461f-8717-f2c905e268eb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/SmRecipeModifier/Resources/Assets/Icon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SmRecipeModifier/Resources/Assets/Logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmRecipeModifier/Core/Constants.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmRecipeModifier/Core/Utilities.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SmRecipeModifier/Core/Utilities.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmRecipeModifier/Graphics/WnIntro.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/SmRecipeModifier/Graphics/WnIntro.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmRecipeModifier/Graphics/WnIntro.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SmRecipeModifier/Graphics/WnIntro.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmRecipeModifier/Graphics/WnMain.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/SmRecipeModifier/Graphics/WnMain.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmRecipeModifier/Graphics/WnOpen.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/SmRecipeModifier/Graphics/WnOpen.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmRecipeModifier/Graphics/WnOpen.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SmRecipeModifier/Graphics/WnOpen.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmRecipeModifier/Graphics/WnPreferences.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/SmRecipeModifier/Graphics/WnPreferences.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmRecipeModifier/Graphics/WnPreferences.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SmRecipeModifier/Graphics/WnPreferences.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmRecipeModifier/SmRecipeModifier.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SmRecipeModifier/SmRecipeModifier.csproj" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/SmRecipeModifier/Graphics/WnIntro.xaml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SmRecipeModifier/Graphics/WnIntro.xaml.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SmRecipeModifier/Graphics/WnOpen.xaml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SmRecipeModifier/Graphics/WnOpen.xaml.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SmRecipeModifier/Core/Configuration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SmRecipeModifier/Core/Utilities.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SmRecipeModifier/App.xaml.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SmRecipeModifier/Graphics/WnMain.xaml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SmRecipeModifier/Properties/AssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SmRecipeModifier/Graphics/WnMain.xaml.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SmRecipeModifier/Graphics/WnPreferences.xaml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SmRecipeModifier/App.xaml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SmRecipeModifier/Graphics/WnPreferences.xaml.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/SmRecipeModifier/Properties/AssemblyInfo.cs" />
+        <option value="$PROJECT_DIR$/SmRecipeModifier/Core/Constants.cs" />
+        <option value="$PROJECT_DIR$/SmRecipeModifier/Core/Configuration.cs" />
+        <option value="$PROJECT_DIR$/SmRecipeModifier/App.xaml" />
+        <option value="$PROJECT_DIR$/SmRecipeModifier/App.xaml.cs" />
+        <option value="$PROJECT_DIR$/SmRecipeModifier/Graphics/WnPreferences.xaml" />
+        <option value="$PROJECT_DIR$/SmRecipeModifier/Core/Utilities.cs" />
+        <option value="$PROJECT_DIR$/SmRecipeModifier/Graphics/WnIntro.xaml" />
+        <option value="$PROJECT_DIR$/SmRecipeModifier/Graphics/WnMain.xaml.cs" />
+        <option value="$PROJECT_DIR$/SmRecipeModifier/Graphics/WnOpen.xaml" />
+        <option value="$PROJECT_DIR$/SmRecipeModifier/Graphics/WnOpen.xaml.cs" />
+        <option value="$PROJECT_DIR$/SmRecipeModifier/Graphics/WnIntro.xaml.cs" />
+        <option value="$PROJECT_DIR$/SmRecipeModifier/Graphics/WnPreferences.xaml.cs" />
+        <option value="$PROJECT_DIR$/SmRecipeModifier/Graphics/WnMain.xaml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1eoN5EkzXzdeHhGFv61JcVCV20w" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
+  </component>
+  <component name="RunManager">
+    <configuration name="SmRecipeModifier" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/SmRecipeModifier/SmRecipeModifier.csproj" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="DotNetCore" />
+      <option name="PROJECT_TFM" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="030b2bb6-58b7-461f-8717-f2c905e268eb" name="Default Changelist" comment="" />
+      <created>1594983802802</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1594983802802</updated>
+      <workItem from="1594983825315" duration="220000" />
+      <workItem from="1594984054534" duration="1000" />
+      <workItem from="1594984093016" duration="1888000" />
+      <workItem from="1595028670318" duration="1876000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>
