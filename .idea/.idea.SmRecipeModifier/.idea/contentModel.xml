@@ -42,7 +42,7 @@
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
-            <e p="net5.0" t="Include">
+            <e p="netcoreapp3.1" t="Include">
               <e p="App.g.cs" t="Include" />
               <e p="Graphics" t="Include">
                 <e p="WnMain.g.cs" t="Include" />
@@ -60,6 +60,7 @@
           <e p="AssemblyKey.snk" t="Include" />
         </e>
         <e p="Resources" t="Include">
+          <e p="Icon.ico" t="Include" />
           <e p="Logo.png" t="Include" />
         </e>
         <e p="SmRecipeModifier.csproj" t="IncludeRecursive" />
