@@ -3,3 +3,11 @@
 A easy yet powerful recipe modifier for Scrap Mechanic! You can make your in-game life better by making recipes have no requirements at all, or even make it harder for yourself! I hope you find this tool very useful, and if you have an idea that you want to implement into the tool and make an issue, or create a pull request! Any contributions to this project will be much help thanks!
 
 ![Preview](https://dentolos19.github.io/previews/smrecipemodifier.png)
+
+### Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+### License
+
+This project is licensed with the [MIT License](https://choosealicense.com/licenses/mit).

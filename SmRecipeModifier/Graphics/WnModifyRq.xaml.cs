@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using SmRecipeModifier.Core.Bindings;
-using SmRecipeModifier.Core.Models;
 
 namespace SmRecipeModifier.Graphics
 {
