@@ -8,9 +8,6 @@
         public const string ItemNamesJson = @"Survival\CraftingRecipes\item_names.json";
         public const string ScrapMechanicExePath = @"Release\ScrapMechanic.exe";
 
-        public const string ScrapMechanicBackupTargetFolderPath = @"Survival\CraftingRecipes";
-        public const string ScrapMechanicBackupFilePath = @"Cache\SmRecipeModifier.bak";
-
         public const string CookbotJsonPath = @"Survival\CraftingRecipes\cookbot.json";
         public const string CraftbotJsonPath = @"Survival\CraftingRecipes\craftbot.json";
         public const string DispenserJsonPath = @"Survival\CraftingRecipes\dispenser.json";

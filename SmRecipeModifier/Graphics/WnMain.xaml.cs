@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
+using System.IO;
 using System.IO.Compression;
 using System.Windows;
 using System.Windows.Input;
@@ -57,43 +58,6 @@ namespace SmRecipeModifier.Graphics
             Application.Current.Shutdown();
         }
 
-        private void CreateBackup(object sender, RoutedEventArgs args)
-        {
-            if (File.Exists(Path.Combine(App.Settings.GameDataPath, Constants.ScrapMechanicBackupFilePath)) && MessageBox.Show("A backup already exist, do you want to overwrite it?", "SmRecipeModifier", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
-                return;
-            try
-            {
-                if (File.Exists(Path.Combine(App.Settings.GameDataPath, Constants.ScrapMechanicBackupFilePath)))
-                    File.Delete(Path.Combine(App.Settings.GameDataPath, Constants.ScrapMechanicBackupFilePath));
-                ZipFile.CreateFromDirectory(Path.Combine(App.Settings.GameDataPath, Constants.ScrapMechanicBackupTargetFolderPath), Path.Combine(App.Settings.GameDataPath));
-            }
-            catch
-            {
-                MessageBox.Show("Backup creation failed!", "SmRecipeModifier");
-                return;
-            }
-            MessageBox.Show("Backup successfully created!", "SmRecipeModifier");
-        }
-
-        private void ApplyBackup(object sender, RoutedEventArgs args)
-        {
-            if (!File.Exists(Path.Combine(App.Settings.GameDataPath, Constants.ScrapMechanicBackupFilePath)))
-            {
-                MessageBox.Show("Backup file not found!", "SmRecipeModifier");
-                return;
-            }
-            try
-            {
-                ZipFile.ExtractToDirectory(Path.Combine(App.Settings.GameDataPath, Constants.ScrapMechanicBackupFilePath), Path.Combine(App.Settings.GameDataPath, Constants.ScrapMechanicBackupTargetFolderPath), true);
-            }
-            catch
-            {
-                MessageBox.Show("Unable to apply backup!", "SmRecipeModifier");
-                return;
-            }
-            MessageBox.Show("Applied backup successfully!");
-        }
-
         private void ShowPreferences(object sender, RoutedEventArgs args)
         {
             new WnPreferences { Owner = this }.ShowDialog();
@@ -133,6 +97,24 @@ namespace SmRecipeModifier.Graphics
             if (item == null)
                 return;
             Clipboard.SetText(item.Id);
+        }
+
+        private void OpenBackupWizard(object sender, RoutedEventArgs args)
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "steam://backup/387990",
+                UseShellExecute = true
+            });
+        }
+
+        private void VerifyGameFiles(object sender, RoutedEventArgs args)
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "steam://validate/387990",
+                UseShellExecute = true
+            });
         }
 
     }

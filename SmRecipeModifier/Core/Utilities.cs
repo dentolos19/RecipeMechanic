@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Principal;
 using System.Windows;
 using ControlzEx.Theming;
 using Newtonsoft.Json;

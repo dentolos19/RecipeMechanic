@@ -19,8 +19,8 @@
                 <MenuItem Header="Exit" InputGestureText="Alt+F4" Click="Exit"/>
             </MenuItem>
             <MenuItem Header="Backup">
-                <MenuItem Header="Create Backup" Click="CreateBackup"/>
-                <MenuItem Header="Apply Backup" Click="ApplyBackup"/>
+                <MenuItem Header="Steam Backup Wizard" Click="OpenBackupWizard"/>
+                <MenuItem Header="Verify Game Files" Click="VerifyGameFiles"/>
             </MenuItem>
             <MenuItem Header="Options">
                 <MenuItem Header="Preferences" Click="ShowPreferences"/>
