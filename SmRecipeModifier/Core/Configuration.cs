@@ -8,11 +8,12 @@ namespace SmRecipeModifier.Core
     public class Configuration
     {
 
-        private static readonly string Source = Path.Combine(AppDomain.CurrentDomain.BaseDirectory!, "SmRecipeModifier.cfg");
-
+        private static readonly string Source = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SmRecipeModifier.cfg");
         private static readonly XmlSerializer Serializer = new XmlSerializer(typeof(Configuration));
 
         public string GameDataPath { get; set; }
+        public string ColorScheme { get; set; } = "Orange";
+        public bool EnableDarkMode { get; set; } = true;
 
         public void Save()
         {
@@ -25,7 +26,7 @@ namespace SmRecipeModifier.Core
             if (!File.Exists(Source))
                 return new Configuration();
             using var stream = new FileStream(Source, FileMode.Open);
-            return Serializer.Deserialize(stream) as Configuration;
+            return (Configuration)Serializer.Deserialize(stream);
         }
 
     }

@@ -1,179 +1,70 @@
 ﻿<mahApps:MetroWindow x:Class="SmRecipeModifier.Graphics.WnMain"
-                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                     xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
-                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                     mc:Ignorable="d"
-                     Title="Scrap Mechanic Recipe Modifier"
-                     WindowStartupLocation="CenterScreen">
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
+        Title="Scrap Mechanic Recipe Modifier" SaveWindowPosition="True" ResizeMode="CanResizeWithGrip">
     <Window.CommandBindings>
-        <CommandBinding Command="Open"
-                        Executed="Open"/>
-        <CommandBinding Command="Save"
-                        Executed="Save"/>
-        <CommandBinding Command="SaveAs"
-                        Executed="SaveAs"/>
+        <CommandBinding Command="Open" Executed="Open"/>
+        <CommandBinding Command="Save" Executed="Save"/>
+        <CommandBinding Command="SaveAs" Executed="SaveAs"/>
     </Window.CommandBindings>
-    <Window.InputBindings>
-        <KeyBinding Key="O"
-                    Modifiers="Control"
-                    Command="Open"/>
-        <KeyBinding Key="S"
-                    Modifiers="Control"
-                    Command="Save"/>
-        <KeyBinding Key="S"
-                    Modifiers="Control+Shift"
-                    Command="SaveAs"/>
-    </Window.InputBindings>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
-                <MenuItem Header="Open"
-                          InputGestureText="Ctrl+O"
-                          Click="Open"/>
-                <MenuItem x:Name="MiSave"
-                          Header="Save"
-                          InputGestureText="Ctrl+S"
-                          Click="Save"
-                          IsEnabled="False"/>
-                <MenuItem x:Name="MiSaveAs"
-                          Header="Save As"
-                          InputGestureText="Ctrl+Shift+S"
-                          Click="SaveAs"
-                          IsEnabled="False"/>
+                <MenuItem Header="Open" InputGestureText="Ctrl+O" Command="Open"/>
                 <Separator/>
-                <MenuItem Header="Exit"
-                          InputGestureText="Alt+F4"
-                          Click="Exit"/>
+                <MenuItem Header="Save" InputGestureText="Ctrl+S" Command="Save"/>
+                <MenuItem Header="Save As" InputGestureText="Ctrl+Shift+S" Command="SaveAs"/>
+                <Separator/>
+                <MenuItem Header="Exit" InputGestureText="Alt+F4" Click="Exit"/>
             </MenuItem>
             <MenuItem Header="Backup">
-                <MenuItem x:Name="MiCreateBackup"
-                          Header="Create Backup"
-                          IsEnabled="False"
-                          Click="CreateBackup"/>
-                <MenuItem x:Name="MiApplyBackup"
-                          Header="Apply Backup"
-                          IsEnabled="False"
-                          Click="ApplyBackup"/>
+                <MenuItem Header="Create Backup" Click="CreateBackup"/>
+                <MenuItem Header="Apply Backup" Click="ApplyBackup"/>
             </MenuItem>
-            <MenuItem Header="Mass Editing">
-                <MenuItem x:Name="MiEditAllData"
-                          Header="Edit All Data"
-                          IsEnabled="False"
-                          Click="EditAllData"/>
-                <MenuItem x:Name="MiEditAllRequirements"
-                          Header="Edit All Requirements"
-                          IsEnabled="False"
-                          Click="EditAllRequirements"/>
+            <MenuItem Header="Options">
+                <MenuItem Header="Preferences" Click="ShowPreferences"/>
                 <Separator/>
-                <MenuItem x:Name="MiActivateEasyMode"
-                          Header="Activate Easy Mode"
-                          IsEnabled="False"
-                          Click="ActivateEasyMode"/>
+                <MenuItem Header="About SmRecipeModifier" Click="ShowAbout"/>
             </MenuItem>
         </Menu>
         <DockPanel>
             <StackPanel Width="150">
-                <Image Source="/Resources/Logo.png"
-                       Height="130"
-                       Margin="10,10,10,0"/>
+                <Image Margin="10,10,10,0" Source="../Resources/Assets/Logo.png" Height="130"/>
                 <Separator Margin="10,10,10,0"/>
-                <TextBox x:Name="TbFileName"
-                         Height="30"
-                         Margin="10,10,10,0"
-                         VerticalContentAlignment="Center"
-                         HorizontalContentAlignment="Center"
-                         IsReadOnly="True"/>
-                <Button Content="Open"
-                        Height="30"
-                        Margin="10,10,10,0"
-                        Click="Open"/>
-                <Button x:Name="BnSave"
-                        Content="Save"
-                        Height="30"
-                        Margin="10,10,10,0"
-                        IsEnabled="False"
-                        Click="Save"/>
-                <Button x:Name="BnSaveAs"
-                        Content="Save As"
-                        Height="30"
-                        Margin="10,10,10,0"
-                        IsEnabled="False"
-                        Click="SaveAs"/>
+                <TextBox Margin="10,10,10,0" HorizontalContentAlignment="Center" IsReadOnly="True"/>
+                <Button Margin="10,10,10,0" Content="Open" Command="Open"/>
+                <Button Margin="10,10,10,0" Content="Save" Command="Save"/>
+                <Button Margin="10,10,10,0" Content="Save As" Command="SaveAs"/>
                 <Separator Margin="10,10,10,0"/>
-                <Button x:Name="BnAddRecipe"
-                        Content="Add Recipe"
-                        Height="30"
-                        Margin="10,10,10,0"
-                        IsEnabled="False"
-                        Click="AddRecipe"/>
-                <Button x:Name="BnRemoveRecipe"
-                        Content="Remove Recipe"
-                        Height="30"
-                        Margin="10,10,10,0"
-                        IsEnabled="False"
-                        Click="RemoveRecipe"/>
-                <Button x:Name="BnModifyRecipe"
-                        Content="Modify Recipe"
-                        Height="30"
-                        Margin="10,10,10,0"
-                        IsEnabled="False"
-                        Click="ModifyRecipe"/>
+                <Button Margin="10,10,10,0" Content="Add Recipe" Click="AddRecipe"/>
+                <Button Margin="10,10,10,0" Content="Remove Recipe" Click="RemoveRecipe"/>
+                <Button Margin="10,10,10,0" Content="Modify Recipe" Click="ModifyRecipe"/>
                 <Separator Margin="10,10,10,0"/>
-                <Label Content="GitHub @dentolos19"
-                       Margin="10,10,10,0"
-                       VerticalContentAlignment="Center"
-                       HorizontalContentAlignment="Center"/>
+                <Label Margin="10,10,10,0" Content="Powered by .NET 5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
             </StackPanel>
             <TabControl>
-                <TabItem Header="Recipes">
-                    <ListView x:Name="LvRecipes"
-                              SelectionChanged="RecipeSelectionUpdate"
-                              MouseDoubleClick="ModifyRecipe">
+                <TabItem Header="Modify Recipes">
+                    <ListView>
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Name"
-                                                Width="250"
-                                                DisplayMemberBinding="{Binding Name}"/>
-                                <GridViewColumn Header="ID"
-                                                Width="300"
-                                                DisplayMemberBinding="{Binding Id}"/>
+                                <GridViewColumn Header="Name" Width="250" DisplayMemberBinding="{Binding Name}"/>
+                                <GridViewColumn Header="In-Game Name" Width="250" DisplayMemberBinding="{Binding InGameName}"/>
+                                <GridViewColumn Header="ID" Width="300" DisplayMemberBinding="{Binding Id}"/>
                             </GridView>
                         </ListView.View>
-                        <ListView.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem Header="Copy ID"
-                                          Click="CopyId"/>
-                            </ContextMenu>
-                        </ListView.ContextMenu>
                     </ListView>
                 </TabItem>
-                <TabItem Header="Available Items">
-                    <DockPanel>
-                        <Label x:Name="LbAiMessage" DockPanel.Dock="Top" Content="Open a json file first, then all the available items will show." VerticalContentAlignment="Center"/>
-                        <ListView x:Name="LvAvailableItems">
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Header="Name"
-                                                    Width="250"
-                                                    DisplayMemberBinding="{Binding Name}"/>
-                                    <GridViewColumn Header="In-game Name"
-                                                    Width="250"
-                                                    DisplayMemberBinding="{Binding InGameName}"/>
-                                    <GridViewColumn Header="ID"
-                                                    Width="300"
-                                                    DisplayMemberBinding="{Binding Id}"/>
-                                </GridView>
-                            </ListView.View>
-                            <ListView.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Copy ID"
-                                              Click="CopyAiId"/>
-                                </ContextMenu>
-                            </ListView.ContextMenu>
-                        </ListView>
-                    </DockPanel>
+                <TabItem Header="Item List">
+                    <ListView>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Name" Width="250" DisplayMemberBinding="{Binding Name}"/>
+                                <GridViewColumn Header="In-Game Name" Width="250" DisplayMemberBinding="{Binding InGameName}"/>
+                                <GridViewColumn Header="ID" Width="300" DisplayMemberBinding="{Binding Id}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </TabItem>
             </TabControl>
         </DockPanel>

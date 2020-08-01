@@ -13,16 +13,12 @@ namespace SmRecipeModifier
 
         internal static Configuration Settings { get; private set; }
 
-        internal static WnMain WindowMain { get; private set; }
-
         private void Initialize(object sender, StartupEventArgs args)
         {
             Settings = Configuration.Load();
-            var accent = Utilities.GetRandomAccent();
-            Utilities.SetAppTheme(accent);
             AppCenter.Start("deff7951-472f-4983-9d9e-cb073440e574", typeof(Analytics), typeof(Crashes));
-            WindowMain = new WnMain();
-            WindowMain.Show();
+            Utilities.SetAppTheme(Settings.ColorScheme, Settings.EnableDarkMode, false);
+            new WnMain().Show();
         }
 
     }

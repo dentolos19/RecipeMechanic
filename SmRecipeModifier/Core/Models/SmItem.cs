@@ -4,23 +4,15 @@
     public class SmItem
     {
 
-        public SmItem(string id, string name)
-        {
-            Id = id;
-            Name = name;
-        }
+        public string Name { get; set; }
 
-        public SmItem(string id, SmItemInfo info)
-        {
-            Id = id;
-            Info = info;
-        }
+        public string InGameName { get; set; }
 
-        public string Id { get; }
+        public string Id { get; set; }
 
-        public string Name { get; }
-
-        public SmItemInfo Info { get; }
+        public string Description { get; set; }
+        
+        public SmRecipe Recipe { get; set; }
 
     }
 
