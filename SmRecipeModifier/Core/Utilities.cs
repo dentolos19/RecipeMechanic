@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Windows;
 using ControlzEx.Theming;
 using Newtonsoft.Json;
 using SmRecipeModifier.Core.Models;
-using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace SmRecipeModifier.Core
 {

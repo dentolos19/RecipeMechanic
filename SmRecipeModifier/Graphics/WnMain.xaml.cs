@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.IO.Compression;
 using System.Windows;
 using System.Windows.Input;
 using MahApps.Metro.Controls.Dialogs;
@@ -12,18 +13,17 @@ namespace SmRecipeModifier.Graphics
     {
 
         private string _selectedPath;
-
-        public SmItem[] AvailableItems { get; }
+        private readonly SmItem[] _availableItems;
 
         public WnMain()
         {
             InitializeComponent();
             if (string.IsNullOrEmpty(App.Settings.GameDataPath))
                 new WnIntro().ShowDialog();
-            AvailableItems = Utilities.GetItemsFromJsons(Path.Combine(App.Settings.GameDataPath, Constants.ItemNamesJson), Path.Combine(App.Settings.GameDataPath, Constants.InventoryDescriptionsJson));
-            foreach (var item in AvailableItems)
+            _availableItems = Utilities.GetItemsFromJsons(Path.Combine(App.Settings.GameDataPath!, Constants.ItemNamesJson), Path.Combine(App.Settings.GameDataPath, Constants.InventoryDescriptionsJson));
+            foreach (var item in _availableItems)
                 ItemList.Items.Add(item);
-            ItemListItemAmountText.Text = string.Format(ItemListItemAmountText.Text, AvailableItems.Length.ToString());
+            ItemListItemAmountText.Text = $"There are a total of {_availableItems.Length} survival items in-game!";
         }
 
         private void Open(object sender, ExecutedRoutedEventArgs args)
@@ -33,7 +33,12 @@ namespace SmRecipeModifier.Graphics
             {
                 _selectedPath = dialog.SelectedPath;
                 FileNameBox.Text = Path.GetFileName(_selectedPath)!;
-                // TODO
+                var recipes = Utilities.GetRecipesFromJson(_selectedPath);
+                var items = Utilities.MergeRecipesWithItems(recipes, _availableItems);
+                RecipeList.Items.Clear();
+                foreach (var item in items)
+                    RecipeList.Items.Add(item);
+                RecipeListItemAmountText.Text = $"There are a total of {items.Length} survival items in the file!";
             }
         }
 
@@ -54,12 +59,39 @@ namespace SmRecipeModifier.Graphics
 
         private void CreateBackup(object sender, RoutedEventArgs args)
         {
-            // TODO
+            if (File.Exists(Path.Combine(App.Settings.GameDataPath, Constants.ScrapMechanicBackupFilePath)) && MessageBox.Show("A backup already exist, do you want to overwrite it?", "SmRecipeModifier", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+                return;
+            try
+            {
+                if (File.Exists(Path.Combine(App.Settings.GameDataPath, Constants.ScrapMechanicBackupFilePath)))
+                    File.Delete(Path.Combine(App.Settings.GameDataPath, Constants.ScrapMechanicBackupFilePath));
+                ZipFile.CreateFromDirectory(Path.Combine(App.Settings.GameDataPath, Constants.ScrapMechanicBackupTargetFolderPath), Path.Combine(App.Settings.GameDataPath));
+            }
+            catch
+            {
+                MessageBox.Show("Backup creation failed!", "SmRecipeModifier");
+                return;
+            }
+            MessageBox.Show("Backup successfully created!", "SmRecipeModifier");
         }
 
         private void ApplyBackup(object sender, RoutedEventArgs args)
         {
-            // TODO
+            if (!File.Exists(Path.Combine(App.Settings.GameDataPath, Constants.ScrapMechanicBackupFilePath)))
+            {
+                MessageBox.Show("Backup file not found!", "SmRecipeModifier");
+                return;
+            }
+            try
+            {
+                ZipFile.ExtractToDirectory(Path.Combine(App.Settings.GameDataPath, Constants.ScrapMechanicBackupFilePath), Path.Combine(App.Settings.GameDataPath, Constants.ScrapMechanicBackupTargetFolderPath), true);
+            }
+            catch
+            {
+                MessageBox.Show("Unable to apply backup!", "SmRecipeModifier");
+                return;
+            }
+            MessageBox.Show("Applied backup successfully!");
         }
 
         private void ShowPreferences(object sender, RoutedEventArgs args)
