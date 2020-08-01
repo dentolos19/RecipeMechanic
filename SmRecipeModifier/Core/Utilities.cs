@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text.Json;
 using System.Windows;
 using ControlzEx.Theming;
+using Newtonsoft.Json;
 using SmRecipeModifier.Core.Models;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace SmRecipeModifier.Core
 {
@@ -35,7 +36,7 @@ namespace SmRecipeModifier.Core
         public static SmRecipe[] GetRecipesFromJson(string path)
         {
             var data = File.ReadAllText(path);
-            var recipes = JsonSerializer.Deserialize<List<SmRecipe>>(data);
+            var recipes = JsonConvert.DeserializeObject<List<SmRecipe>>(data);
             return recipes?.ToArray();
         }
 
@@ -43,23 +44,25 @@ namespace SmRecipeModifier.Core
         {
             var namesData = File.ReadAllText(namesPath);
             var descriptionsData = File.ReadAllText(descriptionsPath);
-            var itemNames = JsonSerializer.Deserialize<Dictionary<string, string>>(namesData);
-            var itemDescriptions = JsonSerializer.Deserialize<Dictionary<string, SmItemDescription>>(descriptionsData);
+            var itemNames = JsonConvert.DeserializeObject<Dictionary<string, string>>(namesData);
+            var itemDescriptions = JsonConvert.DeserializeObject<Dictionary<string, SmItemDescription>>(descriptionsData);
             if (itemNames == null || itemDescriptions == null)
                 return null;
             var items = new List<SmItem>();
             foreach (var (id, name) in itemNames)
             {
                 var item = new SmItem();
-                foreach (var (_, description) in itemDescriptions.Where(description => description.Key.Equals(item.Id)))
+                foreach (var description in itemDescriptions)
                 {
-                    if (!string.IsNullOrEmpty(description.Name))
+                    if (description.Key != id)
+                        continue;
+                    if (!string.IsNullOrEmpty(description.Value.Name) && description.Value.Name != name)
                     {
-                        item.InGameName = description.Name;
+                        item.InGameName = description.Value.Name;
                     }
-                    if (!string.IsNullOrEmpty(description.Description))
+                    if (!string.IsNullOrEmpty(description.Value.Description))
                     {
-                        item.Description = description.Description;
+                        item.Description = description.Value.Description;
                     }
                 }
                 item.Name = name;

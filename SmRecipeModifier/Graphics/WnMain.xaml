@@ -61,20 +61,23 @@
                     </ListView>
                 </TabItem>
                 <TabItem Header="Item List">
-                    <ListView x:Name="ItemList">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header="Name" Width="250" DisplayMemberBinding="{Binding Name}"/>
-                                <GridViewColumn Header="In-Game Name" Width="250" DisplayMemberBinding="{Binding InGameName}"/>
-                                <GridViewColumn Header="ID" Width="300" DisplayMemberBinding="{Binding Id}"/>
-                            </GridView>
-                        </ListView.View>
-                        <ListView.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem Header="Copy ID" Click="CopyItemId"/>
-                            </ContextMenu>
-                        </ListView.ContextMenu>
-                    </ListView>
+                    <DockPanel>
+                        <TextBlock x:Name="ItemListItemAmountText" DockPanel.Dock="Top" Text="There are a total of {0} survival items in-game!"/>
+                        <ListView x:Name="ItemList">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Name" Width="250" DisplayMemberBinding="{Binding Name}"/>
+                                    <GridViewColumn Header="In-Game Name" Width="250" DisplayMemberBinding="{Binding InGameName}"/>
+                                    <GridViewColumn Header="ID" Width="300" DisplayMemberBinding="{Binding Id}"/>
+                                </GridView>
+                            </ListView.View>
+                            <ListView.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Copy ID" Click="CopyItemId"/>
+                                </ContextMenu>
+                            </ListView.ContextMenu>
+                        </ListView>
+                    </DockPanel>
                 </TabItem>
             </TabControl>
         </DockPanel>

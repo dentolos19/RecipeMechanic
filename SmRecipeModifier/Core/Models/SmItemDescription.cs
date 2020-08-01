@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace SmRecipeModifier.Core.Models
 {
@@ -6,10 +6,10 @@ namespace SmRecipeModifier.Core.Models
     public class SmItemDescription
     {
 
-        [JsonPropertyName("title")]
+        [JsonProperty("title")]
         public string Name { get; set; }
 
-        [JsonPropertyName("description")]
+        [JsonProperty("description")]
         public string Description { get; set; }
 
     }

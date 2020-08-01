@@ -13,11 +13,17 @@ namespace SmRecipeModifier.Graphics
 
         private string _selectedPath;
 
+        public SmItem[] AvailableItems { get; }
+
         public WnMain()
         {
             InitializeComponent();
             if (string.IsNullOrEmpty(App.Settings.GameDataPath))
                 new WnIntro().ShowDialog();
+            AvailableItems = Utilities.GetItemsFromJsons(Path.Combine(App.Settings.GameDataPath, Constants.ItemNamesJson), Path.Combine(App.Settings.GameDataPath, Constants.InventoryDescriptionsJson));
+            foreach (var item in AvailableItems)
+                ItemList.Items.Add(item);
+            ItemListItemAmountText.Text = string.Format(ItemListItemAmountText.Text, AvailableItems.Length.ToString());
         }
 
         private void Open(object sender, ExecutedRoutedEventArgs args)
