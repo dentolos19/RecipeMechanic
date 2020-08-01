@@ -1,6 +1,9 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
 using System.Windows.Input;
 using MahApps.Metro.Controls.Dialogs;
+using SmRecipeModifier.Core;
+using SmRecipeModifier.Core.Models;
 
 namespace SmRecipeModifier.Graphics
 {
@@ -8,9 +11,13 @@ namespace SmRecipeModifier.Graphics
     public partial class WnMain
     {
 
+        private string _selectedPath;
+
         public WnMain()
         {
             InitializeComponent();
+            if (string.IsNullOrEmpty(App.Settings.GameDataPath))
+                new WnIntro().ShowDialog();
         }
 
         private void Open(object sender, ExecutedRoutedEventArgs args)
@@ -18,6 +25,8 @@ namespace SmRecipeModifier.Graphics
             var dialog = new WnOpen { Owner = this };
             if (dialog.ShowDialog() == true)
             {
+                _selectedPath = dialog.SelectedPath;
+                FileNameBox.Text = Path.GetFileName(_selectedPath)!;
                 // TODO
             }
         }
@@ -70,6 +79,22 @@ namespace SmRecipeModifier.Graphics
         private void ModifyRecipe(object sender, RoutedEventArgs args)
         {
             // TODO
+        }
+
+        private void CopyRecipeId(object sender, RoutedEventArgs args)
+        {
+            var item = (SmItem)RecipeList.SelectedItem;
+            if (item == null)
+                return;
+            Clipboard.SetText(item.Id);
+        }
+
+        private void CopyItemId(object sender, RoutedEventArgs args)
+        {
+            var item = (SmItem)ItemList.SelectedItem;
+            if (item == null)
+                return;
+            Clipboard.SetText(item.Id);
         }
 
     }

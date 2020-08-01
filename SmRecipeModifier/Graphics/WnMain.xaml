@@ -32,7 +32,7 @@
             <StackPanel Width="150">
                 <Image Margin="10,10,10,0" Source="../Resources/Assets/Logo.png" Height="130"/>
                 <Separator Margin="10,10,10,0"/>
-                <TextBox Margin="10,10,10,0" HorizontalContentAlignment="Center" IsReadOnly="True"/>
+                <TextBox x:Name="FileNameBox" Margin="10,10,10,0" HorizontalContentAlignment="Center" IsReadOnly="True"/>
                 <Button Margin="10,10,10,0" Content="Open" Command="Open"/>
                 <Button Margin="10,10,10,0" Content="Save" Command="Save"/>
                 <Button Margin="10,10,10,0" Content="Save As" Command="SaveAs"/>
@@ -45,7 +45,7 @@
             </StackPanel>
             <TabControl>
                 <TabItem Header="Modify Recipes">
-                    <ListView>
+                    <ListView x:Name="RecipeList" MouseDoubleClick="ModifyRecipe">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Name" Width="250" DisplayMemberBinding="{Binding Name}"/>
@@ -53,10 +53,15 @@
                                 <GridViewColumn Header="ID" Width="300" DisplayMemberBinding="{Binding Id}"/>
                             </GridView>
                         </ListView.View>
+                        <ListView.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Copy ID" Click="CopyRecipeId"/>
+                            </ContextMenu>
+                        </ListView.ContextMenu>
                     </ListView>
                 </TabItem>
                 <TabItem Header="Item List">
-                    <ListView>
+                    <ListView x:Name="ItemList">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Name" Width="250" DisplayMemberBinding="{Binding Name}"/>
@@ -64,6 +69,11 @@
                                 <GridViewColumn Header="ID" Width="300" DisplayMemberBinding="{Binding Id}"/>
                             </GridView>
                         </ListView.View>
+                        <ListView.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Copy ID" Click="CopyItemId"/>
+                            </ContextMenu>
+                        </ListView.ContextMenu>
                     </ListView>
                 </TabItem>
             </TabControl>

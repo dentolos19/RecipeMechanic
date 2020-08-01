@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
 using ControlzEx.Theming;
 using Ookii.Dialogs.Wpf;
 using SmRecipeModifier.Core;
@@ -32,7 +33,14 @@ namespace SmRecipeModifier.Graphics
         {
             var dialog = new VistaFolderBrowserDialog();
             if (dialog.ShowDialog() == true)
+            {
+                if (!File.Exists(Path.Combine(dialog.SelectedPath, Constants.ScrapMechanicExePath)))
+                {
+                    MessageBox.Show("This path doesn't contain the game executable!");
+                    return;
+                }
                 GameDataPathBox.Text = dialog.SelectedPath;
+            }
         }
 
     }
