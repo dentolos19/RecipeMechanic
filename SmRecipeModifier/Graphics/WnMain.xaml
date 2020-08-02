@@ -13,8 +13,8 @@
             <MenuItem Header="File">
                 <MenuItem Header="Open" InputGestureText="Ctrl+O" Command="Open"/>
                 <Separator/>
-                <MenuItem Header="Save" InputGestureText="Ctrl+S" Command="Save"/>
-                <MenuItem Header="Save As" InputGestureText="Ctrl+Shift+S" Command="SaveAs"/>
+                <MenuItem x:Name="SaveMenuButton" Header="Save" InputGestureText="Ctrl+S" IsEnabled="False" Command="Save"/>
+                <MenuItem x:Name="SaveAsMenuButton" Header="Save As" InputGestureText="Ctrl+Shift+S" IsEnabled="False" Command="SaveAs"/>
                 <Separator/>
                 <MenuItem Header="Exit" InputGestureText="Alt+F4" Click="Exit"/>
             </MenuItem>
@@ -34,12 +34,12 @@
                 <Separator Margin="10,10,10,0"/>
                 <TextBox x:Name="FileNameBox" Margin="10,10,10,0" HorizontalContentAlignment="Center" IsReadOnly="True"/>
                 <Button Margin="10,10,10,0" Content="Open" Command="Open"/>
-                <Button Margin="10,10,10,0" Content="Save" Command="Save"/>
-                <Button Margin="10,10,10,0" Content="Save As" Command="SaveAs"/>
+                <Button x:Name="SaveButton" Margin="10,10,10,0" Content="Save" IsEnabled="False" Command="Save"/>
+                <Button x:Name="SaveAsButton" Margin="10,10,10,0" Content="Save As" IsEnabled="False" Command="SaveAs"/>
                 <Separator Margin="10,10,10,0"/>
-                <Button Margin="10,10,10,0" Content="Add Recipe" Click="AddRecipe"/>
-                <Button Margin="10,10,10,0" Content="Remove Recipe" Click="RemoveRecipe"/>
-                <Button Margin="10,10,10,0" Content="Modify Recipe" Click="ModifyRecipe"/>
+                <Button x:Name="AddRecipeButton" Margin="10,10,10,0" Content="Add Recipe" IsEnabled="False" Click="AddRecipe"/>
+                <Button x:Name="RemoveRecipeButton" Margin="10,10,10,0" Content="Remove Recipe" IsEnabled="False" Click="RemoveRecipe"/>
+                <Button x:Name="ModifyRecipeButton" Margin="10,10,10,0" Content="Modify Recipe" IsEnabled="False" Click="ModifyRecipe"/>
                 <Separator Margin="10,10,10,0"/>
                 <Label Margin="10,10,10,0" Content="Powered by .NET 5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
             </StackPanel>
@@ -47,7 +47,7 @@
                 <TabItem Header="Modify Recipes">
                     <DockPanel>
                         <TextBlock x:Name="RecipeListItemAmountText" DockPanel.Dock="Top" Text="Open a file to get started modifying your way!"/>
-                        <ListView x:Name="RecipeList" MouseDoubleClick="ModifyRecipe">
+                        <ListView x:Name="RecipeList" MouseDoubleClick="ModifyRecipe" SelectionChanged="UpdateRecipeListSelection">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Name" Width="250" DisplayMemberBinding="{Binding Name}"/>

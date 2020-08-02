@@ -36,7 +36,7 @@ namespace SmRecipeModifier.Graphics
             {
                 if (!File.Exists(Path.Combine(dialog.SelectedPath, Constants.ScrapMechanicExePath)))
                 {
-                    MessageBox.Show("This path doesn't contain the game executable!");
+                    MessageBox.Show("This path doesn't contain the game executable!", "SmRecipeModifier");
                     return;
                 }
                 GameDataPathBox.Text = dialog.SelectedPath;

@@ -1,9 +1,14 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using MahApps.Metro.Controls.Dialogs;
+using Microsoft.Win32;
+using Newtonsoft.Json;
 using SmRecipeModifier.Core;
 using SmRecipeModifier.Core.Models;
 
@@ -39,18 +44,36 @@ namespace SmRecipeModifier.Graphics
                 RecipeList.Items.Clear();
                 foreach (var item in items)
                     RecipeList.Items.Add(item);
-                RecipeListItemAmountText.Text = $"There are a total of {items.Length} survival items in the file!";
+                RecipeListItemAmountText.Text = $"There are a total of {items.Length} survival items in this file!";
+                SaveButton.IsEnabled = true;
+                SaveAsButton.IsEnabled = true;
+                SaveMenuButton.IsEnabled = true;
+                SaveAsMenuButton.IsEnabled = true;
+                AddRecipeButton.IsEnabled = true;
             }
+        }
+
+        private void SaveToFile(string path)
+        {
+            var items = RecipeList.Items.OfType<SmItem>();
+            var data = JsonConvert.SerializeObject(items.Select(item => item.Recipe).ToArray(), Formatting.Indented);
+            File.WriteAllText(path, data);
         }
 
         private void Save(object sender, ExecutedRoutedEventArgs args)
         {
-            // TODO
+            if (!SaveButton.IsEnabled)
+                return;
+            SaveToFile(_selectedPath);
         }
 
         private void SaveAs(object sender, ExecutedRoutedEventArgs args)
         {
-            // TODO
+            if (!SaveButton.IsEnabled)
+                return;
+            var dialog = new SaveFileDialog { Filter = "JSON Source File|*.json" };
+            if (dialog.ShowDialog() == true)
+                SaveToFile(dialog.FileName);
         }
 
         private void Exit(object sender, RoutedEventArgs args)
@@ -70,16 +93,22 @@ namespace SmRecipeModifier.Graphics
 
         private void AddRecipe(object sender, RoutedEventArgs args)
         {
+            if (!AddRecipeButton.IsEnabled)
+                return;
             // TODO
         }
 
         private void RemoveRecipe(object sender, RoutedEventArgs args)
         {
+            if (!RemoveRecipeButton.IsEnabled)
+                return;
             // TODO
         }
 
         private void ModifyRecipe(object sender, RoutedEventArgs args)
         {
+            if (!ModifyRecipeButton.IsEnabled)
+                return;
             // TODO
         }
 
@@ -115,6 +144,20 @@ namespace SmRecipeModifier.Graphics
                 FileName = "steam://validate/387990",
                 UseShellExecute = true
             });
+        }
+
+        private void UpdateRecipeListSelection(object sender, SelectionChangedEventArgs args)
+        {
+            if (RecipeList.SelectedItem == null)
+            {
+                RemoveRecipeButton.IsEnabled = false;
+                ModifyRecipeButton.IsEnabled = false;
+            }
+            else
+            {
+                RemoveRecipeButton.IsEnabled = true;
+                ModifyRecipeButton.IsEnabled = true;
+            }
         }
 
     }
