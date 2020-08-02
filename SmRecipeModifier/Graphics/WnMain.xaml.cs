@@ -57,14 +57,15 @@ namespace SmRecipeModifier.Graphics
         {
             var items = RecipeList.Items.OfType<SmItem>();
             var data = JsonConvert.SerializeObject(items.Select(item => item.Recipe).ToArray(), Formatting.Indented);
-            File.WriteAllText(path, data);
+            File.WriteAllText($"// This file was created by SmRecipeModifier.\n{data}", data);
         }
 
         private void Save(object sender, ExecutedRoutedEventArgs args)
         {
             if (!SaveButton.IsEnabled)
                 return;
-            SaveToFile(_selectedPath);
+            if (MessageBox.Show("Are you sure? This will overwrite the current recipe file in the game files.", "SmRecipeModifier", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                SaveToFile(_selectedPath);
         }
 
         private void SaveAs(object sender, ExecutedRoutedEventArgs args)
@@ -102,7 +103,11 @@ namespace SmRecipeModifier.Graphics
         {
             if (!RemoveRecipeButton.IsEnabled)
                 return;
-            // TODO
+            var item = (SmItem)RecipeList.SelectedItem;
+            if (item == null)
+                return;
+            if (MessageBox.Show("Are you sure that you want to remove this recipe?", "SmRecipeModifier", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                RecipeList.Items.Remove(item);
         }
 
         private void ModifyRecipe(object sender, RoutedEventArgs args)

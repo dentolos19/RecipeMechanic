@@ -1,13 +1,13 @@
-﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<mahApps:MetroWindow xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" x:Class="SmRecipeModifier.Graphics.WnIntro"
+        xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls" x:Class="SmRecipeModifier.Graphics.WnIntro"
         Title="Welcome" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid Width="500" Height="300">
         <Label Content="Hello World!" Width="200" FontSize="24" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,200"/>
         <DockPanel Width="400" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button DockPanel.Dock="Right" Content="Browse" Width="75" Margin="10,0,0,0" Click="BrowseGameDataPath"/>
-            <TextBox x:Name="GameDataPathBox" mah:TextBoxHelper.Watermark="Game Data Path" VerticalContentAlignment="Center" IsReadOnly="True"/>
+            <TextBox x:Name="GameDataPathBox" mahApps:TextBoxHelper.Watermark="Game Data Path" VerticalContentAlignment="Center" IsReadOnly="True"/>
         </DockPanel>
         <Button Content="Continue" Width="100" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,150,0,0" IsDefault="True" Click="Continue"/>
     </Grid>
-</Window>
+</mahApps:MetroWindow>
