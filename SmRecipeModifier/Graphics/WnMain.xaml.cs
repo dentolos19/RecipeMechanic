@@ -96,7 +96,10 @@ namespace SmRecipeModifier.Graphics
         {
             if (!AddRecipeButton.IsEnabled)
                 return;
-            // TODO
+            var dialog = new WnNewRecipe { Owner  = this };
+            if (dialog.ShowDialog() == false)
+                return;
+            RecipeList.Items.Add(dialog.RecipeResult);
         }
 
         private void RemoveRecipe(object sender, RoutedEventArgs args)
