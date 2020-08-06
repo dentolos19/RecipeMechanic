@@ -13,12 +13,15 @@ namespace SmRecipeModifier
 
         internal static Configuration Settings { get; private set; }
 
+        internal static WnMain WindowMain { get; private set; }
+
         private void Initialize(object sender, StartupEventArgs args)
         {
             Settings = Configuration.Load();
             AppCenter.Start("deff7951-472f-4983-9d9e-cb073440e574", typeof(Analytics), typeof(Crashes));
             Utilities.SetAppTheme(Settings.ColorScheme, Settings.EnableDarkMode, false);
-            new WnMain().Show();
+            WindowMain = new WnMain();
+            WindowMain.Show();
         }
 
     }

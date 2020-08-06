@@ -16,7 +16,7 @@ namespace SmRecipeModifier.Core.Models
         public int Duration { get; set; }
 
         [JsonProperty("ingredientList")]
-        public SmRequirements[] Requirements { get; set; }
+        public SmRequirement[] Requirements { get; set; }
 
     }
 

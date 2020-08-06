@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
-using System.IO.Compression;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,17 +17,18 @@ namespace SmRecipeModifier.Graphics
     {
 
         private string _selectedPath;
-        private readonly SmItem[] _availableItems;
+
+        public readonly SmItem[] AvailableItems;
 
         public WnMain()
         {
             InitializeComponent();
             if (string.IsNullOrEmpty(App.Settings.GameDataPath))
                 new WnIntro().ShowDialog();
-            _availableItems = Utilities.GetItemsFromJsons(Path.Combine(App.Settings.GameDataPath!, Constants.ItemNamesJson), Path.Combine(App.Settings.GameDataPath, Constants.InventoryDescriptionsJson));
-            foreach (var item in _availableItems)
+            AvailableItems = Utilities.GetItemsFromJsons(Path.Combine(App.Settings.GameDataPath!, Constants.ItemNamesJson), Path.Combine(App.Settings.GameDataPath, Constants.InventoryDescriptionsJson));
+            foreach (var item in AvailableItems)
                 ItemList.Items.Add(item);
-            ItemListItemAmountText.Text = $"There are a total of {_availableItems.Length} survival items in-game!";
+            ItemListItemAmountText.Text = $"There are a total of {AvailableItems.Length} survival items in-game!";
         }
 
         private void Open(object sender, ExecutedRoutedEventArgs args)
@@ -40,7 +39,7 @@ namespace SmRecipeModifier.Graphics
                 _selectedPath = dialog.SelectedPath;
                 FileNameBox.Text = Path.GetFileName(_selectedPath)!;
                 var recipes = Utilities.GetRecipesFromJson(_selectedPath);
-                var items = Utilities.MergeRecipesWithItems(recipes, _availableItems);
+                var items = Utilities.MergeRecipesWithItems(recipes, AvailableItems);
                 RecipeList.Items.Clear();
                 foreach (var item in items)
                     RecipeList.Items.Add(item);
@@ -57,7 +56,7 @@ namespace SmRecipeModifier.Graphics
         {
             var items = RecipeList.Items.OfType<SmItem>();
             var data = JsonConvert.SerializeObject(items.Select(item => item.Recipe).ToArray(), Formatting.Indented);
-            File.WriteAllText($"// This file was created by SmRecipeModifier.\n{data}", data);
+            File.WriteAllText(path, $"// This file was created by SmRecipeModifier.\n{data}");
         }
 
         private void Save(object sender, ExecutedRoutedEventArgs args)
@@ -89,7 +88,7 @@ namespace SmRecipeModifier.Graphics
 
         private async void ShowAbout(object sender, RoutedEventArgs args)
         {
-            await this.ShowMessageAsync("About SmRecipeModifier", "This program was created by Dennise Catolos.\n\nContact me on Discord, @dentolos19#6996.\nFind me on GitHub, @dentolos19.\nFind me on Twitter, @dentolos19.");
+            await this.ShowMessageAsync("About SmRecipeModifier", "This program was created by Dennise Catolos.\n\nContact me on Discord, @dentolos19#6996.\nFind me on GitHub, @dentolos19.\nFind me on Twitter, @dentolos19.").ConfigureAwait(false);
         }
 
         private void AddRecipe(object sender, RoutedEventArgs args)
@@ -99,7 +98,7 @@ namespace SmRecipeModifier.Graphics
             var dialog = new WnNewRecipe { Owner  = this };
             if (dialog.ShowDialog() == false)
                 return;
-            RecipeList.Items.Add(dialog.RecipeResult);
+            RecipeList.Items.Add(dialog.ItemResult);
         }
 
         private void RemoveRecipe(object sender, RoutedEventArgs args)
@@ -117,7 +116,14 @@ namespace SmRecipeModifier.Graphics
         {
             if (!ModifyRecipeButton.IsEnabled)
                 return;
-            // TODO
+            var item = (SmItem)RecipeList.SelectedItem;
+            if (item == null)
+                return;
+            var dialog = new WnModifyRecipe(item.Recipe) {Owner = this};
+            if (dialog.ShowDialog() == false)
+                return;
+            RecipeList.Items.Remove(RecipeList.SelectedItem);
+            RecipeList.Items.Add(dialog.RecipeResult);
         }
 
         private void CopyRecipeId(object sender, RoutedEventArgs args)

@@ -3,7 +3,7 @@
 namespace SmRecipeModifier.Core.Models
 {
 
-    public class SmRequirements
+    public class SmRequirement
     {
 
         [JsonProperty("quantity")]
