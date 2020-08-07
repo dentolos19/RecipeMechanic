@@ -21,9 +21,12 @@ namespace SmRecipeModifier.Graphics
         public WnMain()
         {
             InitializeComponent();
+            EnsureGameDataPath:
             if (string.IsNullOrEmpty(App.Settings.GameDataPath))
                 new WnIntro().ShowDialog();
-            App.AvailableItems = Utilities.GetItemsFromJsons(Path.Combine(App.Settings.GameDataPath!, Constants.ItemNamesJson), Path.Combine(App.Settings.GameDataPath, Constants.InventoryDescriptionsJson));
+            if (string.IsNullOrEmpty(App.Settings.GameDataPath))
+                goto EnsureGameDataPath;
+            App.AvailableItems = Utilities.GetItemsFromJsons(Path.Combine(App.Settings.GameDataPath, Constants.ItemNamesJson), Path.Combine(App.Settings.GameDataPath, Constants.InventoryDescriptionsJson));
             foreach (var item in App.AvailableItems)
                 ItemList.Items.Add(item);
             ItemListItemAmountText.Text = $"There are a total of {App.AvailableItems.Length} survival items in-game!";
