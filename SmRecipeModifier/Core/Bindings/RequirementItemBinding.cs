@@ -6,11 +6,13 @@ namespace SmRecipeModifier.Core.Bindings
     public class RequirementItemBinding
     {
 
-        public RequirementItemBinding(string name, int quantity, string id)
+        public RequirementItemBinding(SmRequirement requirement)
         {
-            Name = name;
-            Quantity = quantity;
-            Id = id;
+            var item = App.AvailableItems.GetItemBasedOnRequirement(requirement);
+            Name = item.InGameName ?? item.Name;
+            Quantity = requirement.Quantity;
+            Id = requirement.Id;
+            Requirement = requirement;
         }
 
         public string Name { get; set; }
@@ -19,11 +21,7 @@ namespace SmRecipeModifier.Core.Bindings
 
         public string Id { get; set; }
 
-        public static RequirementItemBinding ConvertFromRequirement(SmRequirement requirement)
-        {
-            var item = App.AvailableItems.GetItemBasedOnRequirement(requirement);
-            return new RequirementItemBinding(item.InGameName ?? item.Name, requirement.Quantity, item.Id);
-        }
+        public SmRequirement Requirement { get; set; }
 
     }
 

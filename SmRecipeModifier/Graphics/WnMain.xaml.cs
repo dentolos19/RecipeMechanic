@@ -93,10 +93,11 @@ namespace SmRecipeModifier.Graphics
         {
             if (!AddRecipeButton.IsEnabled)
                 return;
-            var dialog = new WnNewRecipe { Owner  = this };
+            var dialog = new WnNewRecipe { Owner = this };
             if (dialog.ShowDialog() == false)
                 return;
             RecipeList.Items.Add(dialog.ItemResult);
+            RecipeList.SelectedIndex = RecipeList.Items.Count - 1;
         }
 
         private void RemoveRecipe(object sender, RoutedEventArgs args)
@@ -117,11 +118,13 @@ namespace SmRecipeModifier.Graphics
             var item = (SmItem)RecipeList.SelectedItem;
             if (item == null)
                 return;
-            var dialog = new WnModifyRecipe(item.Recipe) {Owner = this};
+            var dialog = new WnModifyRecipe(item.Recipe) { Owner = this };
             if (dialog.ShowDialog() == false)
                 return;
             RecipeList.Items.Remove(RecipeList.SelectedItem);
-            RecipeList.Items.Add(dialog.RecipeResult);
+            item.Recipe = dialog.RecipeResult;
+            RecipeList.Items.Add(item);
+            RecipeList.SelectedIndex = RecipeList.Items.Count - 1;
         }
 
         private void CopyRecipeId(object sender, RoutedEventArgs args)

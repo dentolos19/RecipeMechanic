@@ -14,8 +14,8 @@ namespace SmRecipeModifier.Graphics
         {
             InitializeComponent();
             foreach (var item in App.AvailableItems)
-                ItemListComboBox.Items.Add(new ComboBoxItem { Content = item.InGameName ?? item.Name, Tag = item });
-            ItemListComboBox.SelectedIndex = 0;
+                ItemList.Items.Add(new ComboBoxItem { Content = item.InGameName ?? item.Name, Tag = item });
+            ItemList.SelectedIndex = 0;
         }
 
         private void Create(object sender, RoutedEventArgs args)
@@ -26,14 +26,14 @@ namespace SmRecipeModifier.Graphics
 
         private void Modify(object sender, RoutedEventArgs args)
         {
-            var dialog = new WnModifyRecipe(ItemResult.Recipe){Owner = this};
+            var dialog = new WnModifyRecipe(ItemResult.Recipe) { Owner = this };
             if (dialog.ShowDialog() == true)
                 ItemResult.Recipe = dialog.RecipeResult;
         }
 
         private void UpdateSelection(object sender, SelectionChangedEventArgs args)
         {
-            var item = (ComboBoxItem)ItemListComboBox.SelectedItem;
+            var item = (ComboBoxItem)ItemList.SelectedItem;
             if (item == null)
                 return;
             ItemResult = (SmItem)item.Tag;
