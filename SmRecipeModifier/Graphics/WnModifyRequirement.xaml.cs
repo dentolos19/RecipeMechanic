@@ -6,7 +6,7 @@ namespace SmRecipeModifier.Graphics
     public partial class WnModifyRequirement
     {
 
-        public SmRequirement RequirementResult { get; private set; }
+        public SmRequirement RequirementResult { get; }
 
         public WnModifyRequirement(SmRequirement requirement)
         {

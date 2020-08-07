@@ -18,17 +18,15 @@ namespace SmRecipeModifier.Graphics
 
         private string _selectedPath;
 
-        public readonly SmItem[] AvailableItems;
-
         public WnMain()
         {
             InitializeComponent();
             if (string.IsNullOrEmpty(App.Settings.GameDataPath))
                 new WnIntro().ShowDialog();
-            AvailableItems = Utilities.GetItemsFromJsons(Path.Combine(App.Settings.GameDataPath!, Constants.ItemNamesJson), Path.Combine(App.Settings.GameDataPath, Constants.InventoryDescriptionsJson));
-            foreach (var item in AvailableItems)
+            App.AvailableItems = Utilities.GetItemsFromJsons(Path.Combine(App.Settings.GameDataPath!, Constants.ItemNamesJson), Path.Combine(App.Settings.GameDataPath, Constants.InventoryDescriptionsJson));
+            foreach (var item in App.AvailableItems)
                 ItemList.Items.Add(item);
-            ItemListItemAmountText.Text = $"There are a total of {AvailableItems.Length} survival items in-game!";
+            ItemListItemAmountText.Text = $"There are a total of {App.AvailableItems.Length} survival items in-game!";
         }
 
         private void Open(object sender, ExecutedRoutedEventArgs args)
@@ -39,7 +37,7 @@ namespace SmRecipeModifier.Graphics
                 _selectedPath = dialog.SelectedPath;
                 FileNameBox.Text = Path.GetFileName(_selectedPath)!;
                 var recipes = Utilities.GetRecipesFromJson(_selectedPath);
-                var items = Utilities.MergeRecipesWithItems(recipes, AvailableItems);
+                var items = Utilities.MergeRecipesWithItems(recipes, App.AvailableItems);
                 RecipeList.Items.Clear();
                 foreach (var item in items)
                     RecipeList.Items.Add(item);

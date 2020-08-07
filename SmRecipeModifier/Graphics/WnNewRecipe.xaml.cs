@@ -13,7 +13,7 @@ namespace SmRecipeModifier.Graphics
         public WnNewRecipe()
         {
             InitializeComponent();
-            foreach (var item in App.WindowMain.AvailableItems)
+            foreach (var item in App.AvailableItems)
                 ItemListComboBox.Items.Add(new ComboBoxItem { Content = item.InGameName ?? item.Name, Tag = item });
             ItemListComboBox.SelectedIndex = 0;
         }

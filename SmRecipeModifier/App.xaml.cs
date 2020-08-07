@@ -3,6 +3,7 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using SmRecipeModifier.Core;
+using SmRecipeModifier.Core.Models;
 using SmRecipeModifier.Graphics;
 
 namespace SmRecipeModifier
@@ -14,6 +15,8 @@ namespace SmRecipeModifier
         internal static Configuration Settings { get; private set; }
 
         internal static WnMain WindowMain { get; private set; }
+
+        internal static SmItem[] AvailableItems { get; set; }
 
         private void Initialize(object sender, StartupEventArgs args)
         {
