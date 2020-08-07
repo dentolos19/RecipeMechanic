@@ -22,6 +22,12 @@
                 <MenuItem Header="Steam Backup Wizard" Click="OpenBackupWizard"/>
                 <MenuItem Header="Verify Game Files" Click="VerifyGameFiles"/>
             </MenuItem>
+            <MenuItem x:Name="MassModificationMenu" Header="Mass Modification" IsEnabled="False">
+                <MenuItem Header="Modify All Recipes" Click="ModifyAllRecipes"/>
+                <Separator/>
+                <MenuItem Header="Activate Easy Mode" Click="ActivateEasyMode"/>
+                <MenuItem Header="Activate Hard Mode" Click="ActivateHardMode"/>
+            </MenuItem>
             <MenuItem Header="Options">
                 <MenuItem Header="Preferences" Click="ShowPreferences"/>
                 <Separator/>

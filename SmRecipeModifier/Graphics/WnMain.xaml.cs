@@ -47,6 +47,7 @@ namespace SmRecipeModifier.Graphics
                 SaveMenuButton.IsEnabled = true;
                 SaveAsMenuButton.IsEnabled = true;
                 AddRecipeButton.IsEnabled = true;
+                MassModificationMenu.IsEnabled = true;
             }
         }
 
@@ -54,7 +55,7 @@ namespace SmRecipeModifier.Graphics
         {
             var items = RecipeList.Items.OfType<SmItem>();
             var data = JsonConvert.SerializeObject(items.Select(item => item.Recipe).ToArray(), Formatting.Indented);
-            File.WriteAllText(path, $"// This file was created by SmRecipeModifier.\n{data}");
+            File.WriteAllText(path, $"// This file was modified by SmRecipeModifier.\n{data}");
         }
 
         private void Save(object sender, ExecutedRoutedEventArgs args)
@@ -127,6 +128,24 @@ namespace SmRecipeModifier.Graphics
             RecipeList.SelectedIndex = RecipeList.Items.Count - 1;
         }
 
+        private void ModifyAllRecipes(object sender, RoutedEventArgs args)
+        {
+            if (!MassModificationMenu.IsEnabled)
+                return;
+            var dialog = new WnModifyRecipe(null) { Owner = this };
+            if (dialog.ShowDialog() == false)
+                return;
+            var items = RecipeList.Items.OfType<SmItem>().ToArray();
+            RecipeList.Items.Clear();
+            foreach (var recipe in items)
+            {
+                recipe.Recipe.Quantity = dialog.RecipeResult.Quantity;
+                recipe.Recipe.Duration = dialog.RecipeResult.Duration;
+                recipe.Recipe.Requirements = dialog.RecipeResult.Requirements;
+                RecipeList.Items.Add(recipe);
+            }
+        }
+
         private void CopyRecipeId(object sender, RoutedEventArgs args)
         {
             var item = (SmItem)RecipeList.SelectedItem;
@@ -173,6 +192,22 @@ namespace SmRecipeModifier.Graphics
                 RemoveRecipeButton.IsEnabled = true;
                 ModifyRecipeButton.IsEnabled = true;
             }
+        }
+
+        private void ActivateEasyMode(object sender, RoutedEventArgs args)
+        {
+            if (!MassModificationMenu.IsEnabled)
+                return;
+            MessageBox.Show("This function is currently disabled for now! Sorry for the inconvenience.", "SmRecipeModifier");
+            // TODO
+        }
+
+        private void ActivateHardMode(object sender, RoutedEventArgs args)
+        {
+            if (!MassModificationMenu.IsEnabled)
+                return;
+            MessageBox.Show("This function is currently disabled for now! Sorry for the inconvenience.", "SmRecipeModifier");
+            // TODO
         }
 
     }

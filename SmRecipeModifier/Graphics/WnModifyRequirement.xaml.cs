@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using SmRecipeModifier.Core.Models;
 
@@ -23,14 +24,13 @@ namespace SmRecipeModifier.Graphics
                     index = count;
                 ItemList.Items.Add(new ComboBoxItem { Content = item.InGameName ?? item.Name, Tag = item });
             }
-            ItemList.SelectedIndex = 0;
+            ItemList.SelectedIndex = App.Randomizer.Next(ItemList.Items.Count - 1);
             if (requirement == null)
             {
                 RequirementResult = new SmRequirement();
                 QuantityBox.Value = 0;
-                return;
             }
-            QuantityBox.Value = requirement!.Quantity;
+            QuantityBox.Value = RequirementResult.Quantity;
             if (!(index <= 0))
                 ItemList.SelectedIndex = index;
         }

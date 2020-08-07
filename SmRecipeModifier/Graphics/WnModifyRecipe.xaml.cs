@@ -16,9 +16,13 @@ namespace SmRecipeModifier.Graphics
         {
             RecipeResult = recipe;
             InitializeComponent();
-            QuantityBox.Value = recipe.Quantity;
-            DurationBox.Value = recipe.Duration;
-            foreach (var requirement in recipe.Requirements)
+            if (recipe == null)
+                RecipeResult = new SmRecipe { Quantity = 0, Duration = 0 };
+            QuantityBox.Value = RecipeResult.Quantity;
+            DurationBox.Value = RecipeResult.Duration;
+            if (RecipeResult.Requirements == null || RecipeResult.Requirements.Length < 1)
+                RecipeResult.Requirements = new[] { new SmRequirement { Id = App.AvailableItems[App.Randomizer.Next(App.AvailableItems.Length)].Id, Quantity = 0 } };
+            foreach (var requirement in RecipeResult.Requirements)
                 RequirementList.Items.Add(new RequirementItemBinding(requirement));
         }
 
@@ -50,11 +54,16 @@ namespace SmRecipeModifier.Graphics
 
         private void RemoveRequirement(object sender, RoutedEventArgs args)
         {
-            if (RemoveButton.IsEnabled == false)
+            if (!RemoveButton.IsEnabled)
                 return;
             var item = (RequirementItemBinding)RequirementList.SelectedItem;
             if (item == null)
                 return;
+            if (RequirementList.Items.Count == 1)
+            {
+                MessageBox.Show("A recipe must have at least one requirement!", "SmRecipeModifier");
+                return;
+            }
             if (MessageBox.Show("Are you sure that you want to remove this requirement?", "SmRecipeModifier", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 RequirementList.Items.Remove(item);
         }
