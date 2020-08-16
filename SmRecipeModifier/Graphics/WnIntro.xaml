@@ -8,6 +8,7 @@
             <Button DockPanel.Dock="Right" Content="Browse" Width="75" Margin="10,0,0,0" Click="BrowseGameDataPath"/>
             <TextBox x:Name="GameDataPathBox" mahApps:TextBoxHelper.Watermark="Game Data Path" VerticalContentAlignment="Center" IsReadOnly="True"/>
         </DockPanel>
-        <Button Content="Continue" Width="100" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,150,0,0" IsDefault="True" Click="Continue"/>
+        <Button Content="Continue" Width="100" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="150,150,0,0" IsDefault="True" Click="Continue"/>
+        <Button Content="Cancel" Width="100" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,150,150,0" Click="Cancel"/>
     </Grid>
 </mahApps:MetroWindow>

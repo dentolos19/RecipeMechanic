@@ -41,6 +41,11 @@ namespace SmRecipeModifier.Graphics
             Close();
         }
 
+        private void Cancel(object sender, RoutedEventArgs args)
+        {
+            Close();
+        }
+
     }
 
 }
