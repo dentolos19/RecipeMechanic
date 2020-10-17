@@ -1,13 +1,23 @@
-# Scrap Mechanic Recipe Modifier
+<h1 align="center">
+  <br>
+    <img src="./.github/icon.png" width="200">
+  <br>
+    Scrap Mechanic Recipe Modifier
+  <br>
+</h1>
 
-A easy yet powerful recipe modifier for Scrap Mechanic! You can make your in-game life better by making recipes have no requirements at all, or even make it harder for yourself! I hope you find this tool very useful, and if you have an idea that you want to implement into the tool and make an issue, or create a pull request! Any contributions to this project will be much help thanks!
+<p align="center">
+  <a>
+    <img src="https://badgen.net/badge/icon/Windows%20%7C%20.NET%205.0?icon=windows&label">
+  </a>
+  <a>
+    <img src="https://badgen.net/badge/icon/Visual%20Studio%202019%20Preview?icon=visualstudio&label">
+  </a>
+</p>
 
-![Preview](https://dentolos19.github.io/previews/smrecipemodifier.png)
+## Screenshots
 
-### Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-### License
-
-This project is licensed with the [MIT License](https://choosealicense.com/licenses/mit).
+![](./.github/screenshots/0.png)
+![](./.github/screenshots/1.png)
+![](./.github/screenshots/2.png)
+![](./.github/screenshots/3.png)
