@@ -7,11 +7,11 @@
 </h1>
 
 <p align="center">
-  <a>
-    <img src="https://badgen.net/badge/icon/Windows%20%7C%20.NET%205.0?icon=windows&label">
+  <a href="https://dotnet.microsoft.com">
+    <img src="https://img.shields.io/badge/Powered%20By-.NET-blue?logo=microsoft&style=for-the-badge">
   </a>
-  <a>
-    <img src="https://badgen.net/badge/icon/Visual%20Studio%202019%20Preview?icon=visualstudio&label">
+  <a href="https://visualstudio.microsoft.com">
+    <img src="https://img.shields.io/badge/Made%20With-Visual%20Studio-blue?logo=visual-studio&style=for-the-badge">
   </a>
 </p>
 
