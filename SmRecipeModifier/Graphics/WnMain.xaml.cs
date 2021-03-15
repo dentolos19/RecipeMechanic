@@ -154,6 +154,14 @@ namespace SmRecipeModifier.Graphics
             }
         }
 
+        private void CopyRecipeName(object sender, RoutedEventArgs args)
+        {
+            var item = (SmItem)RecipeList.SelectedItem;
+            if (item == null)
+                return;
+            Clipboard.SetText(item.Name);
+        }
+        
         private void CopyRecipeId(object sender, RoutedEventArgs args)
         {
             var item = (SmItem)RecipeList.SelectedItem;
@@ -161,13 +169,37 @@ namespace SmRecipeModifier.Graphics
                 return;
             Clipboard.SetText(item.Id);
         }
+        
+        private void CopyRecipeDescription(object sender, RoutedEventArgs args)
+        {
+            var item = (SmItem)RecipeList.SelectedItem;
+            if (item == null)
+                return;
+            Clipboard.SetText(item.Description);
+        }
 
+        private void CopyItemName(object sender, RoutedEventArgs args)
+        {
+            var item = (SmItem)ItemList.SelectedItem;
+            if (item == null)
+                return;
+            Clipboard.SetText(item.Name);
+        }
+        
         private void CopyItemId(object sender, RoutedEventArgs args)
         {
             var item = (SmItem)ItemList.SelectedItem;
             if (item == null)
                 return;
             Clipboard.SetText(item.Id);
+        }
+        
+        private void CopyItemDescription(object sender, RoutedEventArgs args)
+        {
+            var item = (SmItem)ItemList.SelectedItem;
+            if (item == null)
+                return;
+            Clipboard.SetText(item.Description);
         }
 
         private void OpenBackupWizard(object sender, RoutedEventArgs args)

@@ -36,14 +36,14 @@
         </Menu>
         <DockPanel>
             <StackPanel Width="150">
-                <Image Margin="10,10,10,0" Source="../Resources/Assets/Logo.png" Height="130"/>
+                <Image Margin="10,10,10,0" Source="../Resources/Assets/Icon.png" Height="130"/>
                 <Separator Margin="10,10,10,0"/>
                 <TextBox x:Name="FileNameBox" Margin="10,10,10,0" HorizontalContentAlignment="Center" IsReadOnly="True"/>
                 <Button Margin="10,10,10,0" Content="Open" Command="Open"/>
                 <Button x:Name="SaveButton" Margin="10,10,10,0" Content="Save" IsEnabled="False" Command="Save"/>
                 <Button x:Name="SaveAsButton" Margin="10,10,10,0" Content="Save As" IsEnabled="False" Command="SaveAs"/>
                 <Separator Margin="10,10,10,0"/>
-                <Button x:Name="AddRecipeButton" Margin="10,10,10,0" Content="Add Recipe" IsEnabled="False" Click="AddRecipe"/>
+                <Button x:Name="AddRecipeButton" Margin="10,10,10,0" Content="New Recipe" IsEnabled="False" Click="AddRecipe"/>
                 <Button x:Name="RemoveRecipeButton" Margin="10,10,10,0" Content="Remove Recipe" IsEnabled="False" Click="RemoveRecipe"/>
                 <Button x:Name="ModifyRecipeButton" Margin="10,10,10,0" Content="Modify Recipe" IsEnabled="False" Click="ModifyRecipe"/>
                 <Separator Margin="10,10,10,0"/>
@@ -65,7 +65,9 @@
                             </ListView.View>
                             <ListView.ContextMenu>
                                 <ContextMenu>
+                                    <MenuItem Header="Copy Name" Click="CopyRecipeName"/>
                                     <MenuItem Header="Copy ID" Click="CopyRecipeId"/>
+                                    <MenuItem Header="Copy Description" Click="CopyRecipeDescription"/>
                                 </ContextMenu>
                             </ListView.ContextMenu>
                         </ListView>
@@ -84,7 +86,9 @@
                             </ListView.View>
                             <ListView.ContextMenu>
                                 <ContextMenu>
+                                    <MenuItem Header="Copy Name" Click="CopyItemName"/>
                                     <MenuItem Header="Copy ID" Click="CopyItemId"/>
+                                    <MenuItem Header="Copy Description" Click="CopyItemDescription"/>
                                 </ContextMenu>
                             </ListView.ContextMenu>
                         </ListView>

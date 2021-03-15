@@ -16,6 +16,11 @@
                     <GridViewColumn Header="Path" Width="150" DisplayMemberBinding="{Binding Path}"/>
                 </GridView>
             </ListView.View>
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Open File Location" Click="OpenFileLocation"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
         </ListView>
     </DockPanel>
 </mahApps:MetroWindow>

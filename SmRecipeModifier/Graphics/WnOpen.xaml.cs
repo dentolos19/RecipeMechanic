@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using SmRecipeModifier.Core;
 using SmRecipeModifier.Core.Bindings;
@@ -43,6 +44,18 @@ namespace SmRecipeModifier.Graphics
             SelectedPath = item.Path;
             DialogResult = true;
             Close();
+        }
+
+        private void OpenFileLocation(object sender, RoutedEventArgs args)
+        {
+            if (JsonFileList.SelectedItem is JsonItemBinding binding)
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = "explorer.exe",
+                    Arguments = $"/select,\"{binding.Path}\""
+                });
+            }
         }
 
     }
