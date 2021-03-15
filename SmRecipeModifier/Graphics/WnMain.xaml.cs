@@ -95,7 +95,7 @@ namespace SmRecipeModifier.Graphics
 
         private async void ShowAbout(object sender, RoutedEventArgs args)
         {
-            await this.ShowMessageAsync("About SmRecipeModifier", "This program was created by Dennise Catolos.\n\nVersion: 1.1.1 (2021-03-XX)").ConfigureAwait(false);
+            await this.ShowMessageAsync("About SmRecipeModifier", "This program was created by Dennise Catolos.\n\nVersion: 1.1.1 (2021-03-15)").ConfigureAwait(false);
         }
 
         private void AddRecipe(object sender, RoutedEventArgs args)
