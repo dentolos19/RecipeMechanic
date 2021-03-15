@@ -5,34 +5,30 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
-    
+
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Resources\Assets\Icon.ico</ApplicationIcon>
     <Product>Scrap Mechanic Recipe Modifier</Product>
-    <Version>1.1.0</Version>
-    <Copyright>Copyright © 2020</Copyright>
+    <Version>1.1.1</Version>
     <Authors>Dennise Catolos</Authors>
-    <Company>Aprodots</Company>
-    
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>Properties\AssemblyKey.snk</AssemblyOriginatorKeyFile>
+    <Copyright>Copyright © 2021</Copyright>
     
   </PropertyGroup>
   
   <ItemGroup>
-    <Page Include="App.xaml"/>
+    <Page Include="App.xaml" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\Assets\Logo.png"/>
+    <Resource Include="Resources\Assets\Logo.png" />
   </ItemGroup>
 
 
   <ItemGroup>
-    <PackageReference Include="MahApps.Metro" Version="2.4.4"/>
-    <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.1.6"/>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3"/>
-    <PackageReference Include="Ookii.Dialogs.Wpf" Version="3.1.0"/>
+    <PackageReference Include="MahApps.Metro" Version="2.4.4" />
+    <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.1.6" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Ookii.Dialogs.Wpf" Version="3.1.0" />
   </ItemGroup>
 
 </Project>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Navigation;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Win32;
 using Newtonsoft.Json;
@@ -30,10 +31,10 @@ namespace SmRecipeModifier.Graphics
                     return;
                 }
             }
-            App.AvailableItems = Utilities.GetItemsFromJsons(Path.Combine(App.Settings.GameDataPath!, Constants.ItemNamesJson), Path.Combine(App.Settings.GameDataPath, Constants.InventoryDescriptionsJson));
+            App.AvailableItems = Utilities.GetItemsFromJsons(Path.Combine(App.Settings.GameDataPath!, Constants.InventoryItemDescriptionsJson), Path.Combine(App.Settings.GameDataPath, Constants.InventoryDescriptionsJson));
             foreach (var item in App.AvailableItems)
                 ItemList.Items.Add(item);
-            ItemListItemAmountText.Text = $"There are a total of {App.AvailableItems.Length} survival items in-game!";
+            ItemListItemAmountText.Text = $"There are a total of {App.AvailableItems.Length} items in-game!";
         }
 
         private void Open(object sender, ExecutedRoutedEventArgs args)
@@ -48,7 +49,7 @@ namespace SmRecipeModifier.Graphics
                 RecipeList.Items.Clear();
                 foreach (var item in items)
                     RecipeList.Items.Add(item);
-                RecipeListItemAmountText.Text = $"There are a total of {items.Length} survival items in this file!";
+                RecipeListItemAmountText.Text = $"There are a total of {items.Length} items in this file!";
                 SaveButton.IsEnabled = true;
                 SaveAsButton.IsEnabled = true;
                 SaveMenuButton.IsEnabled = true;
@@ -94,7 +95,7 @@ namespace SmRecipeModifier.Graphics
 
         private async void ShowAbout(object sender, RoutedEventArgs args)
         {
-            await this.ShowMessageAsync("About SmRecipeModifier", "This program was created by Dennise Catolos.\n\nContact me on Discord, @dentolos19#6996.\nFind me on GitHub, @dentolos19.\nFind me on Twitter, @dentolos19.").ConfigureAwait(false);
+            await this.ShowMessageAsync("About SmRecipeModifier", "This program was created by Dennise Catolos.\n\nVersion: 1.1.1 (2021-03-XX)").ConfigureAwait(false);
         }
 
         private void AddRecipe(object sender, RoutedEventArgs args)
@@ -215,6 +216,16 @@ namespace SmRecipeModifier.Graphics
                 return;
             MessageBox.Show("This function is currently disabled for now! Sorry for the inconvenience.", "SmRecipeModifier");
             // TODO
+        }
+        
+        private void NavigateHyperlink(object sender, RequestNavigateEventArgs args)
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = args.Uri.AbsoluteUri,
+                UseShellExecute = true
+            });
+            args.Handled = true;
         }
 
     }

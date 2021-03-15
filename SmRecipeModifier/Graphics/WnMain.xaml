@@ -47,18 +47,20 @@
                 <Button x:Name="RemoveRecipeButton" Margin="10,10,10,0" Content="Remove Recipe" IsEnabled="False" Click="RemoveRecipe"/>
                 <Button x:Name="ModifyRecipeButton" Margin="10,10,10,0" Content="Modify Recipe" IsEnabled="False" Click="ModifyRecipe"/>
                 <Separator Margin="10,10,10,0"/>
-                <Label Margin="10,10,10,0" Content="Powered by .NET 5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <TextBlock Margin="10,10,10,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Hyperlink NavigateUri="https://dentolos19.github.io" RequestNavigate="NavigateHyperlink">Website</Hyperlink>
+                </TextBlock>
             </StackPanel>
             <TabControl>
                 <TabItem Header="Modify Recipes">
                     <DockPanel>
-                        <TextBlock x:Name="RecipeListItemAmountText" DockPanel.Dock="Top" Text="Open a file to get started modifying your way!"/>
+                        <TextBlock x:Name="RecipeListItemAmountText" DockPanel.Dock="Top" Text="Open a recipe file to get started modifying your way!"/>
                         <ListView x:Name="RecipeList" MouseDoubleClick="ModifyRecipe" SelectionChanged="UpdateRecipeListSelection">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="Name" Width="250" DisplayMemberBinding="{Binding Name}"/>
-                                    <GridViewColumn Header="In-Game Name" Width="250" DisplayMemberBinding="{Binding InGameName}"/>
-                                    <GridViewColumn Header="ID" Width="300" DisplayMemberBinding="{Binding Id}"/>
+                                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}"/>
+                                    <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}"/>
                                 </GridView>
                             </ListView.View>
                             <ListView.ContextMenu>
@@ -75,9 +77,9 @@
                         <ListView x:Name="ItemList">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="Name" Width="250" DisplayMemberBinding="{Binding Name}"/>
-                                    <GridViewColumn Header="In-Game Name" Width="250" DisplayMemberBinding="{Binding InGameName}"/>
-                                    <GridViewColumn Header="ID" Width="300" DisplayMemberBinding="{Binding Id}"/>
+                                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}"/>
+                                    <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}"/>
                                 </GridView>
                             </ListView.View>
                             <ListView.ContextMenu>

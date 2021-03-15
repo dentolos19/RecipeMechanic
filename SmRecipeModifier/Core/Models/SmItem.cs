@@ -1,4 +1,6 @@
-﻿namespace SmRecipeModifier.Core.Models
+﻿using System.Collections.Generic;
+
+namespace SmRecipeModifier.Core.Models
 {
 
     public class SmItem
@@ -13,6 +15,21 @@
         public string Description { get; set; }
 
         public SmRecipe Recipe { get; set; }
+
+        public class Comparer : IEqualityComparer<SmItem>
+        {
+
+            public bool Equals(SmItem? left, SmItem? right)
+            {
+                return left?.Id == right?.Id;
+            }
+
+            public int GetHashCode(SmItem @object)
+            {
+                return @object.GetHashCode();
+            }
+
+        }
 
     }
 

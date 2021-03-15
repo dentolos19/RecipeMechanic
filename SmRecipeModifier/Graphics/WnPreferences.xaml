@@ -6,7 +6,7 @@
     <DockPanel Width="500" Height="300">
         <DockPanel DockPanel.Dock="Bottom" Height="50">
             <Button DockPanel.Dock="Right" Content="Save" Width="100" Margin="10,10,10,10" Click="SaveSettings"/>
-            <Label Content="Created by Dennise Catolos (@dentolos19)" Margin="10,10,10,10" VerticalContentAlignment="Center"/>
+            <Label Content="This program was inspired by other modding tools!" Margin="10,10,10,10" VerticalContentAlignment="Center"/>
         </DockPanel>
         <StackPanel>
             <DockPanel Margin="10,10,10,0">

@@ -19,7 +19,6 @@ namespace SmRecipeModifier.Graphics
             var craftBotJsonPath = Path.Combine(App.Settings.GameDataPath, Constants.CraftbotJsonPath);
             var dispenserJsonPath = Path.Combine(App.Settings.GameDataPath, Constants.DispenserJsonPath);
             var hideoutJsonPath = Path.Combine(App.Settings.GameDataPath, Constants.HideoutJsonPath);
-            var undecidedJsonPath = Path.Combine(App.Settings.GameDataPath, Constants.UndecidedJsonPath);
             var workbenchJsonPath = Path.Combine(App.Settings.GameDataPath, Constants.WorkbenchJsonPath);
             if (File.Exists(cookBotJsonPath))
                 JsonFileList.Items.Add(new JsonItemBinding("cookbot.json", "Your personal non-living chef!", cookBotJsonPath));
@@ -29,8 +28,6 @@ namespace SmRecipeModifier.Graphics
                 JsonFileList.Items.Add(new JsonItemBinding("dispenser.json", "The one that creates the CraftBot!", dispenserJsonPath));
             if (File.Exists(hideoutJsonPath))
                 JsonFileList.Items.Add(new JsonItemBinding("hideout.json", "The person who sells things overpriced!", hideoutJsonPath));
-            if (File.Exists(undecidedJsonPath))
-                JsonFileList.Items.Add(new JsonItemBinding("undecided.json", "Try to discover what this is!", undecidedJsonPath));
             if (File.Exists(workbenchJsonPath))
                 JsonFileList.Items.Add(new JsonItemBinding("workbench.json", "The one that is at the starting ship!", workbenchJsonPath));
         }

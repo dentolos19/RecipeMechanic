@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using ControlzEx.Theming;
 using Newtonsoft.Json;
@@ -35,39 +36,35 @@ namespace SmRecipeModifier.Core
         {
             var data = File.ReadAllText(path);
             var recipes = JsonConvert.DeserializeObject<List<SmRecipe>>(data);
-            return recipes?.ToArray();
+            return recipes.ToArray();
         }
-
-        public static SmItem[] GetItemsFromJsons(string namesPath, string descriptionsPath)
+        
+        public static SmItem[] GetItemsFromJsons(string itemDescriptionsPath, string descriptionsPath)
         {
-            var namesData = File.ReadAllText(namesPath);
+            var itemDescriptionsData = File.ReadAllText(itemDescriptionsPath);
             var descriptionsData = File.ReadAllText(descriptionsPath);
-            var itemNames = JsonConvert.DeserializeObject<Dictionary<string, string>>(namesData);
-            var itemDescriptions = JsonConvert.DeserializeObject<Dictionary<string, SmItemDescription>>(descriptionsData);
-            if (itemNames == null || itemDescriptions == null)
-                return null;
+            var itemDescriptions = JsonConvert.DeserializeObject<Dictionary<string, SmItemDescription>>(itemDescriptionsData);
+            var descriptions = JsonConvert.DeserializeObject<Dictionary<string, SmItemDescription>>(descriptionsData);
             var items = new List<SmItem>();
-            foreach (var (id, name) in itemNames)
+            foreach (var description in descriptions)
             {
-                var item = new SmItem();
-                foreach (var description in itemDescriptions)
+                items.Add(new SmItem
                 {
-                    if (description.Key != id)
-                        continue;
-                    if (!string.IsNullOrEmpty(description.Value.Name) && description.Value.Name != name)
-                    {
-                        item.InGameName = description.Value.Name;
-                    }
-                    if (!string.IsNullOrEmpty(description.Value.Description))
-                    {
-                        item.Description = description.Value.Description;
-                    }
-                }
-                item.Name = name;
-                item.Id = id;
-                items.Add(item);
+                    Id = description.Key,
+                    Name = description.Value.Name,
+                    Description = description.Value.Description
+                });
             }
-            return items.ToArray();
+            foreach (var description in itemDescriptions)
+            {
+                items.Add(new SmItem
+                {
+                    Id = description.Key,
+                    Name = description.Value.Name,
+                    Description = description.Value.Description
+                });
+            }
+            return items.Distinct(new SmItem.Comparer()).ToArray();
         }
 
         public static SmItem[] MergeRecipesWithItems(SmRecipe[] recipes, SmItem[] items)

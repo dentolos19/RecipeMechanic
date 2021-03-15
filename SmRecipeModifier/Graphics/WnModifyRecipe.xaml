@@ -6,7 +6,7 @@
     <DockPanel Width="600">
         <DockPanel DockPanel.Dock="Bottom" Height="50">
             <Button DockPanel.Dock="Right" Content="Continue" Width="100" Margin="10,10,10,10" IsDefault="True" Click="Continue"/>
-            <Label Content="Created by Dennise Catolos (@dentolos19)" Margin="10,10,10,10" VerticalContentAlignment="Center"/>
+            <Label Content="Modifying recipes made easy!" Margin="10,10,10,10" VerticalContentAlignment="Center"/>
         </DockPanel>
         <StackPanel>
             <DockPanel Margin="10,10,10,0">
