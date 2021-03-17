@@ -24,14 +24,23 @@ namespace SmRecipeModifier.Graphics
             InitializeComponent();
             if (string.IsNullOrEmpty(App.Settings.GameDataPath))
             {
-                var dialog = new WnIntro();
-                if (dialog.ShowDialog() == false)
+                var detectedPath = Utilities.DetectGameDataPath();
+                if (detectedPath == null)
                 {
-                    Application.Current.Shutdown();
-                    return;
+                    var dialog = new WnIntro();
+                    if (dialog.ShowDialog() == false)
+                    {
+                        Application.Current.Shutdown();
+                        return;
+                    }   
+                }
+                else
+                {
+                    App.Settings.GameDataPath = detectedPath;
+                    App.Settings.Save();
                 }
             }
-            App.AvailableItems = Utilities.GetItemsFromJsons(Path.Combine(App.Settings.GameDataPath!, Constants.InventoryItemDescriptionsJson), Path.Combine(App.Settings.GameDataPath, Constants.InventoryDescriptionsJson));
+            App.AvailableItems = Utilities.GetItemsFromJsons(Path.Combine(App.Settings.GameDataPath!, Constants.GameInventoryItemDescriptionsJson), Path.Combine(App.Settings.GameDataPath, Constants.SurvivalInventoryDescriptionsJson));
             foreach (var item in App.AvailableItems)
                 ItemList.Items.Add(item);
             ItemListItemAmountText.Text = $"There are a total of {App.AvailableItems.Length} items in-game!";
