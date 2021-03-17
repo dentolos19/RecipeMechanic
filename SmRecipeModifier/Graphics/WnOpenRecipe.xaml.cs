@@ -7,12 +7,12 @@ using SmRecipeModifier.Core.Bindings;
 namespace SmRecipeModifier.Graphics
 {
 
-    public partial class WnOpen
+    public partial class WnOpenRecipe
     {
 
         public string SelectedPath { get; private set; }
 
-        public WnOpen()
+        public WnOpenRecipe()
         {
             InitializeComponent();
             JsonFileList.Items.Clear();

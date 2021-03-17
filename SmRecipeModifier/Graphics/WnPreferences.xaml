@@ -1,12 +1,13 @@
-﻿<mahApps:MetroWindow x:Class="SmRecipeModifier.Graphics.WnPreferences"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
-        Title="Preferences" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+﻿<ma:MetroWindow x:Class="SmRecipeModifier.Graphics.WnPreferences"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:ma="http://metro.mahapps.com/winfx/xaml/controls"
+                Title="Preferences" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
     <DockPanel Width="500" Height="300">
         <DockPanel DockPanel.Dock="Bottom" Height="50">
-            <Button DockPanel.Dock="Right" Content="Save" Width="100" Margin="10,10,10,10" Click="SaveSettings"/>
-            <Label Content="This program was inspired by other modding tools!" Margin="10,10,10,10" VerticalContentAlignment="Center"/>
+            <Button DockPanel.Dock="Right" Content="Save" Width="100" Margin="0,10,10,10" Click="SaveSettings"/>
+            <Button DockPanel.Dock="Right" Content="Reset" Width="100" Margin="0,10,10,10" Click="ResetSettings"/>
+            <Label Content="Inspired by other modding tools!" Margin="10,10,10,10" VerticalContentAlignment="Center"/>
         </DockPanel>
         <StackPanel>
             <DockPanel Margin="10,10,10,0">
@@ -23,4 +24,4 @@
             </DockPanel>
         </StackPanel>
     </DockPanel>
-</mahApps:MetroWindow>
+</ma:MetroWindow>

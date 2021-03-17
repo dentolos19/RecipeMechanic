@@ -39,7 +39,7 @@ namespace SmRecipeModifier.Graphics
 
         private void Open(object sender, ExecutedRoutedEventArgs args)
         {
-            var dialog = new WnOpen { Owner = this };
+            var dialog = new WnOpenRecipe { Owner = this };
             if (dialog.ShowDialog() == true)
             {
                 _selectedPath = dialog.SelectedPath;
@@ -49,7 +49,7 @@ namespace SmRecipeModifier.Graphics
                 RecipeList.Items.Clear();
                 foreach (var item in items)
                     RecipeList.Items.Add(item);
-                RecipeListItemAmountText.Text = $"There are a total of {items.Length} items in this file!";
+                RecipeListItemAmountText.Text = $"There are a total of {items.Length} recipes in this file!";
                 SaveButton.IsEnabled = true;
                 SaveAsButton.IsEnabled = true;
                 SaveMenuButton.IsEnabled = true;
@@ -116,8 +116,11 @@ namespace SmRecipeModifier.Graphics
             var item = (SmItem)RecipeList.SelectedItem;
             if (item == null)
                 return;
-            if (MessageBox.Show("Are you sure that you want to remove this recipe?", "SmRecipeModifier", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                RecipeList.Items.Remove(item);
+            if (MessageBox.Show("Are you sure that you want to remove this recipe(s)?", "SmRecipeModifier", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                foreach (var selectedItem in RecipeList.SelectedItems.Cast<SmItem>().ToArray())
+                    RecipeList.Items.Remove(selectedItem);
+            }
         }
 
         private void ModifyRecipe(object sender, RoutedEventArgs args)
@@ -156,50 +159,38 @@ namespace SmRecipeModifier.Graphics
 
         private void CopyRecipeName(object sender, RoutedEventArgs args)
         {
-            var item = (SmItem)RecipeList.SelectedItem;
-            if (item == null)
-                return;
-            Clipboard.SetText(item.Name);
+            if (RecipeList.SelectedItem is SmItem item)
+                Clipboard.SetText(item.Name);
         }
         
         private void CopyRecipeId(object sender, RoutedEventArgs args)
         {
-            var item = (SmItem)RecipeList.SelectedItem;
-            if (item == null)
-                return;
-            Clipboard.SetText(item.Id);
+            if (RecipeList.SelectedItem is SmItem item)
+                Clipboard.SetText(item.Id);
         }
         
         private void CopyRecipeDescription(object sender, RoutedEventArgs args)
         {
-            var item = (SmItem)RecipeList.SelectedItem;
-            if (item == null)
-                return;
-            Clipboard.SetText(item.Description);
+            if (RecipeList.SelectedItem is SmItem item)
+                Clipboard.SetText(item.Description);
         }
 
         private void CopyItemName(object sender, RoutedEventArgs args)
         {
-            var item = (SmItem)ItemList.SelectedItem;
-            if (item == null)
-                return;
-            Clipboard.SetText(item.Name);
+            if (ItemList.SelectedItem is SmItem item)
+                Clipboard.SetText(item.Name);
         }
         
         private void CopyItemId(object sender, RoutedEventArgs args)
         {
-            var item = (SmItem)ItemList.SelectedItem;
-            if (item == null)
-                return;
-            Clipboard.SetText(item.Id);
+            if (ItemList.SelectedItem is SmItem item)
+                Clipboard.SetText(item.Id);
         }
         
         private void CopyItemDescription(object sender, RoutedEventArgs args)
         {
-            var item = (SmItem)ItemList.SelectedItem;
-            if (item == null)
-                return;
-            Clipboard.SetText(item.Description);
+            if (ItemList.SelectedItem is SmItem item)
+                Clipboard.SetText(item.Description);
         }
 
         private void OpenBackupWizard(object sender, RoutedEventArgs args)
@@ -234,22 +225,6 @@ namespace SmRecipeModifier.Graphics
             }
         }
 
-        private void ActivateEasyMode(object sender, RoutedEventArgs args)
-        {
-            if (!MassModificationMenu.IsEnabled)
-                return;
-            MessageBox.Show("This function is currently disabled for now! Sorry for the inconvenience.", "SmRecipeModifier");
-            // TODO
-        }
-
-        private void ActivateHardMode(object sender, RoutedEventArgs args)
-        {
-            if (!MassModificationMenu.IsEnabled)
-                return;
-            MessageBox.Show("This function is currently disabled for now! Sorry for the inconvenience.", "SmRecipeModifier");
-            // TODO
-        }
-        
         private void NavigateHyperlink(object sender, RequestNavigateEventArgs args)
         {
             Process.Start(new ProcessStartInfo

@@ -1,8 +1,8 @@
-﻿<mahApps:MetroWindow x:Class="SmRecipeModifier.Graphics.WnMain"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
-        Title="Scrap Mechanic Recipe Modifier" SaveWindowPosition="True" ResizeMode="CanResizeWithGrip">
+﻿<ma:MetroWindow x:Class="SmRecipeModifier.Graphics.WnMain"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:ma="http://metro.mahapps.com/winfx/xaml/controls"
+                Title="Scrap Mechanic Recipe Modifier" SaveWindowPosition="True" ResizeMode="CanResizeWithGrip">
     <Window.CommandBindings>
         <CommandBinding Command="Open" Executed="Open"/>
         <CommandBinding Command="Save" Executed="Save"/>
@@ -24,9 +24,6 @@
             </MenuItem>
             <MenuItem x:Name="MassModificationMenu" Header="Mass Modification" IsEnabled="False">
                 <MenuItem Header="Modify All Recipes" Click="ModifyAllRecipes"/>
-                <Separator/>
-                <MenuItem Header="Activate Easy Mode" Click="ActivateEasyMode"/>
-                <MenuItem Header="Activate Hard Mode" Click="ActivateHardMode"/>
             </MenuItem>
             <MenuItem Header="Options">
                 <MenuItem Header="Preferences" Click="ShowPreferences"/>
@@ -36,7 +33,7 @@
         </Menu>
         <DockPanel>
             <StackPanel Width="150">
-                <Image Margin="10,10,10,0" Source="../Resources/Assets/Icon.png" Height="130"/>
+                <Image Margin="10,10,10,0" Source="{StaticResource AssetIcon}" Height="130"/>
                 <Separator Margin="10,10,10,0"/>
                 <TextBox x:Name="FileNameBox" Margin="10,10,10,0" HorizontalContentAlignment="Center" IsReadOnly="True"/>
                 <Button Margin="10,10,10,0" Content="Open" Command="Open"/>
@@ -97,4 +94,4 @@
             </TabControl>
         </DockPanel>
     </DockPanel>
-</mahApps:MetroWindow>
+</ma:MetroWindow>

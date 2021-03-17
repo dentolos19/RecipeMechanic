@@ -33,10 +33,8 @@ namespace SmRecipeModifier.Graphics
 
         private void UpdateSelection(object sender, SelectionChangedEventArgs args)
         {
-            var item = (ComboBoxItem)ItemList.SelectedItem;
-            if (item == null)
-                return;
-            ItemResult = (SmItem)item.Tag;
+            if (ItemList.SelectedItem is ComboBoxItem item)
+                ItemResult = (SmItem)item.Tag;
         }
 
     }

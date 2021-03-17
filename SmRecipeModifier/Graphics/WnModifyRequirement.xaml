@@ -1,12 +1,12 @@
-﻿<mahApps:MetroWindow x:Class="SmRecipeModifier.Graphics.WnModifyRequirement"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
-        Title="Modify Requirement" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+﻿<ma:MetroWindow x:Class="SmRecipeModifier.Graphics.WnModifyRequirement"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:ma="http://metro.mahapps.com/winfx/xaml/controls"
+                Title="Modify Requirement" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
     <DockPanel Width="500" Height="50">
-        <Image Source="/Resources/Assets/Icon.png" Margin="10,10,0,10"/>
+        <Image Source="{StaticResource AssetIcon}" Margin="10,10,0,10"/>
         <Button DockPanel.Dock="Right" Margin="0,10,10,10" Content="Continue" Width="75" IsDefault="True" Click="Continue"/>
-        <mahApps:NumericUpDown x:Name="QuantityBox" DockPanel.Dock="Right" Margin="0,10,10,10" Minimum="0" Width="100" NumericInputMode="Numbers"/>
-        <ComboBox x:Name="ItemList" Margin="10,10,10,10"/>
+        <ma:NumericUpDown x:Name="QuantityBox" DockPanel.Dock="Right" Margin="0,10,10,10" Minimum="0" Width="100" NumericInputMode="Numbers"/>
+        <ComboBox x:Name="ItemList" Margin="10,10,10,10" IsEditable="True" IsTextSearchEnabled="True"/>
     </DockPanel>
-</mahApps:MetroWindow>
+</ma:MetroWindow>

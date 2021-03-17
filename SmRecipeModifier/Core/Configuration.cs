@@ -21,6 +21,12 @@ namespace SmRecipeModifier.Core
             Serializer.Serialize(stream, this);
         }
 
+        public void Reset()
+        {
+            if (File.Exists(Source))
+                File.Delete((Source));
+        }
+
         public static Configuration Load()
         {
             if (!File.Exists(Source))

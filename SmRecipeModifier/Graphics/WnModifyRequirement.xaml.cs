@@ -37,11 +37,18 @@ namespace SmRecipeModifier.Graphics
 
         private void Continue(object sender, RoutedEventArgs args)
         {
-            var item = (ComboBoxItem)ItemList.SelectedItem;
-            RequirementResult.Quantity = (int)QuantityBox.Value!;
-            RequirementResult.Id = ((SmItem)item.Tag).Id;
-            DialogResult = true;
-            Close();
+            if (ItemList.SelectedItem is ComboBoxItem item)
+            {
+                RequirementResult.Quantity = (int)QuantityBox.Value!;
+                RequirementResult.Id = ((SmItem)item.Tag).Id;
+                DialogResult = true;
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Select a proper in-game item!", "SmRecipeModifier");
+            }
+            
         }
 
     }
