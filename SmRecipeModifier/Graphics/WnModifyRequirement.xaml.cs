@@ -22,7 +22,7 @@ namespace SmRecipeModifier.Graphics
                 count++;
                 if (requirement != null && item.Id.Equals(requirement.Id))
                     index = count;
-                ItemList.Items.Add(new ComboBoxItem { Content = item.InGameName ?? item.Name, Tag = item });
+                ItemList.Items.Add(new ComboBoxItem { Content = item.Name, Tag = item });
             }
             ItemList.SelectedIndex = App.Randomizer.Next(ItemList.Items.Count - 1);
             if (requirement == null)
@@ -46,7 +46,7 @@ namespace SmRecipeModifier.Graphics
             }
             else
             {
-                MessageBox.Show("Select a proper in-game item!", "SmRecipeModifier");
+                MessageBox.Show("Select a valid in-game item!", Application.Current.Resources["String_DialogWinTitle"].ToString());
             }
             
         }

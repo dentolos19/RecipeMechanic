@@ -14,7 +14,7 @@ namespace SmRecipeModifier.Graphics
         {
             InitializeComponent();
             foreach (var item in App.AvailableItems)
-                ItemList.Items.Add(new ComboBoxItem { Content = item.InGameName ?? item.Name, Tag = item });
+                ItemList.Items.Add(new ComboBoxItem { Content = item.Name, Tag = item });
             ItemList.SelectedIndex = 0;
         }
 

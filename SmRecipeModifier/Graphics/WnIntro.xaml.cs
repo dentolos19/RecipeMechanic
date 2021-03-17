@@ -21,7 +21,7 @@ namespace SmRecipeModifier.Graphics
                 return;
             if (!File.Exists(Path.Combine(dialog.SelectedPath, Constants.ScrapMechanicExePath)))
             {
-                MessageBox.Show("This path doesn't contain the game executable!", "SmRecipeModifier");
+                MessageBox.Show("This path doesn't contain the game executable!", Application.Current.Resources["String_DialogWinTitle"].ToString());
                 return;
             }
             GameDataPathBox.Text = dialog.SelectedPath;
@@ -31,7 +31,7 @@ namespace SmRecipeModifier.Graphics
         {
             if (string.IsNullOrEmpty(GameDataPathBox.Text))
             {
-                MessageBox.Show("The game data path input box must not be empty!", "SmRecipeModifier");
+                MessageBox.Show("The game data path input box must not be empty!", Application.Current.Resources["String_DialogWinTitle"].ToString());
                 return;
             }
             App.Settings.GameDataPath = GameDataPathBox.Text;

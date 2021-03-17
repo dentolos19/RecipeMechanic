@@ -9,11 +9,11 @@ namespace SmRecipeModifier.Core
     {
 
         private static readonly string Source = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SmRecipeModifier.cfg");
-        private static readonly XmlSerializer Serializer = new XmlSerializer(typeof(Configuration));
+        private static readonly XmlSerializer Serializer = new(typeof(Configuration));
 
-        public string GameDataPath { get; set; }
-        public string ColorScheme { get; set; } = "Orange";
-        public bool EnableDarkMode { get; set; } = true;
+        public string? GameDataPath { get; set; }
+        public string ColorScheme { get; set; } = "Cobalt";
+        public bool EnableDarkMode { get; set; } = false;
 
         public void Save()
         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Threading;
 using SmRecipeModifier.Core;
 using SmRecipeModifier.Core.Models;
 using SmRecipeModifier.Graphics;
@@ -12,18 +13,22 @@ namespace SmRecipeModifier
 
         internal static Configuration Settings { get; private set; }
         internal static Random Randomizer { get; private set; }
-
-        internal static WnMain WindowMain { get; private set; }
-
         internal static SmItem[] AvailableItems { get; set; }
 
-        private void Initialize(object sender, StartupEventArgs args)
+        private void InitializeApp(object sender, StartupEventArgs args)
         {
             Settings = Configuration.Load();
             Randomizer = new Random();
             Utilities.SetAppTheme(Settings.ColorScheme, Settings.EnableDarkMode, false);
-            WindowMain = new WnMain();
-            WindowMain.Show();
+            Current.MainWindow = new WnMain();
+            Current.MainWindow.Show();
+        }
+
+        private void HandleExceptions(object sender, DispatcherUnhandledExceptionEventArgs args)
+        {
+            args.Handled = true;
+            new WnErrorHandler(args.Exception).ShowDialog();
+            Current.Shutdown();
         }
 
     }

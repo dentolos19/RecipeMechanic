@@ -61,10 +61,10 @@ namespace SmRecipeModifier.Graphics
                 return;
             if (RequirementList.Items.Count == 1)
             {
-                MessageBox.Show("A recipe must have at least one requirement!", "SmRecipeModifier");
+                MessageBox.Show("A recipe must have at least one requirement!", Application.Current.Resources["String_DialogWinTitle"].ToString());
                 return;
             }
-            if (MessageBox.Show("Are you sure that you want to remove this requirement?", "SmRecipeModifier", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Are you sure that you want to remove this requirement?", Application.Current.Resources["String_DialogWinTitle"].ToString(), MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 RequirementList.Items.Remove(item);
         }
 

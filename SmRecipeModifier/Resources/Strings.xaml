@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    
+    <!-- ReSharper disable InconsistentNaming -->
+    
+    <sys:String x:Key="String_IntroWinTitle">Hello World</sys:String>
+    <sys:String x:Key="String_MainWinTitle">Scrap Mechanic Recipe Modifier</sys:String>
+    <sys:String x:Key="String_DialogWinTitle">Recipe Modifier</sys:String>
+    <sys:String x:Key="String_ErrorHandlerWinTitle">Error Handler</sys:String>
+    <sys:String x:Key="String_NewRecipeWinTitle">New Recipe</sys:String>
+    <sys:String x:Key="String_OpenRecipeWinTitle">Open Recipe</sys:String>
+    <sys:String x:Key="String_ModifyRecipeWinTitle">Modify Recipe</sys:String>
+    <sys:String x:Key="String_ModifyRequirementWinTitle">Modify Requirement</sys:String>
+    <sys:String x:Key="String_PreferencesWinTitle">User Preferences</sys:String>
+    
+    <!-- ReSharper restore InconsistentNaming -->
+    
+</ResourceDictionary>

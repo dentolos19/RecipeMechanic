@@ -70,7 +70,7 @@ namespace SmRecipeModifier.Graphics
         {
             if (!SaveButton.IsEnabled)
                 return;
-            if (MessageBox.Show("Are you sure? This will overwrite the current recipe file in the game files.", "SmRecipeModifier", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Are you sure? This will overwrite the current recipe file in the game files.", Application.Current.Resources["String_DialogWinTitle"].ToString(), MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 SaveToFile(_selectedPath);
         }
 
@@ -95,7 +95,7 @@ namespace SmRecipeModifier.Graphics
 
         private async void ShowAbout(object sender, RoutedEventArgs args)
         {
-            await this.ShowMessageAsync("About SmRecipeModifier", "This program was created by Dennise Catolos.\n\nVersion: 1.1.1 (2021-03-15)").ConfigureAwait(false);
+            await this.ShowMessageAsync("About SmRecipeModifier", "This program was created by Dennise Catolos.\n\nVersion: 1.1.2 (2021-03-XX)").ConfigureAwait(false);
         }
 
         private void AddRecipe(object sender, RoutedEventArgs args)
@@ -116,7 +116,7 @@ namespace SmRecipeModifier.Graphics
             var item = (SmItem)RecipeList.SelectedItem;
             if (item == null)
                 return;
-            if (MessageBox.Show("Are you sure that you want to remove this recipe(s)?", "SmRecipeModifier", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Are you sure that you want to remove this recipe(s)?", Application.Current.Resources["String_DialogWinTitle"].ToString(), MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 foreach (var selectedItem in RecipeList.SelectedItems.Cast<SmItem>().ToArray())
                     RecipeList.Items.Remove(selectedItem);

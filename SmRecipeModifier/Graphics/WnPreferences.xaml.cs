@@ -31,7 +31,7 @@ namespace SmRecipeModifier.Graphics
         
         private void ResetSettings(object sender, RoutedEventArgs args)
         {
-            if (MessageBox.Show("Are you sure that you want to reset settings?", "SmRecipeModifier", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+            if (MessageBox.Show("Are you sure that you want to reset settings?", Application.Current.Resources["String_DialogWinTitle"].ToString(), MessageBoxButton.YesNo) != MessageBoxResult.Yes)
                 return;
             App.Settings.Reset();
             Utilities.RestartApp();
@@ -44,7 +44,7 @@ namespace SmRecipeModifier.Graphics
                 return;
             if (!File.Exists(Path.Combine(dialog.SelectedPath, Constants.ScrapMechanicExePath)))
             {
-                MessageBox.Show("This path doesn't contain the game executable!", "SmRecipeModifier");
+                MessageBox.Show("This path doesn't contain the game executable!", Application.Current.Resources["String_DialogWinTitle"].ToString());
                 return;
             }
             GameDataPathBox.Text = dialog.SelectedPath;

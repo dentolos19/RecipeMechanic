@@ -9,7 +9,7 @@ namespace SmRecipeModifier.Core.Bindings
         public RequirementItemBinding(SmRequirement requirement)
         {
             var item = App.AvailableItems.GetItemBasedOnRequirement(requirement);
-            Name = item.InGameName ?? item.Name;
+            Name = item.Name;
             Quantity = requirement.Quantity;
             Id = requirement.Id;
             Requirement = requirement;

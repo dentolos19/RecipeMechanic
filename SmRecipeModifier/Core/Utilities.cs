@@ -85,11 +85,10 @@ namespace SmRecipeModifier.Core
             {
                 foreach (var item in items)
                 {
-                    if (item.Id.Equals(recipe.Id))
-                    {
-                        item.Recipe = recipe;
-                        list.Add(item);
-                    }
+                    if (!item.Id.Equals(recipe.Id))
+                        continue;
+                    item.Recipe = recipe;
+                    list.Add(item);
                 }
             }
             return list.ToArray();

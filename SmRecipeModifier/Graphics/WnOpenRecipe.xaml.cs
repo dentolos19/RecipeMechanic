@@ -38,7 +38,7 @@ namespace SmRecipeModifier.Graphics
             var item = (JsonItemBinding)JsonFileList.SelectedItem;
             if (item == null)
             {
-                MessageBox.Show("Select a JSON file before continuing!", "SmRecipeModifier");
+                MessageBox.Show("Select a JSON file before continuing!", Application.Current.Resources["String_DialogWinTitle"].ToString());
                 return;
             }
             SelectedPath = item.Path;
