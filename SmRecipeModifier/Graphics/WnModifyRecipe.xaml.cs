@@ -21,7 +21,7 @@ namespace SmRecipeModifier.Graphics
             QuantityBox.Value = RecipeResult.Quantity;
             DurationBox.Value = RecipeResult.Duration;
             if (RecipeResult.Requirements == null || RecipeResult.Requirements.Length < 1)
-                RecipeResult.Requirements = new[] { new SmRequirement { Id = App.AvailableItems[App.Randomizer.Next(App.AvailableItems.Length)].Id, Quantity = 0 } };
+                RecipeResult.Requirements = new[] { new SmRequirement { Id = App.AvailableItems[App.Randomizer.Next(App.AvailableItems.Count)].Id, Quantity = 0 } };
             foreach (var requirement in RecipeResult.Requirements)
                 RequirementList.Items.Add(new RequirementItemBinding(requirement));
         }

@@ -22,6 +22,15 @@
             <DockPanel Margin="10,10,10,0">
                 <CheckBox x:Name="EnableDarkModeSwitch" Content="Enable Dark Mode"/>
             </DockPanel>
+            <DockPanel Margin="10,10,10,0">
+                <CheckBox x:Name="IgnoreNameFilterSwitch" Content="Ignore Name Filter"/>
+            </DockPanel>
+            <DockPanel Margin="10,10,10,0">
+                <CheckBox x:Name="IgnoreIdFilterSwitch" Content="Ignore ID Filter"/>
+            </DockPanel>
+            <DockPanel Margin="10,10,10,0">
+                <CheckBox x:Name="IgnoreDescriptionFilterSwitch" Content="Ignore Description Filter"/>
+            </DockPanel>
         </StackPanel>
     </DockPanel>
 </ma:MetroWindow>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Threading;
@@ -14,7 +15,9 @@ namespace SmRecipeModifier
 
         internal static Configuration Settings { get; private set; }
         internal static Random Randomizer { get; private set; }
-        internal static SmItem[] AvailableItems { get; set; }
+
+        internal static List<SmItem> AvailableItems { get; set; } = new();
+        internal static List<SmItem> RecipeItems { get; set; } = new();
 
         private void InitializeApp(object sender, StartupEventArgs args)
         {
@@ -27,11 +30,13 @@ namespace SmRecipeModifier
 
         private void HandleExceptions(object sender, DispatcherUnhandledExceptionEventArgs args)
         {
+            #if !DEBUG
             args.Handled = true;
             new WnErrorHandler(args.Exception).ShowDialog();
             Current.Shutdown();
+            #endif
         }
-
+        
     }
 
 }

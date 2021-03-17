@@ -1,8 +1,10 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Navigation;
 using MahApps.Metro.Controls.Dialogs;
@@ -40,10 +42,51 @@ namespace SmRecipeModifier.Graphics
                     App.Settings.Save();
                 }
             }
-            App.AvailableItems = Utilities.GetItemsFromJsons(Path.Combine(App.Settings.GameDataPath!, Constants.GameInventoryItemDescriptionsJson), Path.Combine(App.Settings.GameDataPath, Constants.SurvivalInventoryDescriptionsJson));
-            foreach (var item in App.AvailableItems)
-                ItemList.Items.Add(item);
-            ItemListItemAmountText.Text = $"There are a total of {App.AvailableItems.Length} items in-game!";
+            App.AvailableItems = Utilities.GetItemsFromJsons(Path.Combine(App.Settings.GameDataPath!, Constants.GameInventoryItemDescriptionsJson), Path.Combine(App.Settings.GameDataPath, Constants.SurvivalInventoryDescriptionsJson)).ToList();
+            ItemList.ItemsSource = App.AvailableItems;
+            ((CollectionView)CollectionViewSource.GetDefaultView(ItemList.ItemsSource)).Filter = FilterItems;
+            ItemListItemAmountText.Text = $"There are a total of {App.AvailableItems.Count} items in-game!";
+        }
+        
+        private void SaveToFile(string path)
+        {
+            var items = RecipeList.Items.OfType<SmItem>();
+            var data = JsonConvert.SerializeObject(items.Select(item => item.Recipe).ToArray(), Formatting.Indented);
+            File.WriteAllText(path, $"// This file was modified by SmRecipeModifier.\n{data}");
+        }
+
+        private bool FilterRecipes(object query)
+        {
+            if (string.IsNullOrEmpty(RecipeListFilterInput.Text))
+                return true;
+            var item = (SmItem)query;
+            var nameMatched = false;
+            if (!App.Settings.IgnoreNameFilter)
+                nameMatched = item.Name.IndexOf(RecipeListFilterInput.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+            var idMatched = false;
+            if (!App.Settings.IgnoreIdFilter)
+                idMatched = item.Id.IndexOf(RecipeListFilterInput.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+            var descriptionMatched = false;
+            if (!App.Settings.IgnoreDescriptionFilter && !string.IsNullOrEmpty(item.Description))
+                descriptionMatched = item.Description.IndexOf(RecipeListFilterInput.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+            return nameMatched || idMatched || descriptionMatched;
+        }
+
+        private bool FilterItems(object query)
+        {
+            if (string.IsNullOrEmpty(ItemListFilterInput.Text))
+                return true;
+            var item = (SmItem)query;
+            var nameMatched = false;
+            if (!App.Settings.IgnoreNameFilter)
+                nameMatched = item.Name.IndexOf(ItemListFilterInput.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+            var idMatched = false;
+            if (!App.Settings.IgnoreIdFilter)
+                idMatched = item.Id.IndexOf(ItemListFilterInput.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+            var descriptionMatched = false;
+            if (!App.Settings.IgnoreDescriptionFilter && !string.IsNullOrEmpty(item.Description))
+                descriptionMatched = item.Description.IndexOf(ItemListFilterInput.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+            return nameMatched || idMatched || descriptionMatched;
         }
 
         private void Open(object sender, ExecutedRoutedEventArgs args)
@@ -54,25 +97,18 @@ namespace SmRecipeModifier.Graphics
                 _selectedPath = dialog.SelectedPath;
                 FileNameBox.Text = Path.GetFileName(_selectedPath)!;
                 var recipes = Utilities.GetRecipesFromJson(_selectedPath);
-                var items = Utilities.MergeRecipesWithItems(recipes, App.AvailableItems);
-                RecipeList.Items.Clear();
-                foreach (var item in items)
-                    RecipeList.Items.Add(item);
-                RecipeListItemAmountText.Text = $"There are a total of {items.Length} recipes in this file!";
+                App.RecipeItems = Utilities.MergeRecipesWithItems(recipes, App.AvailableItems.ToArray()).ToList();
+                RecipeList.ItemsSource = App.RecipeItems;
+                ((CollectionView)CollectionViewSource.GetDefaultView(RecipeList.ItemsSource)).Filter = FilterRecipes;
+                RecipeListItemAmountText.Text = $"There are a total of {App.RecipeItems.Count} recipes in this file!";
                 SaveButton.IsEnabled = true;
                 SaveAsButton.IsEnabled = true;
                 SaveMenuButton.IsEnabled = true;
                 SaveAsMenuButton.IsEnabled = true;
                 AddRecipeButton.IsEnabled = true;
                 MassModificationMenu.IsEnabled = true;
+                RecipeListFilterInput.IsEnabled = true;
             }
-        }
-
-        private void SaveToFile(string path)
-        {
-            var items = RecipeList.Items.OfType<SmItem>();
-            var data = JsonConvert.SerializeObject(items.Select(item => item.Recipe).ToArray(), Formatting.Indented);
-            File.WriteAllText(path, $"// This file was modified by SmRecipeModifier.\n{data}");
         }
 
         private void Save(object sender, ExecutedRoutedEventArgs args)
@@ -92,6 +128,11 @@ namespace SmRecipeModifier.Graphics
                 SaveToFile(dialog.FileName);
         }
 
+        private void Restart(object sender, RoutedEventArgs args)
+        {
+            Utilities.RestartApp();
+        }
+        
         private void Exit(object sender, RoutedEventArgs args)
         {
             Application.Current.Shutdown();
@@ -104,7 +145,7 @@ namespace SmRecipeModifier.Graphics
 
         private async void ShowAbout(object sender, RoutedEventArgs args)
         {
-            await this.ShowMessageAsync("About SmRecipeModifier", "This program was created by Dennise Catolos.\n\nVersion: 1.1.2 (2021-03-XX)").ConfigureAwait(false);
+            await this.ShowMessageAsync(Application.Current.Resources["String_AboutTitle"].ToString(), Application.Current.Resources["String_AboutText"].ToString()).ConfigureAwait(false);
         }
 
         private void AddRecipe(object sender, RoutedEventArgs args)
@@ -114,22 +155,20 @@ namespace SmRecipeModifier.Graphics
             var dialog = new WnNewRecipe { Owner = this };
             if (dialog.ShowDialog() == false)
                 return;
-            RecipeList.Items.Add(dialog.ItemResult);
-            RecipeList.SelectedIndex = RecipeList.Items.Count - 1;
+            App.RecipeItems.Add(dialog.ItemResult);
+            RefreshRecipeList(null, null);
+            RecipeList.SelectedIndex = App.RecipeItems.IndexOf(dialog.ItemResult);
         }
 
         private void RemoveRecipe(object sender, RoutedEventArgs args)
         {
             if (!RemoveRecipeButton.IsEnabled)
                 return;
-            var item = (SmItem)RecipeList.SelectedItem;
-            if (item == null)
+            if (MessageBox.Show("Are you sure that you want to remove this recipe(s)?", Application.Current.Resources["String_DialogWinTitle"].ToString(), MessageBoxButton.YesNo) != MessageBoxResult.Yes)
                 return;
-            if (MessageBox.Show("Are you sure that you want to remove this recipe(s)?", Application.Current.Resources["String_DialogWinTitle"].ToString(), MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-            {
-                foreach (var selectedItem in RecipeList.SelectedItems.Cast<SmItem>().ToArray())
-                    RecipeList.Items.Remove(selectedItem);
-            }
+            foreach (var selectedItem in RecipeList.SelectedItems.Cast<SmItem>().ToArray())
+                App.RecipeItems.Remove(selectedItem);
+            RefreshRecipeList(null, null);
         }
 
         private void ModifyRecipe(object sender, RoutedEventArgs args)
@@ -142,12 +181,10 @@ namespace SmRecipeModifier.Graphics
             var dialog = new WnModifyRecipe(item.Recipe) { Owner = this };
             if (dialog.ShowDialog() == false)
                 return;
-            RecipeList.Items.Remove(RecipeList.SelectedItem);
-            item.Recipe = dialog.RecipeResult;
-            RecipeList.Items.Add(item);
-            RecipeList.SelectedIndex = RecipeList.Items.Count - 1;
+            App.RecipeItems.First(recipe => recipe == item).Recipe = dialog.RecipeResult;
+            RefreshRecipeList(null, null);
         }
-
+        
         private void ModifyAllRecipes(object sender, RoutedEventArgs args)
         {
             if (!MassModificationMenu.IsEnabled)
@@ -155,15 +192,13 @@ namespace SmRecipeModifier.Graphics
             var dialog = new WnModifyRecipe(null) { Owner = this };
             if (dialog.ShowDialog() == false)
                 return;
-            var items = RecipeList.Items.OfType<SmItem>().ToArray();
-            RecipeList.Items.Clear();
-            foreach (var recipe in items)
+            App.RecipeItems.ForEach(recipe =>
             {
                 recipe.Recipe.Quantity = dialog.RecipeResult.Quantity;
                 recipe.Recipe.Duration = dialog.RecipeResult.Duration;
                 recipe.Recipe.Requirements = dialog.RecipeResult.Requirements;
-                RecipeList.Items.Add(recipe);
-            }
+            });
+            RefreshRecipeList(null, null);
         }
 
         private void CopyRecipeName(object sender, RoutedEventArgs args)
@@ -242,6 +277,16 @@ namespace SmRecipeModifier.Graphics
                 UseShellExecute = true
             });
             args.Handled = true;
+        }
+
+        private void RefreshRecipeList(object sender, TextChangedEventArgs args)
+        {
+            CollectionViewSource.GetDefaultView(RecipeList.ItemsSource).Refresh();
+        }
+
+        private void RefreshItemList(object sender, TextChangedEventArgs args)
+        {
+            CollectionViewSource.GetDefaultView(ItemList.ItemsSource).Refresh();
         }
 
     }

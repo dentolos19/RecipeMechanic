@@ -16,6 +16,7 @@
                 <MenuItem x:Name="SaveMenuButton" Header="Save" InputGestureText="Ctrl+S" IsEnabled="False" Command="Save"/>
                 <MenuItem x:Name="SaveAsMenuButton" Header="Save As" InputGestureText="Ctrl+Shift+S" IsEnabled="False" Command="SaveAs"/>
                 <Separator/>
+                <MenuItem Header="Exit" Click="Restart"/>
                 <MenuItem Header="Exit" InputGestureText="Alt+F4" Click="Exit"/>
             </MenuItem>
             <MenuItem Header="Backup">
@@ -52,6 +53,7 @@
                 <TabItem Header="Recipe List">
                     <DockPanel>
                         <TextBlock x:Name="RecipeListItemAmountText" DockPanel.Dock="Top" Text="Open a recipe file to get started modifying your way!"/>
+                        <TextBox x:Name="RecipeListFilterInput" DockPanel.Dock="Bottom" IsEnabled="False" TextChanged="RefreshRecipeList"/>
                         <ListView x:Name="RecipeList" MouseDoubleClick="ModifyRecipe" SelectionChanged="UpdateRecipeListSelection">
                             <ListView.View>
                                 <GridView>
@@ -73,6 +75,7 @@
                 <TabItem Header="Item List">
                     <DockPanel>
                         <TextBlock x:Name="ItemListItemAmountText" DockPanel.Dock="Top"/>
+                        <TextBox x:Name="ItemListFilterInput" DockPanel.Dock="Bottom" TextChanged="RefreshItemList"/>
                         <ListView x:Name="ItemList">
                             <ListView.View>
                                 <GridView>

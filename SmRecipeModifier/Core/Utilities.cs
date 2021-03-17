@@ -94,29 +94,29 @@ namespace SmRecipeModifier.Core
             return recipes.ToArray();
         }
         
-        public static SmItem[] GetItemsFromJsons(string itemDescriptionsPath, string descriptionsPath)
+        public static SmItem[] GetItemsFromJsons(string gameDescriptionsPath, string survivalDescriptionsPath)
         {
-            var itemDescriptionsData = File.ReadAllText(itemDescriptionsPath);
-            var descriptionsData = File.ReadAllText(descriptionsPath);
-            var itemDescriptions = JsonConvert.DeserializeObject<Dictionary<string, SmItemDescription>>(itemDescriptionsData);
-            var descriptions = JsonConvert.DeserializeObject<Dictionary<string, SmItemDescription>>(descriptionsData);
+            var gameDescriptionsData = File.ReadAllText(gameDescriptionsPath);
+            var survivalDescriptionsData = File.ReadAllText(survivalDescriptionsPath);
+            var gameDescriptions = JsonConvert.DeserializeObject<Dictionary<string, SmItemDescription>>(gameDescriptionsData);
+            var survivalDescriptions = JsonConvert.DeserializeObject<Dictionary<string, SmItemDescription>>(survivalDescriptionsData);
             var items = new List<SmItem>();
-            foreach (var description in descriptions)
+            foreach (var (id, description) in survivalDescriptions)
             {
                 items.Add(new SmItem
                 {
-                    Id = description.Key,
-                    Name = description.Value.Name,
-                    Description = description.Value.Description
+                    Id = id,
+                    Name = description.Name,
+                    Description = description.Description
                 });
             }
-            foreach (var description in itemDescriptions)
+            foreach (var (id, description) in gameDescriptions)
             {
                 items.Add(new SmItem
                 {
-                    Id = description.Key,
-                    Name = description.Value.Name,
-                    Description = description.Value.Description
+                    Id = id,
+                    Name = description.Name,
+                    Description = description.Description
                 });
             }
             return items.Distinct(new SmItem.Comparer()).ToArray();
