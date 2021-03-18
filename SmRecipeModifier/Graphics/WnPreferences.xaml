@@ -23,13 +23,13 @@
                 <CheckBox x:Name="EnableDarkModeSwitch" Content="Enable Dark Mode"/>
             </DockPanel>
             <DockPanel Margin="10,10,10,0">
-                <CheckBox x:Name="IgnoreNameFilterSwitch" Content="Ignore Name Filter"/>
+                <CheckBox x:Name="EnableNameFilterSwitch" Content="Enable Name Filter"/>
             </DockPanel>
             <DockPanel Margin="10,10,10,0">
-                <CheckBox x:Name="IgnoreIdFilterSwitch" Content="Ignore ID Filter"/>
+                <CheckBox x:Name="EnableIdFilterSwitch" Content="Enable ID Filter"/>
             </DockPanel>
             <DockPanel Margin="10,10,10,0">
-                <CheckBox x:Name="IgnoreDescriptionFilterSwitch" Content="Ignore Description Filter"/>
+                <CheckBox x:Name="EnableDescriptionFilterSwitch" Content="Enable Description Filter"/>
             </DockPanel>
         </StackPanel>
     </DockPanel>

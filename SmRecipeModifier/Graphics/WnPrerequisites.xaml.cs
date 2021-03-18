@@ -6,10 +6,10 @@ using SmRecipeModifier.Core;
 namespace SmRecipeModifier.Graphics
 {
 
-    public partial class WnIntro
+    public partial class WnPrerequisites
     {
 
-        public WnIntro()
+        public WnPrerequisites()
         {
             InitializeComponent();
         }

@@ -12,7 +12,7 @@ namespace SmRecipeModifier.Graphics
 
         public SmRecipe RecipeResult { get; }
 
-        public WnModifyRecipe(SmRecipe recipe)
+        public WnModifyRecipe(SmRecipe recipe = null)
         {
             RecipeResult = recipe;
             InitializeComponent();

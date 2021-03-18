@@ -14,9 +14,9 @@ namespace SmRecipeModifier.Core
         public string? GameDataPath { get; set; }
         public string ColorScheme { get; set; } = "Cobalt";
         public bool EnableDarkMode { get; set; }
-        public bool IgnoreNameFilter { get; set; }
-        public bool IgnoreIdFilter { get; set; } = true;
-        public bool IgnoreDescriptionFilter { get; set; } = true;
+        public bool EnableNameFilter { get; set; } = true;
+        public bool EnableIdFilter { get; set; }
+        public bool EnableDescriptionFilter { get; set; }
 
         public void Save()
         {

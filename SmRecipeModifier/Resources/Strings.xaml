@@ -4,7 +4,7 @@
     
     <!-- ReSharper disable InconsistentNaming -->
     
-    <sys:String x:Key="String_IntroWinTitle">Hello World</sys:String>
+    <sys:String x:Key="String_PrerequisitesWinTitle">Setup Prerequisites</sys:String>
     <sys:String x:Key="String_MainWinTitle">Scrap Mechanic Recipe Modifier</sys:String>
     <sys:String x:Key="String_DialogWinTitle">Recipe Modifier</sys:String>
     <sys:String x:Key="String_ErrorHandlerWinTitle">Error Handler</sys:String>

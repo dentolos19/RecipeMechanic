@@ -16,7 +16,7 @@
                 <MenuItem x:Name="SaveMenuButton" Header="Save" InputGestureText="Ctrl+S" IsEnabled="False" Command="Save"/>
                 <MenuItem x:Name="SaveAsMenuButton" Header="Save As" InputGestureText="Ctrl+Shift+S" IsEnabled="False" Command="SaveAs"/>
                 <Separator/>
-                <MenuItem Header="Exit" Click="Restart"/>
+                <MenuItem Header="Restart" Click="Restart"/>
                 <MenuItem Header="Exit" InputGestureText="Alt+F4" Click="Exit"/>
             </MenuItem>
             <MenuItem Header="Backup">

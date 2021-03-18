@@ -29,7 +29,7 @@ namespace SmRecipeModifier.Graphics
                 var detectedPath = Utilities.DetectGameDataPath();
                 if (detectedPath == null)
                 {
-                    var dialog = new WnIntro();
+                    var dialog = new WnPrerequisites();
                     if (dialog.ShowDialog() == false)
                     {
                         Application.Current.Shutdown();
@@ -61,14 +61,14 @@ namespace SmRecipeModifier.Graphics
                 return true;
             var item = (SmItem)query;
             var nameMatched = false;
-            if (!App.Settings.IgnoreNameFilter)
-                nameMatched = item.Name.IndexOf(RecipeListFilterInput.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+            if (App.Settings.EnableNameFilter)
+                nameMatched = item.Name.Contains(RecipeListFilterInput.Text, StringComparison.OrdinalIgnoreCase);
             var idMatched = false;
-            if (!App.Settings.IgnoreIdFilter)
-                idMatched = item.Id.IndexOf(RecipeListFilterInput.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+            if (App.Settings.EnableIdFilter)
+                idMatched = item.Id.Contains(RecipeListFilterInput.Text, StringComparison.OrdinalIgnoreCase);
             var descriptionMatched = false;
-            if (!App.Settings.IgnoreDescriptionFilter && !string.IsNullOrEmpty(item.Description))
-                descriptionMatched = item.Description.IndexOf(RecipeListFilterInput.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+            if (App.Settings.EnableDescriptionFilter && !string.IsNullOrEmpty(item.Description))
+                descriptionMatched = item.Description.Contains(RecipeListFilterInput.Text, StringComparison.OrdinalIgnoreCase);
             return nameMatched || idMatched || descriptionMatched;
         }
 
@@ -78,14 +78,14 @@ namespace SmRecipeModifier.Graphics
                 return true;
             var item = (SmItem)query;
             var nameMatched = false;
-            if (!App.Settings.IgnoreNameFilter)
-                nameMatched = item.Name.IndexOf(ItemListFilterInput.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+            if (App.Settings.EnableNameFilter)
+                nameMatched = item.Name.Contains(ItemListFilterInput.Text, StringComparison.OrdinalIgnoreCase);
             var idMatched = false;
-            if (!App.Settings.IgnoreIdFilter)
-                idMatched = item.Id.IndexOf(ItemListFilterInput.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+            if (App.Settings.EnableIdFilter)
+                idMatched = item.Id.Contains(ItemListFilterInput.Text, StringComparison.OrdinalIgnoreCase);
             var descriptionMatched = false;
-            if (!App.Settings.IgnoreDescriptionFilter && !string.IsNullOrEmpty(item.Description))
-                descriptionMatched = item.Description.IndexOf(ItemListFilterInput.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+            if (App.Settings.EnableDescriptionFilter && !string.IsNullOrEmpty(item.Description))
+                descriptionMatched = item.Description.Contains(ItemListFilterInput.Text, StringComparison.OrdinalIgnoreCase);
             return nameMatched || idMatched || descriptionMatched;
         }
 
@@ -189,7 +189,7 @@ namespace SmRecipeModifier.Graphics
         {
             if (!MassModificationMenu.IsEnabled)
                 return;
-            var dialog = new WnModifyRecipe(null) { Owner = this };
+            var dialog = new WnModifyRecipe { Owner = this };
             if (dialog.ShowDialog() == false)
                 return;
             App.RecipeItems.ForEach(recipe =>
