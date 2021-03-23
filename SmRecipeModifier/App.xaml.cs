@@ -28,9 +28,11 @@ namespace SmRecipeModifier
 
         private void HandleExceptions(object sender, DispatcherUnhandledExceptionEventArgs args)
         {
+            #if !DEBUG
             args.Handled = true;
             new WnErrorHandler(args.Exception).ShowDialog();
             Current.Shutdown();
+            #endif
         }
         
     }

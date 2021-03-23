@@ -2,11 +2,16 @@
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:ma="http://metro.mahapps.com/winfx/xaml/controls"
+                xmlns:cr="clr-namespace:SmRecipeModifier.Core"
                 Title="{StaticResource String_MainWinTitle}" SaveWindowPosition="True" ResizeMode="CanResizeWithGrip">
     <Window.CommandBindings>
         <CommandBinding Command="Open" Executed="Open"/>
         <CommandBinding Command="Save" Executed="Save"/>
         <CommandBinding Command="SaveAs" Executed="SaveAs"/>
+        <CommandBinding Command="cr:Commands.AddRecipe" CanExecute="CanAddRecipe" Executed="AddRecipe"/>
+        <CommandBinding Command="cr:Commands.RemoveRecipe" CanExecute="CanRemoveRecipe" Executed="RemoveRecipe"/>
+        <CommandBinding x:Name="ModifyRecipeCommand" Command="cr:Commands.ModifyRecipe" CanExecute="CanModifyRecipe" Executed="ModifyRecipe"/>
+        <CommandBinding Command="cr:Commands.ModifyAllRecipe" CanExecute="CanModifyAllRecipe" Executed="ModifyAllRecipes"/>
     </Window.CommandBindings>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
@@ -19,12 +24,16 @@
                 <MenuItem Header="Restart" Click="Restart"/>
                 <MenuItem Header="Exit" InputGestureText="Alt+F4" Click="Exit"/>
             </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Add Recipe" Command="cr:Commands.AddRecipe"/>
+                <MenuItem Header="Remove Recipe" Command="cr:Commands.RemoveRecipe"/>
+                <MenuItem Header="Modify Recipe" Command="cr:Commands.ModifyRecipe"/>
+                <Separator/>
+                <MenuItem Header="Modify All Recipes" Command="cr:Commands.ModifyAllRecipe"/>
+            </MenuItem>
             <MenuItem Header="Backup">
                 <MenuItem Header="Steam Backup Wizard" Click="OpenBackupWizard"/>
                 <MenuItem Header="Verify Game Files" Click="VerifyGameFiles"/>
-            </MenuItem>
-            <MenuItem x:Name="MassModificationMenu" Header="Mass Modification" IsEnabled="False">
-                <MenuItem Header="Modify All Recipes" Click="ModifyAllRecipes"/>
             </MenuItem>
             <MenuItem Header="Options">
                 <MenuItem Header="Preferences" Click="ShowPreferences"/>
@@ -41,9 +50,9 @@
                 <Button x:Name="SaveButton" Margin="10,10,10,0" Content="Save" IsEnabled="False" Command="Save"/>
                 <Button x:Name="SaveAsButton" Margin="10,10,10,0" Content="Save As" IsEnabled="False" Command="SaveAs"/>
                 <Separator Margin="10,10,10,0"/>
-                <Button x:Name="AddRecipeButton" Margin="10,10,10,0" Content="New Recipe" IsEnabled="False" Click="AddRecipe"/>
-                <Button x:Name="RemoveRecipeButton" Margin="10,10,10,0" Content="Remove Recipe" IsEnabled="False" Click="RemoveRecipe"/>
-                <Button x:Name="ModifyRecipeButton" Margin="10,10,10,0" Content="Modify Recipe" IsEnabled="False" Click="ModifyRecipe"/>
+                <Button x:Name="AddRecipeButton" Margin="10,10,10,0" Content="New Recipe" Command="cr:Commands.AddRecipe"/>
+                <Button x:Name="RemoveRecipeButton" Margin="10,10,10,0" Content="Remove Recipe" Command="cr:Commands.RemoveRecipe"/>
+                <Button x:Name="ModifyRecipeButton" Margin="10,10,10,0" Content="Modify Recipe" Command="cr:Commands.ModifyRecipe"/>
                 <Separator Margin="10,10,10,0"/>
                 <TextBlock Margin="10,10,10,0" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Hyperlink NavigateUri="https://dentolos19.github.io" RequestNavigate="NavigateHyperlink">Website</Hyperlink>
@@ -54,7 +63,7 @@
                     <DockPanel>
                         <TextBlock x:Name="RecipeListItemAmountText" DockPanel.Dock="Top" Text="Open a recipe file to get started modifying your way!"/>
                         <TextBox x:Name="RecipeListFilterInput" DockPanel.Dock="Bottom" IsEnabled="False" TextChanged="RefreshRecipeList"/>
-                        <ListView x:Name="RecipeList" MouseDoubleClick="ModifyRecipe" SelectionChanged="UpdateRecipeListSelection">
+                        <ListView x:Name="RecipeList" MouseDoubleClick="ExecuteModifyRecipe">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>

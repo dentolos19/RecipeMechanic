@@ -105,8 +105,6 @@ namespace SmRecipeModifier.Graphics
                 SaveAsButton.IsEnabled = true;
                 SaveMenuButton.IsEnabled = true;
                 SaveAsMenuButton.IsEnabled = true;
-                AddRecipeButton.IsEnabled = true;
-                MassModificationMenu.IsEnabled = true;
                 RecipeListFilterInput.IsEnabled = true;
             }
         }
@@ -147,8 +145,14 @@ namespace SmRecipeModifier.Graphics
         {
             await this.ShowMessageAsync(Application.Current.Resources["String_AboutTitle"].ToString(), Application.Current.Resources["String_AboutText"].ToString()).ConfigureAwait(false);
         }
-
-        private void AddRecipe(object sender, RoutedEventArgs args)
+        
+        private void ExecuteModifyRecipe(object sender, MouseButtonEventArgs args) => ModifyRecipeCommand.Command.Execute(null);
+        private void CanAddRecipe(object sender, CanExecuteRoutedEventArgs args) { if (IsInitialized) args.CanExecute = !string.IsNullOrEmpty(_selectedPath); }
+        private void CanRemoveRecipe(object sender, CanExecuteRoutedEventArgs args) { if (IsInitialized) args.CanExecute = RecipeList.SelectedItem != null; }
+        private void CanModifyRecipe(object sender, CanExecuteRoutedEventArgs args) { if (IsInitialized) args.CanExecute = RecipeList.SelectedItem != null; }
+        private void CanModifyAllRecipe(object sender, CanExecuteRoutedEventArgs args) { if (IsInitialized) args.CanExecute = RecipeList.Items.Count > 0; }
+        
+        private void AddRecipe(object sender, ExecutedRoutedEventArgs args)
         {
             if (!AddRecipeButton.IsEnabled)
                 return;
@@ -160,7 +164,7 @@ namespace SmRecipeModifier.Graphics
             RecipeList.SelectedIndex = App.RecipeItems.IndexOf(dialog.ItemResult);
         }
 
-        private void RemoveRecipe(object sender, RoutedEventArgs args)
+        private void RemoveRecipe(object sender, ExecutedRoutedEventArgs args)
         {
             if (!RemoveRecipeButton.IsEnabled)
                 return;
@@ -171,7 +175,7 @@ namespace SmRecipeModifier.Graphics
             RefreshRecipeList(null, null);
         }
 
-        private void ModifyRecipe(object sender, RoutedEventArgs args)
+        private void ModifyRecipe(object sender, ExecutedRoutedEventArgs args)
         {
             if (!ModifyRecipeButton.IsEnabled)
                 return;
@@ -184,11 +188,9 @@ namespace SmRecipeModifier.Graphics
             App.RecipeItems.First(recipe => recipe == item).Recipe = dialog.RecipeResult;
             RefreshRecipeList(null, null);
         }
-        
-        private void ModifyAllRecipes(object sender, RoutedEventArgs args)
+
+        private void ModifyAllRecipes(object sender, ExecutedRoutedEventArgs args)
         {
-            if (!MassModificationMenu.IsEnabled)
-                return;
             var dialog = new WnModifyRecipe { Owner = this };
             if (dialog.ShowDialog() == false)
                 return;
@@ -255,20 +257,6 @@ namespace SmRecipeModifier.Graphics
             });
         }
 
-        private void UpdateRecipeListSelection(object sender, SelectionChangedEventArgs args)
-        {
-            if (RecipeList.SelectedItem == null)
-            {
-                RemoveRecipeButton.IsEnabled = false;
-                ModifyRecipeButton.IsEnabled = false;
-            }
-            else
-            {
-                RemoveRecipeButton.IsEnabled = true;
-                ModifyRecipeButton.IsEnabled = true;
-            }
-        }
-
         private void NavigateHyperlink(object sender, RequestNavigateEventArgs args)
         {
             Process.Start(new ProcessStartInfo
@@ -279,15 +267,8 @@ namespace SmRecipeModifier.Graphics
             args.Handled = true;
         }
 
-        private void RefreshRecipeList(object sender, TextChangedEventArgs args)
-        {
-            CollectionViewSource.GetDefaultView(RecipeList.ItemsSource).Refresh();
-        }
-
-        private void RefreshItemList(object sender, TextChangedEventArgs args)
-        {
-            CollectionViewSource.GetDefaultView(ItemList.ItemsSource).Refresh();
-        }
+        private void RefreshRecipeList(object sender, TextChangedEventArgs args) => CollectionViewSource.GetDefaultView(RecipeList.ItemsSource).Refresh();
+        private void RefreshItemList(object sender, TextChangedEventArgs args) => CollectionViewSource.GetDefaultView(ItemList.ItemsSource).Refresh();
 
     }
 
