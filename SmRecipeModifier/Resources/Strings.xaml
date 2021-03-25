@@ -15,7 +15,7 @@
     <sys:String x:Key="String_PreferencesWinTitle">User Preferences</sys:String>
     
     <sys:String x:Key="String_AboutTitle">About This App</sys:String>
-    <sys:String x:Key="String_AboutText" xml:space="preserve">This app was created by Dennise Catolos.&#x0d;&#x0a;&#x0d;&#x0a;Version: 1.1.2 (2021-03-XX)</sys:String>
+    <sys:String x:Key="String_AboutText" xml:space="preserve">This app was created by Dennise Catolos.&#x0d;&#x0a;&#x0d;&#x0a;Version: 1.1.2 (2021-03-25)</sys:String>
     
     <!-- ReSharper restore InconsistentNaming -->
     

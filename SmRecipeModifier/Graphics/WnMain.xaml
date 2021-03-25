@@ -28,7 +28,6 @@
                 <MenuItem Header="Add Recipe" Command="cr:Commands.AddRecipe"/>
                 <MenuItem Header="Remove Recipe" Command="cr:Commands.RemoveRecipe"/>
                 <MenuItem Header="Modify Recipe" Command="cr:Commands.ModifyRecipe"/>
-                <Separator/>
                 <MenuItem Header="Modify All Recipes" Command="cr:Commands.ModifyAllRecipe"/>
             </MenuItem>
             <MenuItem Header="Backup">
