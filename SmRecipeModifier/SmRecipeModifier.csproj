@@ -9,8 +9,8 @@
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
     <Product>Scrap Mechanic Recipe Modifier</Product>
-    <Version>1.1.2</Version>
     <Authors>Dennise Catolos</Authors>
+    <Version>1.1.2</Version>
     <Copyright>Copyright © 2021</Copyright>
     
   </PropertyGroup>

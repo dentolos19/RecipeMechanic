@@ -61,7 +61,7 @@
                 <TabItem Header="Recipe List">
                     <DockPanel>
                         <TextBlock x:Name="RecipeListItemAmountText" DockPanel.Dock="Top" Text="Open a recipe file to get started modifying your way!"/>
-                        <TextBox x:Name="RecipeListFilterInput" DockPanel.Dock="Bottom" IsEnabled="False" TextChanged="RefreshRecipeList"/>
+                        <TextBox x:Name="RecipeListFilterInput" DockPanel.Dock="Bottom" ma:TextBoxHelper.Watermark="Search" IsEnabled="False" TextChanged="RefreshRecipeList"/>
                         <ListView x:Name="RecipeList" MouseDoubleClick="ExecuteModifyRecipe">
                             <ListView.View>
                                 <GridView>
@@ -83,7 +83,7 @@
                 <TabItem Header="Item List">
                     <DockPanel>
                         <TextBlock x:Name="ItemListItemAmountText" DockPanel.Dock="Top"/>
-                        <TextBox x:Name="ItemListFilterInput" DockPanel.Dock="Bottom" TextChanged="RefreshItemList"/>
+                        <TextBox x:Name="ItemListFilterInput" DockPanel.Dock="Bottom" ma:TextBoxHelper.Watermark="Search" TextChanged="RefreshItemList"/>
                         <ListView x:Name="ItemList">
                             <ListView.View>
                                 <GridView>
