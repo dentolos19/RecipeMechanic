@@ -4,7 +4,7 @@
 
 </div>
 
-<h1 align="center">SmRecipeModifier</h1>
+<h1 align="center">Scrap Mechanic Recipe Modifier</h1>
 
 <div align="center">
 
