@@ -10,8 +10,6 @@ namespace SmRecipeModifier.Graphics
     public partial class WnOpenRecipe
     {
 
-        public string SelectedPath { get; private set; }
-
         public WnOpenRecipe()
         {
             InitializeComponent();
@@ -33,6 +31,8 @@ namespace SmRecipeModifier.Graphics
                 JsonFileList.Items.Add(new JsonItemBinding("workbench.json", "The one that is at the starting ship!", workbenchJsonPath));
         }
 
+        public string SelectedPath { get; private set; }
+
         private void Continue(object sender, RoutedEventArgs args)
         {
             var item = (JsonItemBinding)JsonFileList.SelectedItem;
@@ -49,13 +49,11 @@ namespace SmRecipeModifier.Graphics
         private void OpenFileLocation(object sender, RoutedEventArgs args)
         {
             if (JsonFileList.SelectedItem is JsonItemBinding binding)
-            {
                 Process.Start(new ProcessStartInfo
                 {
                     FileName = "explorer.exe",
                     Arguments = $"/select,\"{binding.Path}\""
                 });
-            }
         }
 
     }

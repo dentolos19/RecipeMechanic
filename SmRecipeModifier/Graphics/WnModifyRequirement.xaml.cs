@@ -8,8 +8,6 @@ namespace SmRecipeModifier.Graphics
     public partial class WnModifyRequirement
     {
 
-        public SmRequirement RequirementResult { get; }
-
         public WnModifyRequirement(SmRequirement requirement = null)
         {
             RequirementResult = requirement;
@@ -34,6 +32,8 @@ namespace SmRecipeModifier.Graphics
                 ItemList.SelectedIndex = index;
         }
 
+        public SmRequirement RequirementResult { get; }
+
         private void Continue(object sender, RoutedEventArgs args)
         {
             if (ItemList.SelectedItem is ComboBoxItem item)
@@ -47,7 +47,6 @@ namespace SmRecipeModifier.Graphics
             {
                 MessageBox.Show("Select a valid in-game item!", Application.Current.Resources["String_DialogWinTitle"].ToString());
             }
-            
         }
 
     }

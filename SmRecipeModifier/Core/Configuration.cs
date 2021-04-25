@@ -27,7 +27,7 @@ namespace SmRecipeModifier.Core
         public void Reset()
         {
             if (File.Exists(Source))
-                File.Delete((Source));
+                File.Delete(Source);
         }
 
         public static Configuration Load()

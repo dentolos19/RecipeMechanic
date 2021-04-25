@@ -10,8 +10,6 @@ namespace SmRecipeModifier.Graphics
     public partial class WnModifyRecipe
     {
 
-        public SmRecipe RecipeResult { get; }
-
         public WnModifyRecipe(SmRecipe recipe = null)
         {
             RecipeResult = recipe;
@@ -25,6 +23,8 @@ namespace SmRecipeModifier.Graphics
             foreach (var requirement in RecipeResult.Requirements)
                 RequirementList.Items.Add(new RequirementItemBinding(requirement));
         }
+
+        public SmRecipe RecipeResult { get; }
 
         private void Continue(object sender, RoutedEventArgs args)
         {

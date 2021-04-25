@@ -17,7 +17,7 @@ namespace SmRecipeModifier.Core
 
     public static class Utilities
     {
-        
+
         private static string? GetSteamLocation()
         {
             var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\WOW6432Node\Valve\Steam");
@@ -43,7 +43,7 @@ namespace SmRecipeModifier.Core
                 return false;
             return true;
         }
-        
+
         public static void RestartApp(string args = null!)
         {
             var location = Assembly.GetExecutingAssembly().Location;
@@ -77,10 +77,7 @@ namespace SmRecipeModifier.Core
             var steamPath = GetSteamLocation();
             if (string.IsNullOrEmpty(steamPath))
                 return null;
-            if (CheckSteamLocation(steamPath))
-            {
-                return Path.Combine(steamPath, "steamapps", "common", "Scrap Mechanic");
-            }
+            if (CheckSteamLocation(steamPath)) return Path.Combine(steamPath, "steamapps", "common", "Scrap Mechanic");
             steamPath = GetSteamAppsLocation(steamPath);
             if (string.IsNullOrEmpty(steamPath))
                 return null;
@@ -93,7 +90,7 @@ namespace SmRecipeModifier.Core
             var recipes = JsonConvert.DeserializeObject<List<SmRecipe>>(data);
             return recipes.ToArray();
         }
-        
+
         public static SmItem[] GetItemsFromJsons(string gameDescriptionsPath, string survivalDescriptionsPath)
         {
             var gameDescriptionsData = File.ReadAllText(gameDescriptionsPath);
@@ -102,23 +99,19 @@ namespace SmRecipeModifier.Core
             var survivalDescriptions = JsonConvert.DeserializeObject<Dictionary<string, SmItemDescription>>(survivalDescriptionsData);
             var items = new List<SmItem>();
             foreach (var (id, description) in survivalDescriptions)
-            {
                 items.Add(new SmItem
                 {
                     Id = id,
                     Name = description.Name,
                     Description = description.Description
                 });
-            }
             foreach (var (id, description) in gameDescriptions)
-            {
                 items.Add(new SmItem
                 {
                     Id = id,
                     Name = description.Name,
                     Description = description.Description
                 });
-            }
             return items.Distinct(new SmItem.Comparer()).ToArray();
         }
 
@@ -126,14 +119,12 @@ namespace SmRecipeModifier.Core
         {
             var list = new List<SmItem>();
             foreach (var recipe in recipes)
+            foreach (var item in items)
             {
-                foreach (var item in items)
-                {
-                    if (!item.Id.Equals(recipe.Id))
-                        continue;
-                    item.Recipe = recipe;
-                    list.Add(item);
-                }
+                if (!item.Id.Equals(recipe.Id))
+                    continue;
+                item.Recipe = recipe;
+                list.Add(item);
             }
             return list.ToArray();
         }

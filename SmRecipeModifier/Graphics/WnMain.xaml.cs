@@ -34,7 +34,7 @@ namespace SmRecipeModifier.Graphics
                     {
                         Application.Current.Shutdown();
                         return;
-                    }   
+                    }
                 }
                 else
                 {
@@ -47,7 +47,7 @@ namespace SmRecipeModifier.Graphics
             ((CollectionView)CollectionViewSource.GetDefaultView(ItemList.ItemsSource)).Filter = FilterItems;
             ItemListItemAmountText.Text = $"There are a total of {App.AvailableItems.Count} items in-game!";
         }
-        
+
         private void SaveToFile(string path)
         {
             var items = RecipeList.Items.OfType<SmItem>();
@@ -130,7 +130,7 @@ namespace SmRecipeModifier.Graphics
         {
             Utilities.RestartApp();
         }
-        
+
         private void Exit(object sender, RoutedEventArgs args)
         {
             Application.Current.Shutdown();
@@ -145,13 +145,32 @@ namespace SmRecipeModifier.Graphics
         {
             await this.ShowMessageAsync(Application.Current.Resources["String_AboutTitle"].ToString(), Application.Current.Resources["String_AboutText"].ToString()).ConfigureAwait(false);
         }
-        
-        private void ExecuteModifyRecipe(object sender, MouseButtonEventArgs args) => ModifyRecipeCommand.Command.Execute(null);
-        private void CanAddRecipe(object sender, CanExecuteRoutedEventArgs args) { if (IsInitialized) args.CanExecute = !string.IsNullOrEmpty(_selectedPath); }
-        private void CanRemoveRecipe(object sender, CanExecuteRoutedEventArgs args) { if (IsInitialized) args.CanExecute = RecipeList.SelectedItem != null; }
-        private void CanModifyRecipe(object sender, CanExecuteRoutedEventArgs args) { if (IsInitialized) args.CanExecute = RecipeList.SelectedItem != null; }
-        private void CanModifyAllRecipe(object sender, CanExecuteRoutedEventArgs args) { if (IsInitialized) args.CanExecute = RecipeList.Items.Count > 0; }
-        
+
+        private void ExecuteModifyRecipe(object sender, MouseButtonEventArgs args)
+        {
+            ModifyRecipeCommand.Command.Execute(null);
+        }
+
+        private void CanAddRecipe(object sender, CanExecuteRoutedEventArgs args)
+        {
+            if (IsInitialized) args.CanExecute = !string.IsNullOrEmpty(_selectedPath);
+        }
+
+        private void CanRemoveRecipe(object sender, CanExecuteRoutedEventArgs args)
+        {
+            if (IsInitialized) args.CanExecute = RecipeList.SelectedItem != null;
+        }
+
+        private void CanModifyRecipe(object sender, CanExecuteRoutedEventArgs args)
+        {
+            if (IsInitialized) args.CanExecute = RecipeList.SelectedItem != null;
+        }
+
+        private void CanModifyAllRecipe(object sender, CanExecuteRoutedEventArgs args)
+        {
+            if (IsInitialized) args.CanExecute = RecipeList.Items.Count > 0;
+        }
+
         private void AddRecipe(object sender, ExecutedRoutedEventArgs args)
         {
             if (!AddRecipeButton.IsEnabled)
@@ -208,13 +227,13 @@ namespace SmRecipeModifier.Graphics
             if (RecipeList.SelectedItem is SmItem item)
                 Clipboard.SetText(item.Name);
         }
-        
+
         private void CopyRecipeId(object sender, RoutedEventArgs args)
         {
             if (RecipeList.SelectedItem is SmItem item)
                 Clipboard.SetText(item.Id);
         }
-        
+
         private void CopyRecipeDescription(object sender, RoutedEventArgs args)
         {
             if (RecipeList.SelectedItem is SmItem item)
@@ -226,13 +245,13 @@ namespace SmRecipeModifier.Graphics
             if (ItemList.SelectedItem is SmItem item)
                 Clipboard.SetText(item.Name);
         }
-        
+
         private void CopyItemId(object sender, RoutedEventArgs args)
         {
             if (ItemList.SelectedItem is SmItem item)
                 Clipboard.SetText(item.Id);
         }
-        
+
         private void CopyItemDescription(object sender, RoutedEventArgs args)
         {
             if (ItemList.SelectedItem is SmItem item)
@@ -267,8 +286,15 @@ namespace SmRecipeModifier.Graphics
             args.Handled = true;
         }
 
-        private void RefreshRecipeList(object sender, TextChangedEventArgs args) => CollectionViewSource.GetDefaultView(RecipeList.ItemsSource).Refresh();
-        private void RefreshItemList(object sender, TextChangedEventArgs args) => CollectionViewSource.GetDefaultView(ItemList.ItemsSource).Refresh();
+        private void RefreshRecipeList(object sender, TextChangedEventArgs args)
+        {
+            CollectionViewSource.GetDefaultView(RecipeList.ItemsSource).Refresh();
+        }
+
+        private void RefreshItemList(object sender, TextChangedEventArgs args)
+        {
+            CollectionViewSource.GetDefaultView(ItemList.ItemsSource).Refresh();
+        }
 
     }
 

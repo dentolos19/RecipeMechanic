@@ -36,7 +36,7 @@ namespace SmRecipeModifier.Graphics
             MessageBox.Show("All settings has been saved!", Application.Current.Resources["String_DialogWinTitle"].ToString());
             Close();
         }
-        
+
         private void ResetSettings(object sender, RoutedEventArgs args)
         {
             if (MessageBox.Show("Are you sure that you want to reset settings?", Application.Current.Resources["String_DialogWinTitle"].ToString(), MessageBoxButton.YesNo) != MessageBoxResult.Yes)

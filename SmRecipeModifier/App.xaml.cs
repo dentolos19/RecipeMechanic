@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Windows;
 using System.Windows.Threading;
 using SmRecipeModifier.Core;
@@ -26,15 +25,12 @@ namespace SmRecipeModifier
             Current.MainWindow.Show();
         }
 
-        private void HandleExceptions(object sender, DispatcherUnhandledExceptionEventArgs args)
+        private void HandleException(object sender, DispatcherUnhandledExceptionEventArgs args)
         {
-            #if !DEBUG
             args.Handled = true;
-            new WnErrorHandler(args.Exception).ShowDialog();
-            Current.Shutdown();
-            #endif
+            new WnExceptionHandler(args.Exception).ShowDialog();
         }
-        
+
     }
 
 }

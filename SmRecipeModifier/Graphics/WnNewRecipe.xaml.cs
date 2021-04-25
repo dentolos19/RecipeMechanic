@@ -8,15 +8,16 @@ namespace SmRecipeModifier.Graphics
     public partial class WnNewRecipe
     {
 
-        public SmItem ItemResult { get; private set; }
-
         public WnNewRecipe()
         {
             InitializeComponent();
             foreach (var item in App.AvailableItems)
                 ItemList.Items.Add(new ComboBoxItem { Content = item.Name, Tag = item });
-            ItemList.SelectedIndex = App.Randomizer.Next(ItemList.Items.Count - 1);;
+            ItemList.SelectedIndex = App.Randomizer.Next(ItemList.Items.Count - 1);
+            ;
         }
+
+        public SmItem ItemResult { get; private set; }
 
         private void Create(object sender, RoutedEventArgs args)
         {

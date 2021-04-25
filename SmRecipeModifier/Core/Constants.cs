@@ -13,7 +13,7 @@
         public const string DispenserJsonPath = @"Survival\CraftingRecipes\dispenser.json";
         public const string HideoutJsonPath = @"Survival\CraftingRecipes\hideout.json";
         public const string WorkbenchJsonPath = @"Survival\CraftingRecipes\workbench.json";
-        
+
         public const uint GameId = 387990;
 
     }
