@@ -13,7 +13,7 @@
 
 </div>
 
-A powerful tool for modifying survival recipe files. The latest build of this project supports version 0.5.X.
+An easy yet powerful tool for modifying survival recipe files. The latest build of this project supports version 0.5.x.
 
 ## Features
 
