@@ -13,6 +13,22 @@
 
 </div>
 
+A powerful tool for modifying survival recipe files. The latest build of this project supports version 0.5.X.
+
+## Features
+
+* Supports Cookbot recipes
+* Supports Craftbot recipes
+* Supports Dispenser recipes
+* Supports Workbench recipes
+* Supports Trader deals
+* Has the ability to add new kinds of recipes
+* Has the ability to remove any kind of recipes
+* Has the ability to edit individual recipes
+* Has the ability to edit individual requirements of a recipe
+* Has the ability to **mass** edit recipes
+* Has the ability to **mass** edit requirements of all recipes
+
 ## Screenshots
 
 ![](./.github/screenshots/0.png)
