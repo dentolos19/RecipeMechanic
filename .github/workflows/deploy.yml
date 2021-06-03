@@ -13,7 +13,6 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - run: dotnet publish ./SmRecipeModifier/SmRecipeModifier.csproj --configuration Release --output ./output
-    - name: Deploy
     - uses: JamesIves/github-pages-deploy-action@4.1.3
       with:
         branch: website
