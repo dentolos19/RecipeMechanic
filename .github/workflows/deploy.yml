@@ -6,7 +6,7 @@ on:
     branches: [ main ]
 jobs:
   task:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2.3.4
     - uses: actions/setup-dotnet@v1.8.0
@@ -15,6 +15,6 @@ jobs:
     - run: dotnet publish ./SmRecipeModifier/SmRecipeModifier.csproj --configuration Release --output ./output
     - uses: JamesIves/github-pages-deploy-action@4.1.3
       with:
-        branch: website
+        branch: build
         folder: ./output/wwwroot
         single_commit: true

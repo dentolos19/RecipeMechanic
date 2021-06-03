@@ -13,7 +13,7 @@
 
 </div>
 
-An easy yet powerful tool for modifying survival recipe files. The latest build of this project supports version 0.5.x.
+An easy yet powerful tool for modifying survival recipe files. The latest build of this project supports version 0.5.x. [Click here to donwload the latest commit build](https://github.com/dentolos19/SmRecipeModifier/archive/refs/heads/build.zip).
 
 ## Features
 
