@@ -16,5 +16,5 @@ jobs:
     - uses: JamesIves/github-pages-deploy-action@4.1.3
       with:
         branch: build
-        folder: ./output/wwwroot
-        single_commit: true
+        folder: ./output
+        single-commit: true
