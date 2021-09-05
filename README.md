@@ -1,4 +1,4 @@
-# <img src="./.github/icon.png" width="24"/> Otakulore
+# <img src="./.github/icon.png" width="24"/> SmRecipeModifier
 
 [![](https://img.shields.io/badge/Powered%20By-.NET-blue?logo=microsoft&style=flat-square)](https://dotnet.microsoft.com)
 [![](https://img.shields.io/badge/Made%20With-Visual%20Studio-blue?logo=visual-studio&style=flat-square)](https://visualstudio.microsoft.com)
@@ -33,4 +33,4 @@ SmRecipeModifier is an easy yet powerful recipe modifier tool for Scrap Mechanic
 3. Open and select a compatible JSON file
 4. Modify any recipes you want available
 5. Before you click save, make sure you create a backup (via Steam)
-6. Click save and you�re ready to use the new modifications
+6. Click save and you're ready to use the new modifications
