@@ -29,7 +29,7 @@ SmRecipeModifier is an easy yet powerful recipe modifier tool for Scrap Mechanic
 ## Usage
 
 1. Download the latest version of the tool from [here](https://github.com/dentolos19/SmRecipeModifier/releases)
-2. Extract the contents of the zip file and launch SmRecipeModifier.exe
+2. Extract the contents of the zip file and launch `SmRecipeModifier.exe`
 3. Open and select a compatible JSON file
 4. Modify any recipes you want available
 5. Before you click save, make sure you create a backup (via Steam)
