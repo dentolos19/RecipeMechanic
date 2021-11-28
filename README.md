@@ -1,23 +1,28 @@
-# <img src="./.github/icon.png" width="24"/> Scrap Mechanic Recipe Modifier
+# <img src="./.github/icon.png" width="24"/> Recipe Mechanic
 
 [![](https://img.shields.io/badge/Powered%20By-.NET-blue?logo=microsoft&style=flat-square)](https://dotnet.microsoft.com)
 [![](https://img.shields.io/badge/Made%20With-Visual%20Studio-blue?logo=visual-studio&style=flat-square)](https://visualstudio.microsoft.com)
 
-An easy yet powerful recipe modifier tool for Scrap Mechanic!
+A powerful and easy-to-use recipe tool for Scrap Mechanic!
+
+> This project is currently being reworked! Do not clone or build as it is incomplete!
 
 ## Features
 
-* [X] Supports Cookbot recipes
-* [X] Supports Craftbot recipes
-* [X] Supports Dispenser recipes
-* [X] Supports Workbench recipes
-* [X] Supports Trader deals
-* [X] Has the ability to add new kinds of recipes
-* [X] Has the ability to remove any kind of recipes
-* [X] Has the ability to edit individual recipes
-* [X] Has the ability to edit individual requirements of a recipe
-* [X] Has the ability to **mass** edit recipes
-* [X] Has the ability to **mass** edit requirements of all recipes
+* [X] Supports most of the in-game recipes
+  * [X] Supports Cookbot recipes
+  * [X] Supports Craftbot recipes
+  * [X] Supports Dispenser recipes
+  * [X] Supports Workbench recipes
+  * [X] Supports Trader deals
+* [X] Contains many powerful tools
+  * [X] Has the ability to add new kinds of recipes
+  * [X] Has the ability to remove any kind of recipes
+  * [X] Has the ability to edit individual recipes
+  * [X] Has the ability to edit individual requirements of a recipe
+  * [X] Has the ability to **mass** edit recipes
+  * [X] Has the ability to **mass** edit requirements of all recipes
+* [X] Simplistic user interface for easy use
 
 ## Screenshots
 

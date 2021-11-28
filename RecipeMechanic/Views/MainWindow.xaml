@@ -1,0 +1,62 @@
+﻿<Window x:Class="RecipeMechanic.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="clr-namespace:RecipeMechanic.Core"
+        xmlns:vm="clr-namespace:RecipeMechanic.ViewModels"
+        Title="Recipe Mechanic" MinWidth="800" MinHeight="500" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip">
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+    <Window.CommandBindings>
+        <CommandBinding Command="Open" Executed="OnOpenRecipe"/>
+        <CommandBinding Command="Save" CanExecute="CanSaveRecipe" Executed="OnSaveRecipe"/>
+        <CommandBinding Command="SaveAs" CanExecute="CanSaveRecipeAs" Executed="OnSaveRecipeAs"/>
+        <CommandBinding Command="c:Commands.AddRecipe" Executed="OnAddRecipe"/>
+        <CommandBinding Command="c:Commands.ModifyRecipe" CanExecute="IsRecipeSelected" Executed="OnModifyRecipe"/>
+        <CommandBinding Command="c:Commands.ModifyAllRecipes" Executed="OnModifyAllRecipes"/>
+        <CommandBinding Command="Delete" CanExecute="IsRecipeSelected" Executed="OnRemoveRecipe"/>
+    </Window.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="File">
+                <MenuItem Header="Open" InputGestureText="Ctrl+O" Command="Open"/>
+                <Separator/>
+                <MenuItem Header="Save" InputGestureText="Ctrl+S" Command="Save"/>
+                <MenuItem Header="Save As" InputGestureText="Ctrl+Shift+S" Command="SaveAs"/>
+                <Separator/>
+                <MenuItem Header="Exit" InputGestureText="Alt+F4" Click="OnExit"/>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Add Recipe" Command="c:Commands.AddRecipe"/>
+                <MenuItem Header="Modify Recipe" Command="c:Commands.ModifyRecipe"/>
+                <MenuItem Header="Modify All Recipes" Command="c:Commands.ModifyAllRecipes"/>
+                <MenuItem Header="Remove Recipe" InputGestureText="Del" Command="Delete"/>
+            </MenuItem>
+            <MenuItem Header="Game">
+                <MenuItem Header="Launch Steam Backup Wizard"/>
+                <MenuItem Header="Verify Game Files (via Steam)"/>
+            </MenuItem>
+        </Menu>
+        <Grid Grid.Row="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBox x:Name="FilterInput" Grid.Row="0" TextChanged="OnRecipeFilter"/>
+            <ListView x:Name="RecipeList" Grid.Row="2" ItemsSource="{Binding Path=RecipeList}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}">ID</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">Name</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Description}">Description</GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </Grid>
+</Window>

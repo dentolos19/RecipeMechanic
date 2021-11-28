@@ -1,0 +1,46 @@
+﻿<Window x:Class="RecipeMechanic.Views.OpenRecipeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Open Recipe" Width="400" SizeToContent="Height" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Initialized="OnInitialized">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="*" MinHeight="200"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <TextBlock Margin="0,0,0,2">Game Path</TextBlock>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="GamePathInput" Grid.Column="0" IsReadOnly="True"/>
+                <Button Grid.Column="2" Click="OnBrowseGame">Browse</Button>
+            </Grid>
+        </StackPanel>
+        <ListView x:Name="RecipeFileList" Grid.Row="2" SelectionChanged="OnItemSelect" MouseDoubleClick="OnItemSelected">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">Name</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Description}">Description</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="RecipePathInput" Grid.Column="0" IsReadOnly="True"/>
+            <Button Grid.Column="2" Click="OnBrowseRecipe">Browse</Button>
+            <Button Grid.Column="4" Click="OnContinue">Continue</Button>
+        </Grid>
+    </Grid>
+</Window>
