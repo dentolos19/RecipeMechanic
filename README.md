@@ -5,7 +5,7 @@
 
 A powerful and easy-to-use recipe tool for Scrap Mechanic!
 
-> This project is currently being reworked! Do not clone or build as it is incomplete!
+> Note: This project is currently work-in-progress and doesn't contain all the planned features. See below for more info.
 
 ## Features
 
@@ -15,12 +15,16 @@ A powerful and easy-to-use recipe tool for Scrap Mechanic!
   * [X] Supports Dispenser recipes
   * [X] Supports Workbench recipes
   * [X] Supports Trader deals
-* [X] Contains many powerful tools
-  * [X] Has the ability to add any kinds of recipes
-  * [X] Has the ability to remove any kind of recipes
-  * [X] Has the ability to edit individual recipes
-  * [X] Has the ability to edit individual ingredients of a recipe
+* [X] Contains many tools for easy management
+  * [X] Allows to add any kind of recipes (including those not directly implement into survival)
+  * [X] Allows to remove any kind of recipes
+  * [X] Allows to customize individual recipe data
+    * [X] Supports editing **Output Quantity**
+    * [X] Supports editing **Crafting Duration**
+    * [X] Supports editing **Ingredients**
+  * [ ] Has the ability to customize many recipes all at once
 * [X] Simplistic user interface for easy use
+* [ ] Has a backup system to ensure nothing goes wrong
 
 ## Screenshots
 

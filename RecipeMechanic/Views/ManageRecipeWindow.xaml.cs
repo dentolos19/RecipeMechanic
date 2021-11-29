@@ -45,6 +45,13 @@ public partial class ManageRecipeWindow
         if (dialog.ShowDialog() != true)
             return;
         var ingredientItem = Utilities.ConvertToIngredientItem(dialog.Ingredient, _items);
+        var existingIngredientItem = IngredientList.Items.OfType<IngredientItemModel>().FirstOrDefault(item => item.Id.Equals(ingredientItem.Id));
+        if (existingIngredientItem is not null)
+        {
+            if (MessageBox.Show("The ingredient already exists in the recipe, do you want to replace it?", "Recipe Mechanic", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+                return;
+            IngredientList.Items.Remove(existingIngredientItem);
+        }
         IngredientList.Items.Add(ingredientItem);
         IngredientList.SelectedItem = ingredientItem;
     }

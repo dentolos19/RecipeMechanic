@@ -142,6 +142,13 @@ public partial class MainWindow
         if (dialog.ShowDialog() != true)
             return;
         var recipeItem = Utilities.ConvertToRecipeItem(dialog.Recipe, _items);
+        var existingRecipeItem = RecipeList.Items.OfType<RecipeItemModel>().FirstOrDefault(item => item.Id.Equals(recipeItem.Id));
+        if (existingRecipeItem is not null)
+        {
+            if (MessageBox.Show("The recipe already exists, do you want to replace it?", "Recipe Mechanic", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+                return;
+            ViewModel.RecipeList.Remove(existingRecipeItem);
+        }
         ViewModel.RecipeList.Add(recipeItem);
         RecipeList.SelectedItem = recipeItem;
         UpdateStatus();
