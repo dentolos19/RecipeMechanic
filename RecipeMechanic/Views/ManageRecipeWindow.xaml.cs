@@ -1,19 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using RecipeMechanic.Core;
 using RecipeMechanic.Models;
 
 namespace RecipeMechanic.Views;
 
-public partial class ModifyRecipeWindow
+public partial class ManageRecipeWindow
 {
 
     private GameItemModel[] _items;
 
     public RecipeDataModel? Recipe { get; private set; }
 
-    public ModifyRecipeWindow(GameItemModel[] items, RecipeDataModel? recipe = null)
+    public ManageRecipeWindow(GameItemModel[] items, RecipeDataModel? recipe = null)
     {
         _items = items;
         Recipe = recipe;
@@ -30,38 +30,44 @@ public partial class ModifyRecipeWindow
             OutputQuantityInput.Value = Recipe.OutputQuantity;
             CraftingDurationInput.Value = Recipe.CraftingDuration;
             foreach (var ingredient in Recipe.Ingredients)
-            {
-                var item = _items.FirstOrDefault(item => item.Id.Equals(ingredient.Id));
-                if (item is not null)
-                    IngredientList.Items.Add(new IngredientItemModel
-                    {
-                        Id = ingredient.Id,
-                        Name = item.Name,
-                        Quantity = ingredient.Quantity
-                    });
-            }
+                IngredientList.Items.Add(Utilities.ConvertToIngredientItem(ingredient, _items));
         }
-        else
-        {
-            Title = "New Recipe";
-        }
+        var random = new Random();
         if (OutputItemSelection.SelectedItem is null)
-            OutputItemSelection.SelectedIndex = new Random().Next(OutputItemSelection.Items.Count - 1);
+            OutputItemSelection.SelectedIndex = random.Next(OutputItemSelection.Items.Count - 1);
+        if (!(IngredientList.Items.Count > 0))
+            IngredientList.Items.Add(Utilities.ConvertToIngredientItem(new IngredientDataModel { Id = _items[random.Next(_items.Length - 1)].Id }, _items));
     }
 
     private void OnAddIngredient(object sender, RoutedEventArgs args)
     {
-        // TODO: add ingredient
+        var dialog = new ManageIngredientWindow(_items) { Owner = this };
+        if (dialog.ShowDialog() != true)
+            return;
+        var ingredientItem = Utilities.ConvertToIngredientItem(dialog.Ingredient, _items);
+        IngredientList.Items.Add(ingredientItem);
+        IngredientList.SelectedItem = ingredientItem;
     }
 
     private void OnModifyIngredient(object sender, RoutedEventArgs args)
     {
-        // TODO: add ingredient
+        if (IngredientList.SelectedItem is not IngredientItemModel item)
+            return;
+        var dialog = new ManageIngredientWindow(_items, item.Data) { Owner = this };
+        if (dialog.ShowDialog() != true)
+            return;
+        IngredientList.Items.Remove(item);
+        var ingredientItem = Utilities.ConvertToIngredientItem(dialog.Ingredient, _items);
+        IngredientList.Items.Add(ingredientItem);
+        IngredientList.SelectedItem = ingredientItem;
     }
 
     private void OnRemoveIngredient(object sender, RoutedEventArgs args)
     {
-        // TODO: add ingredient
+        if (IngredientList.SelectedItem is not IngredientItemModel item)
+            return;
+        if (MessageBox.Show("Are you sure that you want to delete this ingredient?", "Recipe Mechanic", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            IngredientList.Items.Remove(item);
     }
 
     private void OnContinue(object sender, RoutedEventArgs args)

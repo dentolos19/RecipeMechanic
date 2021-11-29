@@ -9,29 +9,29 @@ namespace RecipeMechanic.Core;
 public static class Utilities
 {
 
-    public static IList<RecipeDataModel> GetItemRecipes(string filePath)
+    public static IList<RecipeDataModel> GetRecipes(string filePath)
     {
-        var fileContent = File.ReadAllText(filePath);
-        return JsonSerializer.Deserialize<List<RecipeDataModel>>(fileContent, new JsonSerializerOptions { ReadCommentHandling = JsonCommentHandling.Skip });
+        var recipeData = File.ReadAllText(filePath);
+        return JsonSerializer.Deserialize<List<RecipeDataModel>>(recipeData, new JsonSerializerOptions { ReadCommentHandling = JsonCommentHandling.Skip });
     }
 
-    public static IDictionary<Guid, DescriptionDataModel> GetItemDescriptions(string filePath)
+    public static IDictionary<Guid, DescriptionDataModel> GetDescriptions(string filePath)
     {
-        var fileContent = File.ReadAllText(filePath);
-        return JsonSerializer.Deserialize<Dictionary<Guid, DescriptionDataModel>>(fileContent, new JsonSerializerOptions { ReadCommentHandling = JsonCommentHandling.Skip });
+        var descriptionData = File.ReadAllText(filePath);
+        return JsonSerializer.Deserialize<Dictionary<Guid, DescriptionDataModel>>(descriptionData, new JsonSerializerOptions { ReadCommentHandling = JsonCommentHandling.Skip });
     }
 
     public static IList<RecipeItemModel> MergeRecipesAndDescriptions(IEnumerable<RecipeDataModel> recipes, IEnumerable<GameItemModel> items)
     {
         var recipeItems = new List<RecipeItemModel>();
         foreach (var recipe in recipes)
-            recipeItems.Add(ConvertDataToItem(recipe, items));
+            recipeItems.Add(ConvertToRecipeItem(recipe, items));
         return recipeItems.ToArray();
     }
 
-    public static RecipeItemModel ConvertDataToItem(RecipeDataModel recipeData, IEnumerable<GameItemModel> items)
+    public static RecipeItemModel ConvertToRecipeItem(RecipeDataModel recipe, IEnumerable<GameItemModel> items)
     {
-        var recipeItem = new RecipeItemModel { Id = recipeData.Id, Data = recipeData };
+        var recipeItem = new RecipeItemModel { Id = recipe.Id, Data = recipe };
         foreach (var item in items)
         {
             if (!recipeItem.Id.Equals(item.Id))
@@ -40,6 +40,18 @@ public static class Utilities
             recipeItem.Description = item.Description;
         }
         return recipeItem;
+    }
+
+    public static IngredientItemModel ConvertToIngredientItem(IngredientDataModel ingredient, IEnumerable<GameItemModel> items)
+    {
+        var ingredientItem = new IngredientItemModel { Id = ingredient.Id, Quantity = ingredient.Quantity, Data = ingredient };
+        foreach (var item in items)
+        {
+            if (!ingredientItem.Id.Equals(item.Id))
+                continue;
+            ingredientItem.Name = item.Name;
+        }
+        return ingredientItem;
     }
 
 }

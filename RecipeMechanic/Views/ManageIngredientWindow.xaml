@@ -1,0 +1,25 @@
+﻿<Window x:Class="RecipeMechanic.Views.ManageIngredientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:models="clr-namespace:RecipeMechanic.Models"
+        Title="Manage Ingredient" Width="400" SizeToContent="Height" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Initialized="OnInitialized">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <ComboBox x:Name="ItemSelection" Grid.Column="0">
+            <ComboBox.ItemTemplate>
+                <DataTemplate DataType="models:GameItemModel">
+                    <TextBlock Text="{Binding Path=Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <xctk:IntegerUpDown Grid.Column="2" x:Name="QuantityInput" Value="0" Minimum="0"/>
+        <Button Grid.Column="4" Click="OnContinue">Continue</Button>
+    </Grid>
+</Window>

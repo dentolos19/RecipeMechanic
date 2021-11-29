@@ -1,42 +1,30 @@
 ﻿<Window x:Class="RecipeMechanic.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
-        xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns:core="clr-namespace:RecipeMechanic.Core"
         xmlns:viewModels="clr-namespace:RecipeMechanic.ViewModels"
         Title="Recipe Mechanic" MinWidth="800" MinHeight="500" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip">
     <Window.DataContext>
         <viewModels:MainViewModel/>
     </Window.DataContext>
-    <Window.CommandBindings>
-        <CommandBinding Command="Open" Executed="OnOpenRecipe"/>
-        <CommandBinding Command="Save" CanExecute="CanSaveRecipe" Executed="OnSaveRecipe"/>
-        <CommandBinding Command="SaveAs" CanExecute="CanSaveRecipeAs" Executed="OnSaveRecipeAs"/>
-        <CommandBinding Command="core:Commands.AddRecipe" CanExecute="IsItemsAvailable" Executed="OnAddRecipe"/>
-        <CommandBinding Command="core:Commands.ModifyRecipe" CanExecute="IsRecipeSelected" Executed="OnModifyRecipe"/>
-        <!--<CommandBinding Command="c:Commands.ModifyAllRecipes" CanExecute="IsItemsAvailable" Executed="OnModifyAllRecipes"/>-->
-        <CommandBinding Command="Delete" CanExecute="IsRecipeSelected" Executed="OnRemoveRecipe"/>
-    </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
             <MenuItem Header="_File">
-                <MenuItem Command="Open" InputGestureText="Ctrl+O"/>
+                <MenuItem Header="Open" Click="OnOpenRecipe"/>
                 <Separator/>
-                <MenuItem Command="Save" InputGestureText="Ctrl+S"/>
-                <MenuItem Command="SaveAs" InputGestureText="Ctrl+Shift+S"/>
+                <MenuItem Header="Save" Click="OnSaveRecipe"/>
+                <MenuItem Header="Save As" Click="OnSaveRecipeAs"/>
                 <Separator/>
                 <MenuItem Header="Exit" InputGestureText="Alt+F4" Click="OnExit"/>
             </MenuItem>
             <MenuItem Header="Edit">
-                <MenuItem Command="core:Commands.AddRecipe"/>
-                <MenuItem Command="core:Commands.ModifyRecipe"/>
-                <!--<MenuItem Header="Modify All Recipes" Command="c:Commands.ModifyAllRecipes"/>-->
-                <MenuItem Command="Delete"/>
+                <MenuItem Header="Add Recipe" Click="OnAddRecipe"/>
+                <MenuItem Header="Modify Recipe" Click="OnModifyRecipe"/>
+                <MenuItem Header="Remove Recipe" Click="OnRemoveRecipe"/>
             </MenuItem>
             <MenuItem Header="Game">
                 <MenuItem Header="Launch Steam Backup Wizard" Click="OnLaunchBackupWizard"/>
@@ -49,8 +37,8 @@
                 <RowDefinition Height="5"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBox x:Name="FilterInput" Grid.Row="0" metro:TextBoxHelper.Watermark="Search" TextChanged="OnRecipeFilter"/>
-            <ListView x:Name="RecipeList" Grid.Row="2" ItemsSource="{Binding Path=RecipeList}">
+            <TextBox x:Name="SearchInput" Grid.Row="0" TextChanged="OnRecipeSearch"/>
+            <ListView x:Name="RecipeList" Grid.Row="2" ItemsSource="{Binding Path=RecipeList}" MouseDoubleClick="OnModifyRecipe">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Id}">ID</GridViewColumn>
@@ -60,16 +48,37 @@
                 </ListView.View>
                 <ListView.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Command="core:Commands.ModifyRecipe"/>
-                        <MenuItem Command="Delete" InputGestureText="Del"/>
+                        <MenuItem Header="Modify Recipe" Click="OnModifyRecipe"/>
+                        <MenuItem Header="Remove Recipe" Click="OnRemoveRecipe"/>
                     </ContextMenu>
                 </ListView.ContextMenu>
-                <behaviors:Interaction.Triggers>
-                    <behaviors:EventTrigger EventName="MouseDoubleClick">
-                        <behaviors:InvokeCommandAction Command="core:Commands.ModifyRecipe"/>
-                    </behaviors:EventTrigger>
-                </behaviors:Interaction.Triggers>
             </ListView>
         </Grid>
+        <StatusBar Grid.Row="2">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem Grid.Column="0">
+                <TextBlock Text="{Binding Path=RecipeCountText}"/>
+            </StatusBarItem>
+            <Separator Grid.Column="1"/>
+            <StatusBarItem Grid.Column="2">
+                <TextBlock Text="{Binding Path=OpenedFilePath}"/>
+            </StatusBarItem>
+            <Separator Grid.Column="3"/>
+            <StatusBarItem Grid.Column="4">
+                <TextBlock Text="{Binding Path=AppVersionText}"/>
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </Window>

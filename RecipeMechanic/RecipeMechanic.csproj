@@ -9,12 +9,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="MahApps.Metro" Version="2.4.9" />
-		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
+		<PackageReference Include="Extended.Wpf.Toolkit" Version="4.1.0"/>
 	</ItemGroup>
 
 	<ItemGroup>
-		<Resource Include="Resources\Assets\Icon.png" />
+		<Resource Include="Resources\Assets\Icon.png"/>
 	</ItemGroup>
 
 </Project>
