@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using RecipeMechanic.Models;
+using System;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Microsoft.Win32;
-using RecipeMechanic.Models;
 
 namespace RecipeMechanic.Views;
 
@@ -21,11 +21,12 @@ public partial class OpenRecipeFileWindow
 
     private void LoadGameRecipes(string gamePath)
     {
-        var cookBotRecipePath = Path.Combine(gamePath, "Survival/CraftingRecipes/cookbot.json");
-        var craftBotRecipePath = Path.Combine(gamePath, "Survival/CraftingRecipes/craftbot.json");
-        var dispenserRecipePath = Path.Combine(gamePath, "Survival/CraftingRecipes/dispenser.json");
-        var hideoutRecipePath = Path.Combine(gamePath, "Survival/CraftingRecipes/hideout.json");
-        var workbenchRecipePath = Path.Combine(gamePath,"Survival/CraftingRecipes/workbench.json");
+        var recipesPath = Path.Combine(gamePath, "Survival", "CraftingRecipes");
+        var cookBotRecipePath = Path.Combine(recipesPath, "cookbot.json");
+        var craftBotRecipePath = Path.Combine(recipesPath, "craftbot.json");
+        var dispenserRecipePath = Path.Combine(recipesPath, "dispenser.json");
+        var hideoutRecipePath = Path.Combine(recipesPath, "hideout.json");
+        var workbenchRecipePath = Path.Combine(recipesPath, "workbench.json");
         RecipeFileList.Items.Clear();
         if (File.Exists(cookBotRecipePath))
             RecipeFileList.Items.Add(new RecipeFileItemModel

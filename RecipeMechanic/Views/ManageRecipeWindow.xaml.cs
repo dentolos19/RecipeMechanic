@@ -1,8 +1,8 @@
-﻿using System;
+﻿using RecipeMechanic.Core;
+using RecipeMechanic.Models;
+using System;
 using System.Linq;
 using System.Windows;
-using RecipeMechanic.Core;
-using RecipeMechanic.Models;
 
 namespace RecipeMechanic.Views;
 

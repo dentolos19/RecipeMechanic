@@ -1,6 +1,6 @@
-﻿using System.Windows;
+﻿using RecipeMechanic.Core;
+using System.Windows;
 using System.Windows.Threading;
-using RecipeMechanic.Core;
 
 namespace RecipeMechanic;
 

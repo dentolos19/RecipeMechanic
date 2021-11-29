@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using RecipeMechanic.Core;
+using RecipeMechanic.Models;
+using RecipeMechanic.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -8,10 +12,6 @@ using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using Microsoft.Win32;
-using RecipeMechanic.Core;
-using RecipeMechanic.Models;
-using RecipeMechanic.ViewModels;
 
 namespace RecipeMechanic.Views;
 
@@ -29,15 +29,12 @@ public partial class MainWindow
         InitializeComponent();
         var version = Assembly.GetExecutingAssembly().GetName().Version;
         ViewModel.AppVersionText = $"v{version.Major}.{version.Minor}";
-        #if DEBUG
-        ViewModel.AppVersionText += "-DEBUG";
-        #endif
         ((CollectionView)CollectionViewSource.GetDefaultView(RecipeList.ItemsSource)).Filter = FilterRecipe;
     }
 
     private void UpdateStatus()
     {
-        ViewModel.RecipeCountText = $"Contains {RecipeList.Items.Count} recipes";
+        ViewModel.RecipeCountText = $"{RecipeList.Items.Count} Recipe(s)";
         ViewModel.OpenedFilePath = _recipePath;
     }
 
@@ -94,7 +91,7 @@ public partial class MainWindow
             _gamePath = null;
             _recipePath = null;
             ViewModel.RecipeList.Clear();
-            MessageBox.Show("An unhandled exception occurred while loading the recipe file! " + exception.Message, "Recipe Mechanic");
+            MessageBox.Show("An unhandled exception occurred while opening the recipe file! " + exception.Message, "Recipe Mechanic");
         }
         UpdateStatus();
     }

@@ -1,7 +1,7 @@
-﻿using System;
+﻿using RecipeMechanic.Models;
+using System;
 using System.Linq;
 using System.Windows;
-using RecipeMechanic.Models;
 
 namespace RecipeMechanic.Views;
 
