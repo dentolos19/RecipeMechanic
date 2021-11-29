@@ -1,7 +1,7 @@
-﻿<Window x:Class="RecipeMechanic.Views.OpenRecipeWindow"
+﻿<Window x:Class="RecipeMechanic.Views.OpenRecipeFileWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Open Recipe" Width="400" SizeToContent="Height" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Initialized="OnInitialized">
+        Title="Open Recipe File" Width="400" SizeToContent="Height" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Initialized="OnInitialized">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

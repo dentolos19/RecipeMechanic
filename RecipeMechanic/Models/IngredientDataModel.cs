@@ -6,7 +6,7 @@ namespace RecipeMechanic.Models;
 public class IngredientDataModel
 {
 
-    [JsonPropertyName("quantity")] public int RequiredQuantity { get; set; }
+    [JsonPropertyName("quantity")] public int Quantity { get; set; }
     [JsonPropertyName("itemId")] public Guid Id { get; set; }
 
 }

@@ -21,22 +21,25 @@ public static class Utilities
         return JsonSerializer.Deserialize<Dictionary<Guid, DescriptionDataModel>>(fileContent, new JsonSerializerOptions { ReadCommentHandling = JsonCommentHandling.Skip });
     }
 
-    public static IList<RecipeItemModel> MergeRecipesAndDescriptions(IEnumerable<RecipeDataModel> recipes, IDictionary<Guid, DescriptionDataModel> descriptions)
+    public static IList<RecipeItemModel> MergeRecipesAndDescriptions(IEnumerable<RecipeDataModel> recipes, IEnumerable<GameItemModel> items)
     {
         var recipeItems = new List<RecipeItemModel>();
         foreach (var recipe in recipes)
-        {
-            var recipeItem = new RecipeItemModel { Id = recipe.Id };
-            foreach (var (id, description) in descriptions)
-            {
-                if (!recipe.Id.Equals(id))
-                    continue;
-                recipeItem.Name = description.Title;
-                recipeItem.Description = description.Description;
-            }
-            recipeItems.Add(recipeItem);
-        }
+            recipeItems.Add(ConvertDataToItem(recipe, items));
         return recipeItems.ToArray();
+    }
+
+    public static RecipeItemModel ConvertDataToItem(RecipeDataModel recipeData, IEnumerable<GameItemModel> items)
+    {
+        var recipeItem = new RecipeItemModel { Id = recipeData.Id, Data = recipeData };
+        foreach (var item in items)
+        {
+            if (!recipeItem.Id.Equals(item.Id))
+                continue;
+            recipeItem.Name = item.Name;
+            recipeItem.Description = item.Description;
+        }
+        return recipeItem;
     }
 
 }

@@ -7,20 +7,22 @@ namespace RecipeMechanic.Core;
 public class Settings
 {
 
-    private static readonly string SettingsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "RecipeMechanic.settings.json");
+    private static readonly string FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "RecipeMechanic.settings.json");
 
     public string SavedGamePath { get; set; }
 
     public void Save()
     {
-        File.WriteAllText(SettingsPath, JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true }));
+        var fileContent = JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true });
+        File.WriteAllText(FilePath, fileContent);
     }
 
     public static Settings Load()
     {
-        return !File.Exists(SettingsPath)
-            ? new Settings()
-            : JsonSerializer.Deserialize<Settings>(File.ReadAllText(SettingsPath));
+        if (!File.Exists(FilePath))
+            return new Settings();
+        var fileContent = File.ReadAllText(FilePath);
+        return JsonSerializer.Deserialize<Settings>(fileContent);
     }
 
 }

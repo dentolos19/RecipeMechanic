@@ -1,0 +1,59 @@
+﻿<Window x:Class="RecipeMechanic.Views.ModifyRecipeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:models="clr-namespace:RecipeMechanic.Models"
+        Title="Modify Recipe" Width="400" SizeToContent="Height" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Initialized="OnInitialized">
+    <StackPanel Margin="10,5">
+        <StackPanel Margin="0,5">
+            <TextBlock Margin="0,0,0,2">Output Item</TextBlock>
+            <ComboBox x:Name="OutputItemSelection">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate DataType="models:GameItemModel">
+                        <TextBlock Text="{Binding Path=Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Margin="0,5">
+            <TextBlock Margin="0,0,0,2">Output Quantity</TextBlock>
+            <metro:NumericUpDown x:Name="OutputQuantityInput" NumericInputMode="Numbers" Minimum="1"/>
+        </StackPanel>
+        <StackPanel Margin="0,5">
+            <TextBlock Margin="0,0,0,2">Crafting Duration</TextBlock>
+            <metro:NumericUpDown x:Name="CraftingDurationInput" NumericInputMode="Numbers" Minimum="0"/>
+        </StackPanel>
+        <StackPanel Margin="0,5">
+            <TextBlock Margin="0,0,0,2">Ingredients</TextBlock>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <ListView x:Name="IngredientList" Grid.Row="0" MouseDoubleClick="OnModifyIngredient">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Id}">ID</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">Name</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Quantity}">Quantity</GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Click="OnAddIngredient">Add Ingredient</Button>
+                    <Button Grid.Column="2" Click="OnModifyIngredient">Modify Ingredient</Button>
+                    <Button Grid.Column="4" Click="OnRemoveIngredient">Remove Ingredient</Button>
+                </Grid>
+            </Grid>
+        </StackPanel>
+        <Button Margin="0,5" Click="OnContinue">Continue</Button>
+    </StackPanel>
+</Window>

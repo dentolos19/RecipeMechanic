@@ -8,13 +8,13 @@ using RecipeMechanic.Models;
 
 namespace RecipeMechanic.Views;
 
-public partial class OpenRecipeWindow
+public partial class OpenRecipeFileWindow
 {
 
     public string GamePath { get; private set; }
     public string RecipePath { get; private set; }
 
-    public OpenRecipeWindow()
+    public OpenRecipeFileWindow()
     {
         InitializeComponent();
     }
@@ -28,15 +28,40 @@ public partial class OpenRecipeWindow
         var workbenchRecipePath = Path.Combine(gamePath,"Survival/CraftingRecipes/workbench.json");
         RecipeFileList.Items.Clear();
         if (File.Exists(cookBotRecipePath))
-            RecipeFileList.Items.Add(new RecipeFileItemModel("cookbot.json", "Your personal non-living chef!", cookBotRecipePath));
+            RecipeFileList.Items.Add(new RecipeFileItemModel
+            {
+                Name = "cookbot.json",
+                Description = "Your personal non-living chef!",
+                Path = cookBotRecipePath
+            });
         if (File.Exists(craftBotRecipePath))
-            RecipeFileList.Items.Add(new RecipeFileItemModel("craftbot.json", "The well-known Craftbot!", craftBotRecipePath));
+            RecipeFileList.Items.Add(new RecipeFileItemModel
+            {
+                Name = "craftbot.json",
+                Description = "The well-known Craftbot!",
+                Path = craftBotRecipePath
+            });
         if (File.Exists(dispenserRecipePath))
-            RecipeFileList.Items.Add(new RecipeFileItemModel("dispenser.json", "The one that creates the Craftbot!", dispenserRecipePath));
+            RecipeFileList.Items.Add(new RecipeFileItemModel
+            {
+                Name = "dispenser.json",
+                Description = "The one that creates the Craftbot!",
+                Path = dispenserRecipePath
+            });
         if (File.Exists(hideoutRecipePath))
-            RecipeFileList.Items.Add(new RecipeFileItemModel("hideout.json", "The person who sells things overpriced!", hideoutRecipePath));
+            RecipeFileList.Items.Add(new RecipeFileItemModel
+            {
+                Name = "hideout.json",
+                Description = "The person who sells things overpriced!",
+                Path = hideoutRecipePath
+            });
         if (File.Exists(workbenchRecipePath))
-            RecipeFileList.Items.Add(new RecipeFileItemModel("workbench.json", "The one that is at the starting ship!", workbenchRecipePath));
+            RecipeFileList.Items.Add(new RecipeFileItemModel
+            {
+                Name = "workbench.json",
+                Description = "The one that is at the starting ship!",
+                Path = workbenchRecipePath
+            });
     }
 
     private void OnInitialized(object? sender, EventArgs args)

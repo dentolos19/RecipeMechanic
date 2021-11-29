@@ -16,12 +16,10 @@ A powerful and easy-to-use recipe tool for Scrap Mechanic!
   * [X] Supports Workbench recipes
   * [X] Supports Trader deals
 * [X] Contains many powerful tools
-  * [X] Has the ability to add new kinds of recipes
+  * [X] Has the ability to add any kinds of recipes
   * [X] Has the ability to remove any kind of recipes
   * [X] Has the ability to edit individual recipes
-  * [X] Has the ability to edit individual requirements of a recipe
-  * [X] Has the ability to **mass** edit recipes
-  * [X] Has the ability to **mass** edit requirements of all recipes
+  * [X] Has the ability to edit individual ingredients of a recipe
 * [X] Simplistic user interface for easy use
 
 ## Screenshots
