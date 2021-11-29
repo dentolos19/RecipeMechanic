@@ -10,6 +10,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Extended.Wpf.Toolkit" Version="4.1.0"/>
+		<PackageReference Include="System.Drawing.Common" Version="6.0.0"/>
 	</ItemGroup>
 
 	<ItemGroup>

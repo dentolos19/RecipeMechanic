@@ -79,11 +79,11 @@ public partial class MainWindow
                         Name = description.Title,
                         Description = description.Description
                     });
-                _items = items.ToArray();
+                _items = items.OrderBy(item => item.Name).ToArray();
             }
             var recipes = Utilities.GetRecipes(_recipePath);
             ViewModel.RecipeList.Clear();
-            foreach (var recipeItem in Utilities.MergeRecipesAndDescriptions(recipes, _items))
+            foreach (var recipeItem in Utilities.MergeRecipesAndDescriptions(recipes, _items).OrderBy(item => item.Name))
                 ViewModel.RecipeList.Add(recipeItem);
         }
         catch (Exception exception)

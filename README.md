@@ -19,9 +19,9 @@ A powerful and easy-to-use recipe tool for Scrap Mechanic!
   * [X] Allows to add any kind of recipes (including those not directly implement into survival)
   * [X] Allows to remove any kind of recipes
   * [X] Allows to customize individual recipe data
-    * [X] Supports editing **Output Quantity**
-    * [X] Supports editing **Crafting Duration**
-    * [X] Supports editing **Ingredients**
+    * [X] Supports editing the output quantity
+    * [X] Supports editing the crafting duration
+    * [X] Supports editing the required ingredients
   * [ ] Has the ability to customize many recipes all at once
 * [X] Simplistic user interface for easy use
 * [ ] Has a backup system to ensure nothing goes wrong
@@ -31,4 +31,3 @@ A powerful and easy-to-use recipe tool for Scrap Mechanic!
 ![](./.github/screenshots/0.png)
 ![](./.github/screenshots/1.png)
 ![](./.github/screenshots/2.png)
-![](./.github/screenshots/3.png)
