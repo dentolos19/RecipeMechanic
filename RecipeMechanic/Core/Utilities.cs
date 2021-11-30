@@ -33,7 +33,7 @@ public static class Utilities
 
     public static RecipeItemModel ConvertToRecipeItem(RecipeDataModel recipe, IEnumerable<GameItemModel> items)
     {
-        var recipeItem = new RecipeItemModel { Id = recipe.Id, Data = recipe };
+        var recipeItem = new RecipeItemModel { Id = recipe.Id.Value, Data = recipe };
         foreach (var item in items)
         {
             if (!recipeItem.Id.Equals(item.Id))

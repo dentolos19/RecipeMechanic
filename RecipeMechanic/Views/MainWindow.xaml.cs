@@ -182,39 +182,63 @@ public partial class MainWindow
         UpdateStatus();
     }
 
-    private void OnModifyRecipe(object sender, RoutedEventArgs args)
+    private void OnEditRecipes(object sender, RoutedEventArgs args)
     {
-        if (RecipeList.SelectedItem is not RecipeItemModel item)
+        if (!(RecipeList.SelectedItems.Count > 0))
             return;
-        var dialog = new ManageRecipeWindow(_items, item.Data) { Owner = this };
+        var items = RecipeList.SelectedItems.OfType<RecipeItemModel>().ToArray();
+        var dialog = new ManageRecipeWindow(_items, items.Select(item => item.Data).ToArray()) { Owner = this };
         if (dialog.ShowDialog() != true)
             return;
-        ViewModel.RecipeList.Remove(item);
-        var recipeItem = Utilities.ConvertToRecipeItem(dialog.Recipe, _items);
-        ViewModel.RecipeList.Add(recipeItem);
-        RecipeList.SelectedItem = recipeItem;
+        foreach (var item in items)
+        {
+            var recipe = item.Data;
+            if (dialog.Recipe.Id.HasValue)
+                recipe.Id = dialog.Recipe.Id;
+            if (dialog.Recipe.OutputQuantity.HasValue)
+                recipe.OutputQuantity = dialog.Recipe.OutputQuantity;
+            if (dialog.Recipe.CraftingDuration.HasValue)
+                recipe.CraftingDuration = dialog.Recipe.CraftingDuration;
+            if (dialog.Recipe.Ingredients is { Count: > 0 })
+                recipe.Ingredients = dialog.Recipe.Ingredients;
+            ViewModel.RecipeList[ViewModel.RecipeList.IndexOf(item)] = Utilities.ConvertToRecipeItem(recipe, _items);
+        }
     }
 
-    private void OnModifyAllRecipes(object sender, RoutedEventArgs args)
+    private void OnEditAllRecipes(object sender, RoutedEventArgs args)
     {
         if (_items is not { Length: > 0 })
         {
             MessageBox.Show("Open a recipe file first before performing this task!", "Recipe Mechanic");
             return;
         }
-        var dialog = new ManageRecipeWindow(_items, default, true) { Owner = this };
+        var items = ViewModel.RecipeList.ToArray();
+        var dialog = new ManageRecipeWindow(_items, items.Select(item => item.Data).ToArray()) { Owner = this };
         if (dialog.ShowDialog() != true)
             return;
-        // TODO: modify all recipes
+        foreach (var item in items)
+        {
+            var recipe = item.Data;
+            if (dialog.Recipe.Id.HasValue)
+                recipe.Id = dialog.Recipe.Id;
+            if (dialog.Recipe.OutputQuantity.HasValue)
+                recipe.OutputQuantity = dialog.Recipe.OutputQuantity;
+            if (dialog.Recipe.CraftingDuration.HasValue)
+                recipe.CraftingDuration = dialog.Recipe.CraftingDuration;
+            if (dialog.Recipe.Ingredients is { Count: > 0 })
+                recipe.Ingredients = dialog.Recipe.Ingredients;
+            ViewModel.RecipeList[ViewModel.RecipeList.IndexOf(item)] = Utilities.ConvertToRecipeItem(recipe, _items);
+        }
     }
 
-    private void OnRemoveRecipe(object sender, RoutedEventArgs args)
+    private void OnRemoveRecipes(object sender, RoutedEventArgs args)
     {
-        if (RecipeList.SelectedItem is not RecipeItemModel item)
+        if (!(RecipeList.SelectedItems.Count > 0))
             return;
-        if (MessageBox.Show("Are you sure that you want to delete this recipe?", "Recipe Mechanic", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+        if (MessageBox.Show("Are you sure that you want to remove these recipe(s)?", "Recipe Mechanic", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
             return;
-        ViewModel.RecipeList.Remove(item);
+        foreach (var item in RecipeList.SelectedItems.OfType<RecipeItemModel>().ToArray())
+            ViewModel.RecipeList.Remove(item);
         UpdateStatus();
     }
 

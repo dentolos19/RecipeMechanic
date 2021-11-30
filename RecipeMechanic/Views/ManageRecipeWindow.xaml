@@ -17,11 +17,11 @@
         </StackPanel>
         <StackPanel Margin="0,5">
             <TextBlock Margin="0,0,0,2">Output Quantity</TextBlock>
-            <xctk:IntegerUpDown x:Name="OutputQuantityInput" Value="1" Minimum="1"/>
+            <xctk:IntegerUpDown x:Name="OutputQuantityInput" Minimum="1"/>
         </StackPanel>
         <StackPanel Margin="0,5">
             <TextBlock Margin="0,0,0,2">Crafting Duration</TextBlock>
-            <xctk:IntegerUpDown x:Name="CraftingDurationInput" Value="0" Minimum="0"/>
+            <xctk:IntegerUpDown x:Name="CraftingDurationInput" Minimum="0"/>
         </StackPanel>
         <StackPanel Margin="0,5">
             <TextBlock Margin="0,0,0,2">Ingredients</TextBlock>

@@ -24,9 +24,9 @@
             </MenuItem>
             <MenuItem Header="Edit">
                 <MenuItem Header="Add Recipe" Click="OnAddRecipe"/>
-                <MenuItem Header="Modify Recipe" Click="OnModifyRecipe"/>
-                <MenuItem Header="Modify All Recipe" Click="OnModifyAllRecipes"/>
-                <MenuItem Header="Remove Recipe" Click="OnRemoveRecipe"/>
+                <MenuItem Header="Edit Recipe(s)" Click="OnEditRecipes"/>
+                <MenuItem Header="Edit All Recipe" Click="OnEditAllRecipes"/>
+                <MenuItem Header="Remove Recipe(s)" Click="OnRemoveRecipes"/>
             </MenuItem>
             <MenuItem Header="Game">
                 <MenuItem Header="Launch Steam Backup Wizard" Click="OnLaunchBackupWizard"/>
@@ -42,7 +42,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <xctk:WatermarkTextBox x:Name="RecipeSearchInput" Grid.Row="0" Watermark="Search" TextChanged="OnRecipeSearch"/>
-                    <ListView x:Name="RecipeList" Grid.Row="2" ItemsSource="{Binding Path=RecipeList}" MouseDoubleClick="OnModifyRecipe">
+                    <ListView x:Name="RecipeList" Grid.Row="2" ItemsSource="{Binding Path=RecipeList}" MouseDoubleClick="OnEditRecipes">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn DisplayMemberBinding="{Binding Path=Id}">ID</GridViewColumn>
@@ -52,8 +52,8 @@
                         </ListView.View>
                         <ListView.ContextMenu>
                             <ContextMenu>
-                                <MenuItem Header="Modify Recipe" Click="OnModifyRecipe"/>
-                                <MenuItem Header="Remove Recipe" Click="OnRemoveRecipe"/>
+                                <MenuItem Header="Edit Recipe(s)" Click="OnEditRecipes"/>
+                                <MenuItem Header="Remove Recipe(s)" Click="OnRemoveRecipes"/>
                             </ContextMenu>
                         </ListView.ContextMenu>
                     </ListView>
