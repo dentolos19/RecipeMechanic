@@ -13,11 +13,12 @@ public partial class ManageRecipeWindow
 
     public RecipeDataModel? Recipe { get; private set; }
 
-    public ManageRecipeWindow(GameItemModel[] items, RecipeDataModel? recipe = null)
+    public ManageRecipeWindow(GameItemModel[] items, RecipeDataModel? recipe = null, bool massEditing = true)
     {
         _items = items;
         Recipe = recipe;
         InitializeComponent();
+        // TODO: mass editing
     }
 
     private void OnInitialized(object? sender, EventArgs args)

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:vm="clr-namespace:RecipeMechanic.ViewModels"
-        Title="Recipe Mechanic" MinWidth="800" MinHeight="500" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip">
+        Title="Recipe Mechanic" MinWidth="800" MinHeight="500" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" Initialized="OnInitialized">
     <Window.DataContext>
         <vm:MainViewModel/>
     </Window.DataContext>
@@ -25,6 +25,7 @@
             <MenuItem Header="Edit">
                 <MenuItem Header="Add Recipe" Click="OnAddRecipe"/>
                 <MenuItem Header="Modify Recipe" Click="OnModifyRecipe"/>
+                <MenuItem Header="Modify All Recipe" Click="OnModifyAllRecipes"/>
                 <MenuItem Header="Remove Recipe" Click="OnRemoveRecipe"/>
             </MenuItem>
             <MenuItem Header="Game">
@@ -32,34 +33,83 @@
                 <MenuItem Header="Verify Game Files (via Steam)" Click="OnVerifyGameFiles"/>
             </MenuItem>
         </Menu>
-        <Grid Grid.Row="1" Margin="10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="5"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <xctk:WatermarkTextBox x:Name="SearchInput" Grid.Row="0" Watermark="Search" TextChanged="OnRecipeSearch"/>
-            <ListView x:Name="RecipeList" Grid.Row="2" ItemsSource="{Binding Path=RecipeList}" MouseDoubleClick="OnModifyRecipe">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Id}">ID</GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">Name</GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Description}">Description</GridViewColumn>
-                    </GridView>
-                </ListView.View>
-                <ListView.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Modify Recipe" Click="OnModifyRecipe"/>
-                        <MenuItem Header="Remove Recipe" Click="OnRemoveRecipe"/>
-                    </ContextMenu>
-                </ListView.ContextMenu>
-            </ListView>
-        </Grid>
+        <TabControl Grid.Row="1">
+            <TabItem Header="Manage Recipes">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <xctk:WatermarkTextBox x:Name="RecipeSearchInput" Grid.Row="0" Watermark="Search" TextChanged="OnRecipeSearch"/>
+                    <ListView x:Name="RecipeList" Grid.Row="2" ItemsSource="{Binding Path=RecipeList}" MouseDoubleClick="OnModifyRecipe">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Id}">ID</GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">Name</GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Description}">Description</GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                        <ListView.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Modify Recipe" Click="OnModifyRecipe"/>
+                                <MenuItem Header="Remove Recipe" Click="OnRemoveRecipe"/>
+                            </ContextMenu>
+                        </ListView.ContextMenu>
+                    </ListView>
+                    <TextBlock Grid.Row="2" Text="Open a recipe file to get started!" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=RecipeList.Count}" Value="0">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </Grid>
+            </TabItem>
+            <TabItem Header="All Items">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <xctk:WatermarkTextBox x:Name="ItemSearchInput" Grid.Row="0" Watermark="Search" TextChanged="OnItemSearch"/>
+                    <ListView x:Name="ItemList" Grid.Row="2" ItemsSource="{Binding Path=ItemList}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Id}">ID</GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">Name</GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Description}">Description</GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <TextBlock Grid.Row="2" Text="Open a recipe file to view all items!" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=ItemList.Count}" Value="0">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </Grid>
+            </TabItem>
+        </TabControl>
         <StatusBar Grid.Row="2">
             <StatusBar.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
@@ -70,14 +120,18 @@
                 </ItemsPanelTemplate>
             </StatusBar.ItemsPanel>
             <StatusBarItem Grid.Column="0">
-                <TextBlock Text="{Binding Path=RecipeCountText}"/>
+                <TextBlock Text="{Binding Path=ItemCountText}"/>
             </StatusBarItem>
             <Separator Grid.Column="1"/>
             <StatusBarItem Grid.Column="2">
-                <TextBlock Text="{Binding Path=OpenedFilePath}"/>
+                <TextBlock Text="{Binding Path=RecipeCountText}"/>
             </StatusBarItem>
             <Separator Grid.Column="3"/>
             <StatusBarItem Grid.Column="4">
+                <TextBlock Text="{Binding Path=OpenedFileText}"/>
+            </StatusBarItem>
+            <Separator Grid.Column="5"/>
+            <StatusBarItem Grid.Column="6">
                 <TextBlock Text="{Binding Path=AppVersionText}"/>
             </StatusBarItem>
         </StatusBar>

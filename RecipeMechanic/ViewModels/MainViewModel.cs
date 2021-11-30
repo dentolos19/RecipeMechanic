@@ -6,15 +6,23 @@ namespace RecipeMechanic.ViewModels;
 public class MainViewModel : BaseViewModel
 {
 
-    private string _openedFilePath;
+    private string _openedFileText;
+    private string _itemCountText;
     private string _recipeCountText;
     private string _appVersionText;
     private ObservableCollection<RecipeItemModel> _recipeList = new();
+    private ObservableCollection<GameItemModel> _itemList = new();
 
-    public string OpenedFilePath
+    public string OpenedFileText
     {
-        get => _openedFilePath;
-        set => UpdateProperty(ref _openedFilePath, value);
+        get => _openedFileText;
+        set => UpdateProperty(ref _openedFileText, value);
+    }
+
+    public string ItemCountText
+    {
+        get => _itemCountText;
+        set => UpdateProperty(ref _itemCountText, value);
     }
 
     public string RecipeCountText
@@ -33,6 +41,12 @@ public class MainViewModel : BaseViewModel
     {
         get => _recipeList;
         set => UpdateProperty(ref _recipeList, value);
+    }
+
+    public ObservableCollection<GameItemModel> ItemList
+    {
+        get => _itemList;
+        set => UpdateProperty(ref _itemList, value);
     }
 
 }

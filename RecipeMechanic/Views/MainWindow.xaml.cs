@@ -27,15 +27,16 @@ public partial class MainWindow
     public MainWindow()
     {
         InitializeComponent();
-        var version = Assembly.GetExecutingAssembly().GetName().Version;
-        ViewModel.AppVersionText = $"v{version.Major}.{version.Minor}";
         ((CollectionView)CollectionViewSource.GetDefaultView(RecipeList.ItemsSource)).Filter = FilterRecipe;
+        ((CollectionView)CollectionViewSource.GetDefaultView(ItemList.ItemsSource)).Filter = FilterItem;
     }
 
     private void UpdateStatus()
     {
-        ViewModel.RecipeCountText = $"{RecipeList.Items.Count} Recipe(s)";
-        ViewModel.OpenedFilePath = _recipePath;
+        ViewModel.ItemCountText = $"{ViewModel.ItemList.Count} Item(s)";
+        ViewModel.RecipeCountText = $"{ViewModel.RecipeList.Count} Recipe(s)";
+        if (!string.IsNullOrEmpty(_recipePath))
+            ViewModel.OpenedFileText = _recipePath;
     }
 
     private void SaveRecipe(string filePath)
@@ -47,14 +48,33 @@ public partial class MainWindow
 
     private bool FilterRecipe(object item)
     {
-        var filter = SearchInput.Text;
+        var filter = RecipeSearchInput.Text;
         if (string.IsNullOrEmpty(filter))
             return true; // does not filter item (keeps it)
         if (item is not RecipeItemModel recipeItem)
             return false; // filter item (hides it)
-        return recipeItem.Name.Contains(filter, StringComparison.OrdinalIgnoreCase)
-               || recipeItem.Description?.Contains(filter, StringComparison.OrdinalIgnoreCase) == true
-               || recipeItem.Id.ToString().Contains(filter, StringComparison.OrdinalIgnoreCase);
+        return recipeItem.Id.ToString().Contains(filter, StringComparison.OrdinalIgnoreCase)
+               || recipeItem.Name.Contains(filter, StringComparison.OrdinalIgnoreCase)
+               || recipeItem.Description?.Contains(filter, StringComparison.OrdinalIgnoreCase) == true;
+    }
+
+    private bool FilterItem(object item)
+    {
+        var filter = ItemSearchInput.Text;
+        if (string.IsNullOrEmpty(filter))
+            return true; // does not filter item (keeps it)
+        if (item is not GameItemModel gameitem)
+            return false; // filter item (hides it)
+        return gameitem.Id.ToString().Contains(filter, StringComparison.OrdinalIgnoreCase)
+               || gameitem.Name.Contains(filter, StringComparison.OrdinalIgnoreCase)
+               || gameitem.Description?.Contains(filter, StringComparison.OrdinalIgnoreCase) == true;
+    }
+
+    private void OnInitialized(object? sender, EventArgs args)
+    {
+        var version = Assembly.GetExecutingAssembly().GetName().Version;
+        ViewModel.AppVersionText = $"v{version.Major}.{version.Minor}";
+        UpdateStatus();
     }
 
     private void OnOpenRecipe(object sender, RoutedEventArgs args)
@@ -80,6 +100,9 @@ public partial class MainWindow
                         Description = description.Description
                     });
                 _items = items.OrderBy(item => item.Name).ToArray();
+                ViewModel.ItemList.Clear();
+                foreach (var item in _items)
+                    ViewModel.ItemList.Add(item);
             }
             var recipes = Utilities.GetRecipes(_recipePath);
             ViewModel.RecipeList.Clear();
@@ -131,6 +154,11 @@ public partial class MainWindow
         CollectionViewSource.GetDefaultView(RecipeList.ItemsSource).Refresh();
     }
 
+    private void OnItemSearch(object sender, TextChangedEventArgs args)
+    {
+        CollectionViewSource.GetDefaultView(ItemList.ItemsSource).Refresh();
+    }
+
     private void OnAddRecipe(object sender, RoutedEventArgs args)
     {
         if (_items is not { Length: > 0 })
@@ -165,6 +193,19 @@ public partial class MainWindow
         var recipeItem = Utilities.ConvertToRecipeItem(dialog.Recipe, _items);
         ViewModel.RecipeList.Add(recipeItem);
         RecipeList.SelectedItem = recipeItem;
+    }
+
+    private void OnModifyAllRecipes(object sender, RoutedEventArgs args)
+    {
+        if (_items is not { Length: > 0 })
+        {
+            MessageBox.Show("Open a recipe file first before performing this task!", "Recipe Mechanic");
+            return;
+        }
+        var dialog = new ManageRecipeWindow(_items, default, true) { Owner = this };
+        if (dialog.ShowDialog() != true)
+            return;
+        // TODO: modify all recipes
     }
 
     private void OnRemoveRecipe(object sender, RoutedEventArgs args)
