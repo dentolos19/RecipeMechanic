@@ -33,15 +33,15 @@ public partial class MainWindow
 
     private void UpdateStatus()
     {
-        ViewModel.ItemCountText = $"{ViewModel.ItemList.Count} Item(s)";
-        ViewModel.RecipeCountText = $"{ViewModel.RecipeList.Count} Recipe(s)";
+        ViewModel.ItemCountText = $"{ViewModel.Items.Count} Item(s)";
+        ViewModel.RecipeCountText = $"{ViewModel.Recipes.Count} Recipe(s)";
         if (!string.IsNullOrEmpty(_recipePath))
             ViewModel.OpenedFileText = _recipePath;
     }
 
     private void SaveRecipe(string filePath)
     {
-        var recipes = ViewModel.RecipeList.Select(item => item.Data).ToArray();
+        var recipes = ViewModel.Recipes.Select(item => item.Data).ToArray();
         var recipeData = JsonSerializer.Serialize(recipes, new JsonSerializerOptions { WriteIndented = true });
         File.WriteAllText(filePath, "// This file was edited by Recipe Mechanic" + Environment.NewLine + recipeData);
     }
@@ -100,20 +100,20 @@ public partial class MainWindow
                         Description = description.Description
                     });
                 _items = items.OrderBy(item => item.Name).ToArray();
-                ViewModel.ItemList.Clear();
+                ViewModel.Items.Clear();
                 foreach (var item in _items)
-                    ViewModel.ItemList.Add(item);
+                    ViewModel.Items.Add(item);
             }
             var recipes = Utilities.GetRecipes(_recipePath);
-            ViewModel.RecipeList.Clear();
+            ViewModel.Recipes.Clear();
             foreach (var recipeItem in Utilities.MergeRecipesAndDescriptions(recipes, _items).OrderBy(item => item.Name))
-                ViewModel.RecipeList.Add(recipeItem);
+                ViewModel.Recipes.Add(recipeItem);
         }
         catch (Exception exception)
         {
             _gamePath = null;
             _recipePath = null;
-            ViewModel.RecipeList.Clear();
+            ViewModel.Recipes.Clear();
             MessageBox.Show("An unhandled exception occurred while opening the recipe file! " + exception.Message, "Recipe Mechanic");
         }
         UpdateStatus();
@@ -131,7 +131,7 @@ public partial class MainWindow
 
     private void OnSaveRecipeAs(object sender, RoutedEventArgs args)
     {
-        if (!(ViewModel.RecipeList.Count > 0))
+        if (!(ViewModel.Recipes.Count > 0))
         {
             MessageBox.Show("You must at least have one recipe in order to perform this task!", "Recipe Mechanic");
             return;
@@ -175,9 +175,9 @@ public partial class MainWindow
         {
             if (MessageBox.Show("The recipe already exists, do you want to replace it?", "Recipe Mechanic", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
                 return;
-            ViewModel.RecipeList.Remove(existingRecipeItem);
+            ViewModel.Recipes.Remove(existingRecipeItem);
         }
-        ViewModel.RecipeList.Add(recipeItem);
+        ViewModel.Recipes.Add(recipeItem);
         RecipeList.SelectedItem = recipeItem;
         UpdateStatus();
     }
@@ -201,7 +201,7 @@ public partial class MainWindow
                 recipe.CraftingDuration = dialog.Recipe.CraftingDuration;
             if (dialog.Recipe.Ingredients is { Count: > 0 })
                 recipe.Ingredients = dialog.Recipe.Ingredients;
-            ViewModel.RecipeList[ViewModel.RecipeList.IndexOf(item)] = Utilities.ConvertToRecipeItem(recipe, _items);
+            ViewModel.Recipes[ViewModel.Recipes.IndexOf(item)] = Utilities.ConvertToRecipeItem(recipe, _items);
         }
     }
 
@@ -212,7 +212,7 @@ public partial class MainWindow
             MessageBox.Show("Open a recipe file first before performing this task!", "Recipe Mechanic");
             return;
         }
-        var items = ViewModel.RecipeList.ToArray();
+        var items = ViewModel.Recipes.ToArray();
         var dialog = new ManageRecipeWindow(_items, items.Select(item => item.Data).ToArray()) { Owner = this };
         if (dialog.ShowDialog() != true)
             return;
@@ -227,7 +227,7 @@ public partial class MainWindow
                 recipe.CraftingDuration = dialog.Recipe.CraftingDuration;
             if (dialog.Recipe.Ingredients is { Count: > 0 })
                 recipe.Ingredients = dialog.Recipe.Ingredients;
-            ViewModel.RecipeList[ViewModel.RecipeList.IndexOf(item)] = Utilities.ConvertToRecipeItem(recipe, _items);
+            ViewModel.Recipes[ViewModel.Recipes.IndexOf(item)] = Utilities.ConvertToRecipeItem(recipe, _items);
         }
     }
 
@@ -238,7 +238,7 @@ public partial class MainWindow
         if (MessageBox.Show("Are you sure that you want to remove these recipe(s)?", "Recipe Mechanic", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
             return;
         foreach (var item in RecipeList.SelectedItems.OfType<RecipeItemModel>().ToArray())
-            ViewModel.RecipeList.Remove(item);
+            ViewModel.Recipes.Remove(item);
         UpdateStatus();
     }
 

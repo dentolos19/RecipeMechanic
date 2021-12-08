@@ -13,16 +13,14 @@ public class Settings
 
     public void Save()
     {
-        var fileContent = JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true });
-        File.WriteAllText(FilePath, fileContent);
+        File.WriteAllText(FilePath, JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true }));
     }
 
     public static Settings Load()
     {
         if (!File.Exists(FilePath))
             return new Settings();
-        var fileContent = File.ReadAllText(FilePath);
-        return JsonSerializer.Deserialize<Settings>(fileContent);
+        return JsonSerializer.Deserialize<Settings>(File.ReadAllText(FilePath));
     }
 
 }

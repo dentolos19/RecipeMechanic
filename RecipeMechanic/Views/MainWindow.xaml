@@ -42,7 +42,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <xctk:WatermarkTextBox x:Name="RecipeSearchInput" Grid.Row="0" Watermark="Search" TextChanged="OnRecipeSearch"/>
-                    <ListView x:Name="RecipeList" Grid.Row="2" ItemsSource="{Binding Path=RecipeList}" MouseDoubleClick="OnEditRecipes">
+                    <ListView x:Name="RecipeList" Grid.Row="2" ItemsSource="{Binding Path=Recipes}" MouseDoubleClick="OnEditRecipes">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn DisplayMemberBinding="{Binding Path=Id}">ID</GridViewColumn>
@@ -62,7 +62,7 @@
                             <Style TargetType="TextBlock">
                                 <Setter Property="Visibility" Value="Collapsed"/>
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Path=RecipeList.Count}" Value="0">
+                                    <DataTrigger Binding="{Binding Path=Recipes.Count}" Value="0">
                                         <Setter Property="Visibility" Value="Visible"/>
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -79,7 +79,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <xctk:WatermarkTextBox x:Name="ItemSearchInput" Grid.Row="0" Watermark="Search" TextChanged="OnItemSearch"/>
-                    <ListView x:Name="ItemList" Grid.Row="2" ItemsSource="{Binding Path=ItemList}">
+                    <ListView x:Name="ItemList" Grid.Row="2" ItemsSource="{Binding Path=Items}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn DisplayMemberBinding="{Binding Path=Id}">ID</GridViewColumn>
@@ -93,7 +93,7 @@
                             <Style TargetType="TextBlock">
                                 <Setter Property="Visibility" Value="Collapsed"/>
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Path=ItemList.Count}" Value="0">
+                                    <DataTrigger Binding="{Binding Path=Items.Count}" Value="0">
                                         <Setter Property="Visibility" Value="Visible"/>
                                     </DataTrigger>
                                 </Style.Triggers>

@@ -10,8 +10,8 @@ public class MainViewModel : BaseViewModel
     private string _itemCountText;
     private string _recipeCountText;
     private string _appVersionText;
-    private ObservableCollection<RecipeItemModel> _recipeList = new();
-    private ObservableCollection<GameItemModel> _itemList = new();
+    private ObservableCollection<RecipeItemModel> _recipes = new();
+    private ObservableCollection<GameItemModel> _items = new();
 
     public string OpenedFileText
     {
@@ -37,16 +37,16 @@ public class MainViewModel : BaseViewModel
         set => UpdateProperty(ref _appVersionText, value);
     }
 
-    public ObservableCollection<RecipeItemModel> RecipeList
+    public ObservableCollection<RecipeItemModel> Recipes
     {
-        get => _recipeList;
-        set => UpdateProperty(ref _recipeList, value);
+        get => _recipes;
+        set => UpdateProperty(ref _recipes, value);
     }
 
-    public ObservableCollection<GameItemModel> ItemList
+    public ObservableCollection<GameItemModel> Items
     {
-        get => _itemList;
-        set => UpdateProperty(ref _itemList, value);
+        get => _items;
+        set => UpdateProperty(ref _items, value);
     }
 
 }
