@@ -14,7 +14,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
-            <MenuItem Header="_File">
+            <MenuItem Header="File">
                 <MenuItem Header="Open" Click="OnOpenRecipe"/>
                 <Separator/>
                 <MenuItem Header="Save" Click="OnSaveRecipe"/>
@@ -52,6 +52,8 @@
                         </ListView.View>
                         <ListView.ContextMenu>
                             <ContextMenu>
+                                <MenuItem Header="Copy ID" Click="OnCopyRecipeId"/>
+                                <Separator/>
                                 <MenuItem Header="Edit Recipe(s)" Click="OnEditRecipes"/>
                                 <MenuItem Header="Remove Recipe(s)" Click="OnRemoveRecipes"/>
                             </ContextMenu>
@@ -87,6 +89,11 @@
                                 <GridViewColumn DisplayMemberBinding="{Binding Path=Description}">Description</GridViewColumn>
                             </GridView>
                         </ListView.View>
+                        <ListView.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Copy ID" Click="OnCopyItemId"/>
+                            </ContextMenu>
+                        </ListView.ContextMenu>
                     </ListView>
                     <TextBlock Grid.Row="2" Text="Open a recipe file to view all items!" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock.Style>

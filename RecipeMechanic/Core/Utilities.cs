@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using System.Threading.Tasks;
+using System.Windows;
 
 namespace RecipeMechanic.Core;
 
@@ -52,6 +54,20 @@ public static class Utilities
             ingredientItem.Name = item.Name;
         }
         return ingredientItem;
+    }
+
+    public static Task CopyToClipboard(string text)
+    {
+        while (true)
+            try
+            {
+                Clipboard.SetText(text);
+                return Task.CompletedTask;
+            }
+            catch
+            {
+                // do nothing
+            }
     }
 
 }

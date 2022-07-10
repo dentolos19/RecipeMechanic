@@ -67,10 +67,10 @@ public partial class OpenRecipeFileWindow
 
     private void OnInitialized(object? sender, EventArgs args)
     {
-        if (string.IsNullOrEmpty(App.Settings.SavedGamePath))
+        if (string.IsNullOrEmpty(App.Settings.GamePath))
             return;
-        GamePathInput.Text = App.Settings.SavedGamePath;
-        LoadGameRecipes(App.Settings.SavedGamePath);
+        GamePathInput.Text = App.Settings.GamePath;
+        LoadGameRecipes(App.Settings.GamePath);
     }
 
     private void OnBrowseGame(object sender, RoutedEventArgs args)
@@ -79,7 +79,7 @@ public partial class OpenRecipeFileWindow
         if (dialog.ShowDialog() != true)
             return;
         var gamePath = Path.GetDirectoryName(Path.GetDirectoryName(dialog.FileName));
-        App.Settings.SavedGamePath = gamePath;
+        App.Settings.GamePath = gamePath;
         GamePathInput.Text = gamePath;
         LoadGameRecipes(gamePath);
     }

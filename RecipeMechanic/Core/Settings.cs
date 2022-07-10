@@ -9,7 +9,7 @@ public class Settings
 
     private static readonly string FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "RecipeMechanic.settings.json");
 
-    public string SavedGamePath { get; set; }
+    public string GamePath { get; set; }
 
     public void Save()
     {

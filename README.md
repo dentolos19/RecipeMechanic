@@ -23,6 +23,7 @@ A powerful and easy-to-use recipe tool for Scrap Mechanic!
 
 ## Screenshots
 
-![](./.github/screenshots/0.png)
-![](./.github/screenshots/1.png)
-![](./.github/screenshots/2.png)
+![](./.github/miscellaneous/preview0.gif)
+![](./.github/miscellaneous/preview1.png)
+![](./.github/miscellaneous/preview2.png)
+![](./.github/miscellaneous/preview3.png)

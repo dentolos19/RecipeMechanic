@@ -242,6 +242,18 @@ public partial class MainWindow
         UpdateStatus();
     }
 
+    private void OnCopyRecipeId(object sender, RoutedEventArgs args)
+    {
+        if (RecipeList.SelectedItem is RecipeItemModel item)
+            Utilities.CopyToClipboard(item.Id.ToString());
+    }
+
+    private void OnCopyItemId(object sender, RoutedEventArgs args)
+    {
+        if (ItemList.SelectedItem is GameItemModel item)
+            Utilities.CopyToClipboard(item.Id.ToString());
+    }
+
     private void OnLaunchBackupWizard(object sender, RoutedEventArgs args)
     {
         Process.Start(new ProcessStartInfo
