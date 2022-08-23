@@ -21,9 +21,9 @@ A powerful and easy-to-use recipe tool for Scrap Mechanic!
 - [X] Simplistic user interface for easy use
 - [X] Allows the users to see all in-game items
 
-## Previews
+## Images
 
-![](./.github/miscellaneous/preview0.gif)
-![](./.github/miscellaneous/preview1.png)
-![](./.github/miscellaneous/preview2.png)
-![](./.github/miscellaneous/preview3.png)
+![](./.github/images/preview0.gif)
+![](./.github/images/preview1.png)
+![](./.github/images/preview2.png)
+![](./.github/images/preview3.png)
