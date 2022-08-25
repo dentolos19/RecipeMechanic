@@ -1,5 +1,5 @@
-﻿using RecipeMechanic.Core;
-using System.Windows;
+﻿using System.Windows;
+using RecipeMechanic.Core;
 
 namespace RecipeMechanic;
 

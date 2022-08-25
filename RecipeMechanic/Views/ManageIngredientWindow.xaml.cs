@@ -1,14 +1,14 @@
-﻿using RecipeMechanic.Models;
-using System;
+﻿using System;
 using System.Linq;
 using System.Windows;
+using RecipeMechanic.Models;
 
 namespace RecipeMechanic.Views;
 
 public partial class ManageIngredientWindow
 {
 
-    private GameItemModel[] _items;
+    private readonly GameItemModel[] _items;
 
     public IngredientDataModel? Ingredient { get; private set; }
 

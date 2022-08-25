@@ -1,17 +1,18 @@
-﻿using RecipeMechanic.Core;
-using RecipeMechanic.Models;
-using System;
+﻿using System;
 using System.Linq;
 using System.Windows;
+using RecipeMechanic.Core;
+using RecipeMechanic.Models;
 
 namespace RecipeMechanic.Views;
 
 public partial class ManageRecipeWindow
 {
 
+    private readonly GameItemModel[] _items;
+    private readonly RecipeDataModel[]? _recipes;
+
     private bool _massEditing;
-    private GameItemModel[] _items;
-    private RecipeDataModel[]? _recipes;
 
     public RecipeDataModel? Recipe { get; private set; }
 

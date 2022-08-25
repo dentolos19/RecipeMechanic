@@ -1,5 +1,5 @@
-﻿using RecipeMechanic.Models;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
+using RecipeMechanic.Models;
 
 namespace RecipeMechanic.ViewModels;
 

@@ -1,8 +1,4 @@
-﻿using Microsoft.Win32;
-using RecipeMechanic.Core;
-using RecipeMechanic.Models;
-using RecipeMechanic.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -12,6 +8,10 @@ using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using Microsoft.Win32;
+using RecipeMechanic.Core;
+using RecipeMechanic.Models;
+using RecipeMechanic.ViewModels;
 
 namespace RecipeMechanic.Views;
 

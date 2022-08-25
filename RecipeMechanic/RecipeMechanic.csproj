@@ -9,11 +9,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Extended.Wpf.Toolkit" Version="4.3.0" />
+        <PackageReference Include="Extended.Wpf.Toolkit" Version="4.4.0"/>
     </ItemGroup>
 
     <ItemGroup>
-        <Resource Include="Resources\Assets\Icon.png" />
+        <Resource Include="Resources\Assets\Icon.png"/>
     </ItemGroup>
 
 </Project>
