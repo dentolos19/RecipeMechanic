@@ -9,7 +9,7 @@ concurrency:
   cancel-in-progress: true
 env:
   TARGET_BRANCH: ${{ github.event.repository.default_branch }}
-  PROJECT_FILE: RecipeMechanic/RecipeMechanic
+  PROJECT_FILE: RecipeMechanic/RecipeMechanic.csproj
   ARTIFACT_NAME: Output
   RELEASE_TAG: Canary
 jobs:
