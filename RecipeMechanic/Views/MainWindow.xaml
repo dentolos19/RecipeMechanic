@@ -1,8 +1,8 @@
-﻿<Window x:Class="RecipeMechanic.Views.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:views="clr-namespace:RecipeMechanic.Models"
+        x:Class="RecipeMechanic.Views.MainWindow"
         Title="Recipe Mechanic" MinWidth="800" MinHeight="500" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" Initialized="OnInitialized">
     <Window.DataContext>
         <views:MainViewModel/>
@@ -42,12 +42,12 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <xctk:WatermarkTextBox x:Name="RecipeSearchInput" Grid.Row="0" Watermark="Search" TextChanged="OnRecipeSearch"/>
-                    <ListView x:Name="RecipeList" Grid.Row="2" ItemsSource="{Binding Path=Recipes}" MouseDoubleClick="OnEditRecipes">
+                    <ListView x:Name="RecipeList" Grid.Row="2" ItemsSource="{Binding Recipes}" MouseDoubleClick="OnEditRecipes">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn DisplayMemberBinding="{Binding Path=Id}">ID</GridViewColumn>
-                                <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">Name</GridViewColumn>
-                                <GridViewColumn DisplayMemberBinding="{Binding Path=Description}">Description</GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Id}">ID</GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Name}">Name</GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Description}">Description</GridViewColumn>
                             </GridView>
                         </ListView.View>
                         <ListView.ContextMenu>
@@ -64,7 +64,7 @@
                             <Style TargetType="TextBlock">
                                 <Setter Property="Visibility" Value="Collapsed"/>
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Path=Recipes.Count}" Value="0">
+                                    <DataTrigger Binding="{Binding Recipes.Count}" Value="0">
                                         <Setter Property="Visibility" Value="Visible"/>
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -81,12 +81,12 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <xctk:WatermarkTextBox x:Name="ItemSearchInput" Grid.Row="0" Watermark="Search" TextChanged="OnItemSearch"/>
-                    <ListView x:Name="ItemList" Grid.Row="2" ItemsSource="{Binding Path=Items}">
+                    <ListView x:Name="ItemList" Grid.Row="2" ItemsSource="{Binding Items}">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn DisplayMemberBinding="{Binding Path=Id}">ID</GridViewColumn>
-                                <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">Name</GridViewColumn>
-                                <GridViewColumn DisplayMemberBinding="{Binding Path=Description}">Description</GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Id}">ID</GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Name}">Name</GridViewColumn>
+                                <GridViewColumn DisplayMemberBinding="{Binding Description}">Description</GridViewColumn>
                             </GridView>
                         </ListView.View>
                         <ListView.ContextMenu>
@@ -100,7 +100,7 @@
                             <Style TargetType="TextBlock">
                                 <Setter Property="Visibility" Value="Collapsed"/>
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Path=Items.Count}" Value="0">
+                                    <DataTrigger Binding="{Binding Items.Count}" Value="0">
                                         <Setter Property="Visibility" Value="Visible"/>
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -127,19 +127,19 @@
                 </ItemsPanelTemplate>
             </StatusBar.ItemsPanel>
             <StatusBarItem Grid.Column="0">
-                <TextBlock Text="{Binding Path=ItemCountText}"/>
+                <TextBlock Text="{Binding ItemCountText}"/>
             </StatusBarItem>
             <Separator Grid.Column="1"/>
             <StatusBarItem Grid.Column="2">
-                <TextBlock Text="{Binding Path=RecipeCountText}"/>
+                <TextBlock Text="{Binding RecipeCountText}"/>
             </StatusBarItem>
             <Separator Grid.Column="3"/>
             <StatusBarItem Grid.Column="4">
-                <TextBlock Text="{Binding Path=OpenedFileText}"/>
+                <TextBlock Text="{Binding OpenedFileText}"/>
             </StatusBarItem>
             <Separator Grid.Column="5"/>
             <StatusBarItem Grid.Column="6">
-                <TextBlock Text="{Binding Path=AppVersionText}"/>
+                <TextBlock Text="{Binding AppVersionText}"/>
             </StatusBarItem>
         </StatusBar>
     </Grid>

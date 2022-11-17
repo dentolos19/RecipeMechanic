@@ -4,7 +4,7 @@ A powerful and easy-to-use recipe tool for Scrap Mechanic!
 
 ## Usage
 
-1. Download the latest package from this [page](https://github.com/dentolos19/RecipeMechanic/releases) that is compatible with your system
+1. Download the latest package from this [page](https://github.com/dentolos19/RecipeMechanic/releases)
 2. Extract the package and run `RecipeMechanic.exe`
 3. Done!
 
