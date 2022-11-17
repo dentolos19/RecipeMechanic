@@ -5,18 +5,16 @@ on:
       - RecipeMechanic/**
   workflow_dispatch:
 concurrency:
-  group: release
+  group: canary
   cancel-in-progress: true
 env:
   TARGET_BRANCH: ${{ github.event.repository.default_branch }}
-  PROJECT_FILE: RecipeMechanic/RecipeMechanic.csproj
-  ARTIFACT_NAME: Output
+  DOTNET_VERSION: 7.0.x
+  PROJECT_FILE: RecipeMechanic.sln
+  ARTIFACT_NAME: Canary
   RELEASE_TAG: Canary
 jobs:
   build:
-    strategy:
-      matrix:
-        runtime: [ win-x86, win-x64, win-arm, win-arm64 ]
     continue-on-error: true
     runs-on: windows-latest
     steps:
@@ -29,13 +27,13 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: ${{ env.DOTNET_VERSION }}
       - name: Publish Project
         run: |
-          dotnet publish ${{ env.PROJECT_FILE }} -c Release -p:RuntimeIdentifier=${{ matrix.runtime }} -p:PublishSingleFile=true -p:SelfContained=false -o build
+          dotnet publish ${{ env.PROJECT_FILE }} -c Release -o build
           $artifacts = (Get-ChildItem build/*).FullName
           New-Item -ItemType Directory artifacts
-          Compress-Archive $artifacts artifacts/${{ github.event.repository.name }}_${{ matrix.runtime }}.zip
+          Compress-Archive $artifacts artifacts/${{ github.event.repository.name }}.zip
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:

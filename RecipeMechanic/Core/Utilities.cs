@@ -56,18 +56,4 @@ public static class Utilities
         return ingredientItem;
     }
 
-    public static Task CopyToClipboard(string text)
-    {
-        while (true)
-            try
-            {
-                Clipboard.SetText(text);
-                return Task.CompletedTask;
-            }
-            catch
-            {
-                // do nothing
-            }
-    }
-
 }

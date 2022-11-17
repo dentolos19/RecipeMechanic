@@ -11,7 +11,6 @@ using System.Windows.Data;
 using Microsoft.Win32;
 using RecipeMechanic.Core;
 using RecipeMechanic.Models;
-using RecipeMechanic.ViewModels;
 
 namespace RecipeMechanic.Views;
 
@@ -245,13 +244,13 @@ public partial class MainWindow
     private void OnCopyRecipeId(object sender, RoutedEventArgs args)
     {
         if (RecipeList.SelectedItem is RecipeItemModel item)
-            Utilities.CopyToClipboard(item.Id.ToString());
+            Clipboard.SetText(item.Id.ToString());
     }
 
     private void OnCopyItemId(object sender, RoutedEventArgs args)
     {
         if (ItemList.SelectedItem is GameItemModel item)
-            Utilities.CopyToClipboard(item.Id.ToString());
+            Clipboard.SetText(item.Id.ToString());
     }
 
     private void OnLaunchBackupWizard(object sender, RoutedEventArgs args)
