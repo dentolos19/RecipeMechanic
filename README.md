@@ -1,4 +1,4 @@
-# <img src=".github/icon.png" style="48px"/> Recipe Mechanic
+# <img src=".github/icon.png" width="48px"/> Recipe Mechanic
 
 A powerful and easy-to-use recipe tool for Scrap Mechanic!
 
