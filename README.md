@@ -1,16 +1,16 @@
-# <img src=".github/icon.png" style="width: 1em"/> Recipe Mechanic
+# <img src=".github/icon.png" style="48px"/> Recipe Mechanic
 
 A powerful and easy-to-use recipe tool for Scrap Mechanic!
 
-## Usage
+## ⚒️ Usage
 
-1. Download the latest package from this [page](https://github.com/dentolos19/RecipeMechanic/releases)
+1. Download the latest package from the [releases page](https://github.com/dentolos19/RecipeMechanic/releases)
 2. Extract the package and run `RecipeMechanic.exe`
 3. Done!
 
 > **Note**: It is recommended to backup the game first before editing recipe files.
 
-## Features
+## ⚙️ Features
 
 - [X] Supports most of the in-game recipes
   - [X] Supports Cookbot recipes
@@ -29,7 +29,7 @@ A powerful and easy-to-use recipe tool for Scrap Mechanic!
 - [X] Simplistic user interface for easy use
 - [X] Allows the users to see all in-game items
 
-## Images
+## 📸 Screenshots
 
 ![](.github/assets/0.gif)
 ![](.github/assets/1.png)
