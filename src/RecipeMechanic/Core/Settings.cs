@@ -6,7 +6,6 @@ namespace RecipeMechanic.Core;
 
 public class Settings
 {
-
     private static readonly string FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "RecipeMechanic.settings.json");
 
     public string GamePath { get; set; }
@@ -22,5 +21,4 @@ public class Settings
             return new Settings();
         return JsonSerializer.Deserialize<Settings>(File.ReadAllText(FilePath));
     }
-
 }

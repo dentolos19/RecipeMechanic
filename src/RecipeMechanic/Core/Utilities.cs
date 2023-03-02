@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
-using System.Threading.Tasks;
-using System.Windows;
 using RecipeMechanic.Models;
 
 namespace RecipeMechanic.Core;
 
 public static class Utilities
 {
-
     public static IEnumerable<RecipeDataModel> GetRecipes(string filePath)
     {
         var recipeData = File.ReadAllText(filePath);
@@ -55,5 +52,4 @@ public static class Utilities
         }
         return ingredientItem;
     }
-
 }

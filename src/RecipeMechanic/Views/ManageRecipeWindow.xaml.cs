@@ -8,7 +8,6 @@ namespace RecipeMechanic.Views;
 
 public partial class ManageRecipeWindow
 {
-
     private readonly GameItemModel[] _items;
     private readonly RecipeDataModel[]? _recipes;
 
@@ -156,5 +155,4 @@ public partial class ManageRecipeWindow
         DialogResult = true;
         Close();
     }
-
 }

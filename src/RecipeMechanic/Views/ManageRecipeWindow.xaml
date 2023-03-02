@@ -10,26 +10,26 @@
             <ComboBox x:Name="OutputItemSelection">
                 <ComboBox.ItemTemplate>
                     <DataTemplate DataType="m:GameItemModel">
-                        <TextBlock Text="{Binding Name}"/>
+                        <TextBlock Text="{Binding Name}" />
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </StackPanel>
         <StackPanel Margin="0,5">
             <TextBlock Margin="0,0,0,2">Output Quantity</TextBlock>
-            <xctk:IntegerUpDown x:Name="OutputQuantityInput" Minimum="1"/>
+            <xctk:IntegerUpDown x:Name="OutputQuantityInput" Minimum="1" />
         </StackPanel>
         <StackPanel Margin="0,5">
             <TextBlock Margin="0,0,0,2">Crafting Duration</TextBlock>
-            <xctk:IntegerUpDown x:Name="CraftingDurationInput" Minimum="0"/>
+            <xctk:IntegerUpDown x:Name="CraftingDurationInput" Minimum="0" />
         </StackPanel>
         <StackPanel Margin="0,5">
             <TextBlock Margin="0,0,0,2">Ingredients</TextBlock>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="200"/>
-                    <RowDefinition Height="5"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="200" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <ListView x:Name="IngredientList" Grid.Row="0" MouseDoubleClick="OnModifyIngredient">
                     <ListView.View>
@@ -42,11 +42,11 @@
                 </ListView>
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="5"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="5"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="5" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="5" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="0" Click="OnAddIngredient">Add Ingredient</Button>
                     <Button Grid.Column="2" Click="OnModifyIngredient">Modify Ingredient</Button>

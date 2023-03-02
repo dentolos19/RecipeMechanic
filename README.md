@@ -1,4 +1,4 @@
-# <img src=".github/icon.png" width="48px"/> Recipe Mechanic
+# <img src="docs/icon.png" width="48px"/> Recipe Mechanic
 
 A powerful and easy-to-use recipe tool for Scrap Mechanic!
 
@@ -12,26 +12,26 @@ A powerful and easy-to-use recipe tool for Scrap Mechanic!
 
 ## ⚙️ Features
 
-- [X] Supports most of the in-game recipes
-  - [X] Supports Cookbot recipes
-  - [X] Supports Craftbot recipes
-  - [X] Supports Dispenser recipes
-  - [X] Supports Workbench recipes
-  - [X] Supports Trader deals
-- [X] Contains many tools for easy management
-  - [X] Allows to add any kind of recipes
-  - [X] Allows to remove any kind of recipes
-  - [X] Allows to edit individual recipe data
-    - [X] Supports editing the output quantity
-    - [X] Supports editing the crafting duration
-    - [X] Supports editing the required ingredients
-  - [X] Has the ability to edit many recipes all at once
-- [X] Simplistic user interface for easy use
-- [X] Allows the users to see all in-game items
+- [x] Supports most of the in-game recipes
+  - [x] Supports Cookbot recipes
+  - [x] Supports Craftbot recipes
+  - [x] Supports Dispenser recipes
+  - [x] Supports Workbench recipes
+  - [x] Supports Trader deals
+- [x] Contains many tools for easy management
+  - [x] Allows to add any kind of recipes
+  - [x] Allows to remove any kind of recipes
+  - [x] Allows to edit individual recipe data
+    - [x] Supports editing the output quantity
+    - [x] Supports editing the crafting duration
+    - [x] Supports editing the required ingredients
+  - [x] Has the ability to edit many recipes all at once
+- [x] Simplistic user interface for easy use
+- [x] Allows the users to see all in-game items
 
 ## 📸 Screenshots
 
-![](.github/assets/0.gif)
-![](.github/assets/1.png)
-![](.github/assets/2.png)
-![](.github/assets/3.png)
+![](docs/0.gif)
+![](docs/1.png)
+![](docs/2.png)
+![](docs/3.png)

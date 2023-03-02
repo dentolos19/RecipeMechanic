@@ -7,7 +7,6 @@ namespace RecipeMechanic.Views;
 
 public partial class ManageIngredientWindow
 {
-
     private readonly GameItemModel[] _items;
 
     public IngredientDataModel? Ingredient { get; private set; }
@@ -47,5 +46,4 @@ public partial class ManageIngredientWindow
         DialogResult = true;
         Close();
     }
-
 }

@@ -2,12 +2,10 @@
 
 namespace RecipeMechanic.Models;
 
-public class RecipeItemModel
+public class IngredientItemModel
 {
-
     public Guid Id { get; init; }
     public string Name { get; set; }
-    public string? Description { get; set; }
-    public RecipeDataModel Data { get; init; }
-
+    public int Quantity { get; init; }
+    public IngredientDataModel Data { get; init; }
 }

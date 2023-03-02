@@ -5,43 +5,43 @@
         x:Class="RecipeMechanic.Views.MainWindow"
         Title="Recipe Mechanic" MinWidth="800" MinHeight="500" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" Initialized="OnInitialized">
     <Window.DataContext>
-        <views:MainViewModel/>
+        <views:MainViewModel />
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
             <MenuItem Header="File">
-                <MenuItem Header="Open" Click="OnOpenRecipe"/>
-                <Separator/>
-                <MenuItem Header="Save" Click="OnSaveRecipe"/>
-                <MenuItem Header="Save As" Click="OnSaveRecipeAs"/>
-                <Separator/>
-                <MenuItem Header="Exit" InputGestureText="Alt+F4" Click="OnExit"/>
+                <MenuItem Header="Open" Click="OnOpenRecipe" />
+                <Separator />
+                <MenuItem Header="Save" Click="OnSaveRecipe" />
+                <MenuItem Header="Save As" Click="OnSaveRecipeAs" />
+                <Separator />
+                <MenuItem Header="Exit" InputGestureText="Alt+F4" Click="OnExit" />
             </MenuItem>
             <MenuItem Header="Edit">
-                <MenuItem Header="Add Recipe" Click="OnAddRecipe"/>
-                <MenuItem Header="Edit Recipe(s)" Click="OnEditRecipes"/>
-                <MenuItem Header="Edit All Recipe" Click="OnEditAllRecipes"/>
-                <MenuItem Header="Remove Recipe(s)" Click="OnRemoveRecipes"/>
+                <MenuItem Header="Add Recipe" Click="OnAddRecipe" />
+                <MenuItem Header="Edit Recipe(s)" Click="OnEditRecipes" />
+                <MenuItem Header="Edit All Recipe" Click="OnEditAllRecipes" />
+                <MenuItem Header="Remove Recipe(s)" Click="OnRemoveRecipes" />
             </MenuItem>
             <MenuItem Header="Game">
-                <MenuItem Header="Launch Steam Backup Wizard" Click="OnLaunchBackupWizard"/>
-                <MenuItem Header="Verify Game Files (via Steam)" Click="OnVerifyGameFiles"/>
+                <MenuItem Header="Launch Steam Backup Wizard" Click="OnLaunchBackupWizard" />
+                <MenuItem Header="Verify Game Files (via Steam)" Click="OnVerifyGameFiles" />
             </MenuItem>
         </Menu>
         <TabControl Grid.Row="1">
             <TabItem Header="Manage Recipes">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="5"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <xctk:WatermarkTextBox x:Name="RecipeSearchInput" Grid.Row="0" Watermark="Search" TextChanged="OnRecipeSearch"/>
+                    <xctk:WatermarkTextBox x:Name="RecipeSearchInput" Grid.Row="0" Watermark="Search" TextChanged="OnRecipeSearch" />
                     <ListView x:Name="RecipeList" Grid.Row="2" ItemsSource="{Binding Recipes}" MouseDoubleClick="OnEditRecipes">
                         <ListView.View>
                             <GridView>
@@ -52,20 +52,20 @@
                         </ListView.View>
                         <ListView.ContextMenu>
                             <ContextMenu>
-                                <MenuItem Header="Copy ID" Click="OnCopyRecipeId"/>
-                                <Separator/>
-                                <MenuItem Header="Edit Recipe(s)" Click="OnEditRecipes"/>
-                                <MenuItem Header="Remove Recipe(s)" Click="OnRemoveRecipes"/>
+                                <MenuItem Header="Copy ID" Click="OnCopyRecipeId" />
+                                <Separator />
+                                <MenuItem Header="Edit Recipe(s)" Click="OnEditRecipes" />
+                                <MenuItem Header="Remove Recipe(s)" Click="OnRemoveRecipes" />
                             </ContextMenu>
                         </ListView.ContextMenu>
                     </ListView>
                     <TextBlock Grid.Row="2" Text="Open a recipe file to get started!" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
-                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Setter Property="Visibility" Value="Collapsed" />
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding Recipes.Count}" Value="0">
-                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Setter Property="Visibility" Value="Visible" />
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -76,11 +76,11 @@
             <TabItem Header="All Items">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="5"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <xctk:WatermarkTextBox x:Name="ItemSearchInput" Grid.Row="0" Watermark="Search" TextChanged="OnItemSearch"/>
+                    <xctk:WatermarkTextBox x:Name="ItemSearchInput" Grid.Row="0" Watermark="Search" TextChanged="OnItemSearch" />
                     <ListView x:Name="ItemList" Grid.Row="2" ItemsSource="{Binding Items}">
                         <ListView.View>
                             <GridView>
@@ -91,17 +91,17 @@
                         </ListView.View>
                         <ListView.ContextMenu>
                             <ContextMenu>
-                                <MenuItem Header="Copy ID" Click="OnCopyItemId"/>
+                                <MenuItem Header="Copy ID" Click="OnCopyItemId" />
                             </ContextMenu>
                         </ListView.ContextMenu>
                     </ListView>
                     <TextBlock Grid.Row="2" Text="Open a recipe file to view all items!" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
-                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Setter Property="Visibility" Value="Collapsed" />
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding Items.Count}" Value="0">
-                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Setter Property="Visibility" Value="Visible" />
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -115,31 +115,31 @@
                 <ItemsPanelTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                     </Grid>
                 </ItemsPanelTemplate>
             </StatusBar.ItemsPanel>
             <StatusBarItem Grid.Column="0">
-                <TextBlock Text="{Binding ItemCountText}"/>
+                <TextBlock Text="{Binding ItemCountText}" />
             </StatusBarItem>
-            <Separator Grid.Column="1"/>
+            <Separator Grid.Column="1" />
             <StatusBarItem Grid.Column="2">
-                <TextBlock Text="{Binding RecipeCountText}"/>
+                <TextBlock Text="{Binding RecipeCountText}" />
             </StatusBarItem>
-            <Separator Grid.Column="3"/>
+            <Separator Grid.Column="3" />
             <StatusBarItem Grid.Column="4">
-                <TextBlock Text="{Binding OpenedFileText}"/>
+                <TextBlock Text="{Binding OpenedFileText}" />
             </StatusBarItem>
-            <Separator Grid.Column="5"/>
+            <Separator Grid.Column="5" />
             <StatusBarItem Grid.Column="6">
-                <TextBlock Text="{Binding AppVersionText}"/>
+                <TextBlock Text="{Binding AppVersionText}" />
             </StatusBarItem>
         </StatusBar>
     </Grid>

@@ -6,20 +6,20 @@
         Title="Manage Ingredient" Width="400" SizeToContent="Height" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Initialized="OnInitialized">
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="5"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="5"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <ComboBox x:Name="ItemSelection" Grid.Column="0">
             <ComboBox.ItemTemplate>
                 <DataTemplate DataType="m:GameItemModel">
-                    <TextBlock Text="{Binding Name}"/>
+                    <TextBlock Text="{Binding Name}" />
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <xctk:IntegerUpDown Grid.Column="2" x:Name="QuantityInput" Value="0" Minimum="0"/>
+        <xctk:IntegerUpDown Grid.Column="2" x:Name="QuantityInput" Value="0" Minimum="0" />
         <Button Grid.Column="4" Click="OnContinue">Continue</Button>
     </Grid>
 </Window>

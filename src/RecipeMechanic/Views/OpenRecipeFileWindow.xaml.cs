@@ -10,7 +10,6 @@ namespace RecipeMechanic.Views;
 
 public partial class OpenRecipeFileWindow
 {
-
     public string GamePath { get; private set; }
     public string RecipePath { get; private set; }
 
@@ -123,5 +122,4 @@ public partial class OpenRecipeFileWindow
         DialogResult = true;
         Close();
     }
-
 }

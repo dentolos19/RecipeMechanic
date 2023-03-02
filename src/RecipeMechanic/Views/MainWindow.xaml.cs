@@ -16,7 +16,6 @@ namespace RecipeMechanic.Views;
 
 public partial class MainWindow
 {
-
     private string? _gamePath;
     private string? _recipePath;
     private GameItemModel[]? _items;
@@ -270,5 +269,4 @@ public partial class MainWindow
             UseShellExecute = true
         });
     }
-
 }

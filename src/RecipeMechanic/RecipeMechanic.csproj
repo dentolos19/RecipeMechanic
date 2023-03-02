@@ -9,12 +9,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Resource Include="Resources\Assets\Icon.png"/>
+		<Resource Include="Resources\Assets\Icon.png" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0"/>
-		<PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.0"/>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+		<PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.0" />
 	</ItemGroup>
 
 </Project>
