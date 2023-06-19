@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RecipeMechanic.Models;
+﻿namespace RecipeMechanic.Models;
 
 public class RecipeItemModel
 {

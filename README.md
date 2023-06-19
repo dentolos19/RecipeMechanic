@@ -1,4 +1,7 @@
-# <img src="docs/icon.png" width="48px"/> Recipe Mechanic
+<h1>
+    <img src="docs/icon.png" style="height: 1em;"/>
+    <span>Recipe Mechanic</span>
+</h1>
 
 A powerful and easy-to-use recipe tool for Scrap Mechanic!
 

@@ -1,20 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<OutputType>WinExe</OutputType>
-		<TargetFramework>net7.0-windows</TargetFramework>
-		<Nullable>enable</Nullable>
-		<UseWPF>true</UseWPF>
-		<ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
-	</PropertyGroup>
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net7.0-windows</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <UseWPF>true</UseWPF>
+        <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
+    </PropertyGroup>
 
-	<ItemGroup>
-		<Resource Include="Resources\Assets\Icon.png" />
-	</ItemGroup>
+    <ItemGroup>
+        <Resource Include="Resources\Assets\Icon.png" />
+    </ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
-		<PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.0" />
-	</ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+        <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.0" />
+    </ItemGroup>
 
 </Project>
