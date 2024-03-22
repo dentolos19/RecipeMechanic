@@ -24,7 +24,7 @@ public partial class ManageRecipeWindow
     {
         foreach (var item in _items)
             OutputItemSelection.Items.Add(item);
-        if (_recipes is { Length: 1 }) // single recipe editing
+        if (_recipes is { Length: 1 }) // Single recipe editing
         {
             var recipe = _recipes[0];
             OutputItemSelection.SelectedItem = _items.FirstOrDefault(item => item.Id.Equals(recipe.Id));
@@ -33,7 +33,7 @@ public partial class ManageRecipeWindow
             foreach (var ingredient in recipe.Ingredients)
                 IngredientList.Items.Add(Utilities.ConvertToIngredientItem(ingredient, _items));
         }
-        else if (_recipes is { Length: > 1 }) // multi recipe editing
+        else if (_recipes is { Length: > 1 }) // Multi recipe editing
         {
             var hasSameQuantity = true;
             var hasSameDuration = true;
@@ -69,7 +69,7 @@ public partial class ManageRecipeWindow
                     IngredientList.Items.Add(Utilities.ConvertToIngredientItem(ingredient, _items));
             OutputItemSelection.IsEnabled = false;
         }
-        else // new recipe editing
+        else // New recipe editing
         {
             var random = new Random();
             OutputItemSelection.SelectedIndex = random.Next(OutputItemSelection.Items.Count - 1);
@@ -119,7 +119,7 @@ public partial class ManageRecipeWindow
 
     private void OnContinue(object sender, RoutedEventArgs args)
     {
-        if (_recipes is { Length: > 1 }) // multi recipe editing
+        if (_recipes is { Length: > 1 }) // Multi recipe editing
         {
             var recipe = new RecipeDataModel();
             if (OutputQuantityInput.Value.HasValue)
@@ -130,7 +130,7 @@ public partial class ManageRecipeWindow
                 recipe.Ingredients = IngredientList.Items.OfType<IngredientItemModel>().Select(ingredientItem => new IngredientDataModel { Id = ingredientItem.Id, Quantity = ingredientItem.Quantity }).ToList();
             Recipe = recipe;
         }
-        else // new and single recipe editing
+        else // New and single recipe editing
         {
             if (OutputItemSelection.SelectedItem is not GameItemModel item)
             {

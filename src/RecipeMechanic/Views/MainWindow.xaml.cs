@@ -45,9 +45,9 @@ public partial class MainWindow
     {
         var filter = RecipeSearchInput.Text;
         if (string.IsNullOrEmpty(filter))
-            return true; // does not filter item (keeps it)
+            return true; // Does not filter item (keeps it)
         if (item is not RecipeItemModel recipeItem)
-            return false; // filter item (hides it)
+            return false; // Filter item (hides it)
         return recipeItem.Id.ToString().Contains(filter, StringComparison.OrdinalIgnoreCase)
                || recipeItem.Name.Contains(filter, StringComparison.OrdinalIgnoreCase)
                || recipeItem.Description?.Contains(filter, StringComparison.OrdinalIgnoreCase) == true;

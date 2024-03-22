@@ -99,7 +99,7 @@ public partial class OpenRecipeFileWindow
     private void OnItemSelected(object sender, MouseButtonEventArgs args)
     {
         if (RecipeFileList.SelectedItem is RecipeFileItemModel item)
-            OnContinue(null, null);
+            OnContinue(null!, null!);
     }
 
     private void OnContinue(object sender, RoutedEventArgs args)
