@@ -1,17 +1,13 @@
 <h1>
-    <img src="docs/icon.png" style="height: 1em;"/>
+    <img src="docs/icon.png" alt="Icon" height="30"/>
     <span>Recipe Mechanic</span>
 </h1>
 
+> **Note**: This project is no longer being actively developed. Commits only adds maintainance updates.
+
 A powerful and easy-to-use recipe tool for Scrap Mechanic!
 
-## ⚒️ Usage
-
-1. Download the latest package from the [releases page](https://github.com/dentolos19/RecipeMechanic/releases)
-2. Extract the package and run `RecipeMechanic.exe`
-3. Done!
-
-> **Note**: It is recommended to backup the game first before editing recipe files.
+![Demo](docs/demo.gif)
 
 ## ⚙️ Features
 
@@ -32,9 +28,6 @@ A powerful and easy-to-use recipe tool for Scrap Mechanic!
 - [x] Simplistic user interface for easy use
 - [x] Allows the users to see all in-game items
 
-## 📸 Screenshots
+## 📜 License
 
-![](docs/0.gif)
-![](docs/1.png)
-![](docs/2.png)
-![](docs/3.png)
+Distributed under the MIT License. See [LICENSE](./LICENSE) for more information.
