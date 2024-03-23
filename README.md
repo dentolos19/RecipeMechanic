@@ -3,8 +3,6 @@
     <span>Recipe Mechanic</span>
 </h1>
 
-> **Note**: This project is no longer being actively developed. Commits only adds maintainance updates.
-
 A powerful and easy-to-use recipe tool for Scrap Mechanic!
 
 ![Demo](docs/demo.gif)
